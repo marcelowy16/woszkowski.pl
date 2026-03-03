@@ -10,7 +10,7 @@
     <link rel="preload" href="./assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/images/bgimage-home-original.png" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260304-2" />
     <script defer src="./scripts/main.js"></script>
   </head>
   <body>
@@ -83,8 +83,8 @@
             </ul>
 
             <div class="hero-actions">
-              <a class="button button-primary" href="#projects" data-scroll-target="#projects">Zobacz moje projekty</a>
-              <a class="button button-secondary" href="#form" data-scroll-target="#form">Napisz do mnie</a>
+              <a class="button button-primary hero-projects-button" href="#projects" data-scroll-target="#projects">Zobacz moje projekty</a>
+              <a class="button button-secondary hero-contact-button" href="#form" data-scroll-target="#form">Napisz do mnie</a>
             </div>
           </div>
 
@@ -115,7 +115,11 @@
                 />
               </div>
               <div class="project-copy">
-                <h3>Animacje i mikrointerakcje</h3>
+                <h3>
+                  <a href="https://woszkowski.pl/prezentacja-animacji/" target="_blank" rel="noreferrer">
+                    Animacje i mikrointerakcje
+                  </a>
+                </h3>
                 <p>
                   Praktyczne animacje, które ułatwiają użytkownikowi odbiór aplikacji poprzez dawanie wskazówek lub
                   uwidocznianie zmian wynikających z jego działania.
@@ -142,7 +146,11 @@
                 />
               </div>
               <div class="project-copy">
-                <h3>Redesign cyfrowego asystenta interkomu i kamer domowych</h3>
+                <h3>
+                  <a href="https://woszkowski.pl/redesign-asystenta-domowego-proces-projektowy/" target="_blank" rel="noreferrer">
+                    Redesign cyfrowego asystenta interkomu i kamer domowych
+                  </a>
+                </h3>
                 <p>
                   Odświeżenie aplikacji pod względem UI i UX, która jest kierowana jako smart home assistant dla mieszkańców,
                   chcących utrzymać bezpieczeństwo na swojej posesji.
@@ -170,7 +178,11 @@
                 />
               </div>
               <div class="project-copy">
-                <h3>Aplikacja, pomagająca w znajdywaniu osób chętnych do spędzania razem czasu</h3>
+                <h3>
+                  <a href="https://woszkowski.pl/pogo-proces-projektowy/" target="_blank" rel="noreferrer">
+                    Aplikacja, pomagająca w znajdywaniu osób chętnych do spędzania razem czasu
+                  </a>
+                </h3>
                 <p>
                   Przeprowadzenie analizy grupy docelowej w celu zrozumienia ich życia społecznego, oceny otwartości na nowe
                   relacje, zdolności do nawiązywania znajomości oraz oceny ewentualnych trudności w podejmowaniu inicjatywy ze
@@ -194,7 +206,11 @@
                 />
               </div>
               <div class="project-copy">
-                <h3>Dodawanie i wyświetlanie widżetów na dashboardzie</h3>
+                <h3>
+                  <a href="https://woszkowski.pl/konfiguracja-dashboardu-proces-projektowy/" target="_blank" rel="noreferrer">
+                    Dodawanie i wyświetlanie widżetów na dashboardzie
+                  </a>
+                </h3>
                 <p>
                   Dla klienta zajmującego się tworzeniem oprogramowania w sektorze utrzymania produkcji do zaprojektowania był
                   moduł odpowiedzialny za konfigurowanie dashboardu użytkownika, którego fundamentalną domeną jest czytelność,
@@ -224,7 +240,11 @@
                 />
               </div>
               <div class="project-copy">
-                <h3>Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej</h3>
+                <h3>
+                  <a href="https://woszkowski.pl/design-system-proces-projektowy/" target="_blank" rel="noreferrer">
+                    Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej
+                  </a>
+                </h3>
                 <p>
                   Starannie wypracowany zbiór wytycznych, komponentów i wzorców, mający na celu usystematyzowanie i unifikację
                   wszystkich interfejsów cyfrowych związanych z marką klienta.
@@ -252,7 +272,11 @@
                 />
               </div>
               <div class="project-copy">
-                <h3>Platforma dedykowana sprzedaży i edukacji unikatowych gatunków roślin</h3>
+                <h3>
+                  <a href="https://woszkowski.pl/subtropica-proces-projektowy/" target="_blank" rel="noreferrer">
+                    Platforma dedykowana sprzedaży i edukacji unikatowych gatunków roślin
+                  </a>
+                </h3>
                 <p>
                   Celem projektu było stworzenie produktu dla miłośników egzotycznych roślin, jednocześnie zachęcając do
                   edukacji poprzez dostarczanie tematycznych treści i ułatwiając znalezienie interesujących okazów.
@@ -341,54 +365,102 @@
         </div>
       </section>
 
-      <section class="contact section-frame" id="form">
-        <div class="container contact-grid">
-          <div class="contact-copy" data-reveal>
-            <p class="eyebrow eyebrow-dark">Kontakt</p>
-            <h2>Skontaktuj się ze mną <span class="contact-wave" aria-hidden="true">&#128075;</span></h2>
-            <p class="contact-intro">
-              Wystarczy jedno kliknięcie, aby pomóc zmienić pomysł w produkt. Wypełnij formularz, aby udostępnić mi więcej
-              szczegółów na temat projektu.
-            </p>
+      <section class="contact section-frame">
+        <div class="contact-panel" id="form">
+          <div class="container contact-grid">
+            <div class="contact-copy" data-reveal>
+              <p class="contact-title">Skontaktuj się ze mną <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
+              <p class="contact-intro">
+                Wystarczy jedno kliknięcie, aby pomóc zmienić pomysł w produkt. Wypełnij formularz, aby udostępnić mi więcej
+                szczegółów na temat projektu.
+              </p>
+            </div>
+
+            <form class="contact-form" novalidate data-static-form data-reveal>
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    inputmode="email"
+                    autocomplete="email"
+                    required
+                    aria-describedby="contact-email-error"
+                  />
+                  <label for="contact-email">E-mail</label>
+                </div>
+                <p class="field-error" id="contact-email-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    required
+                    maxlength="11"
+                    aria-describedby="contact-phone-error"
+                  />
+                  <label for="contact-phone">Numer telefonu</label>
+                </div>
+                <p class="field-error" id="contact-phone-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    autocomplete="name"
+                    required
+                    aria-describedby="contact-name-error"
+                  />
+                  <label for="contact-name">Nazwa</label>
+                </div>
+                <p class="field-error" id="contact-name-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="7"
+                    required
+                    aria-describedby="contact-message-error"
+                  ></textarea>
+                  <label for="contact-message">Wiadomość</label>
+                </div>
+                <p class="field-error" id="contact-message-error" aria-live="polite"></p>
+              </div>
+
+              <button class="button button-primary" type="submit" disabled aria-disabled="true">Wyślij wiadomość</button>
+            </form>
           </div>
-
-          <form class="contact-form" novalidate data-static-form data-reveal>
-            <label class="field">
-              <span>E-mail</span>
-              <input type="email" name="email" inputmode="email" autocomplete="email" />
-            </label>
-
-            <label class="field">
-              <span>Numer telefonu</span>
-              <input type="tel" name="phone" inputmode="tel" autocomplete="tel" />
-            </label>
-
-            <label class="field">
-              <span>Imię i nazwisko</span>
-              <input type="text" name="name" autocomplete="name" />
-            </label>
-
-            <label class="field">
-              <span>Wiadomość</span>
-              <textarea name="message" rows="7"></textarea>
-            </label>
-
-            <button class="button button-primary" type="submit">Wyślij wiadomość</button>
-          </form>
         </div>
 
-        <div class="container contact-links" data-reveal>
-          <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
-          <a href="tel:+48508278715">+48 508 278 715</a>
-        </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-shell">
-        <p>Marcel Woszkowski</p>
+        <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
+        <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="tel:+48508278715">+48 508 278 715</a>
       </div>
     </footer>
+
+    <button class="scroll-to-top" type="button" aria-label="Przewiń na górę" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 17V7M12 7l-5 5M12 7l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
   </body>
 </html>

@@ -1,13 +1,62 @@
 const body = document.body;
+const siteHeader = document.querySelector(".site-header");
 const menu = document.getElementById("mobile-menu");
 const menuToggle = document.querySelector(".menu-toggle");
 const menuToggleLabel = document.querySelector(".menu-toggle-label");
 const scrollLinks = document.querySelectorAll("[data-scroll-target]");
 const staticForm = document.querySelector("[data-static-form]");
-const wordSlideTargets = document.querySelectorAll(".hero-copy h1, .section-head h2, .project-copy h3");
+const staticFormFields = staticForm ? Array.from(staticForm.querySelectorAll("[data-field]")) : [];
+const staticFormSubmit = staticForm?.querySelector('button[type="submit"]');
+const projectCards = document.querySelectorAll(".project-card");
+const projectTitleLinks = document.querySelectorAll(".project-copy h3 a");
+const wordSlideTargets = document.querySelectorAll(".hero-copy h1, .section-head h2");
 const heroCopyBlocks = document.querySelectorAll(".hero-copy");
+const scrollToTopButton = document.querySelector(".scroll-to-top");
 
 let returnFocusTo = null;
+let lastScrollY = Math.max(window.scrollY, 0);
+let headerTicking = false;
+
+const headerScrollTolerance = 10;
+const headerRevealOffset = 16;
+const scrollToTopRevealOffset = 480;
+
+const syncHeaderVisibility = () => {
+  if (!siteHeader) {
+    return;
+  }
+
+  const currentScrollY = Math.max(window.scrollY, 0);
+  const scrollDelta = currentScrollY - lastScrollY;
+  const nearTop = currentScrollY <= headerRevealOffset;
+  const menuOpen = body.classList.contains("menu-open");
+
+  if (nearTop || menuOpen) {
+    siteHeader.classList.remove("site-header-hidden");
+  } else if (Math.abs(scrollDelta) >= headerScrollTolerance) {
+    siteHeader.classList.toggle("site-header-hidden", scrollDelta > 0);
+  }
+
+  lastScrollY = currentScrollY;
+  headerTicking = false;
+};
+
+const requestHeaderSync = () => {
+  if (!siteHeader || headerTicking) {
+    return;
+  }
+
+  headerTicking = true;
+  window.requestAnimationFrame(syncHeaderVisibility);
+};
+
+const syncScrollToTopButton = () => {
+  if (!(scrollToTopButton instanceof HTMLButtonElement)) {
+    return;
+  }
+
+  scrollToTopButton.hidden = window.scrollY < scrollToTopRevealOffset;
+};
 
 const setMenuState = (open) => {
   if (!menu || !menuToggle || !menuToggleLabel) {
@@ -24,6 +73,9 @@ const setMenuState = (open) => {
     returnFocusTo.focus();
     returnFocusTo = null;
   }
+
+  siteHeader?.classList.remove("site-header-hidden");
+  lastScrollY = Math.max(window.scrollY, 0);
 };
 
 menuToggle?.addEventListener("click", () => {
@@ -51,6 +103,16 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+window.addEventListener("scroll", requestHeaderSync, { passive: true });
+window.addEventListener("scroll", syncScrollToTopButton, { passive: true });
+window.addEventListener("resize", requestHeaderSync);
+syncHeaderVisibility();
+syncScrollToTopButton();
+
+scrollToTopButton?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
 scrollLinks.forEach((link) => {
   link.addEventListener("click", (event) => {
     const trigger = event.currentTarget;
@@ -72,9 +134,394 @@ scrollLinks.forEach((link) => {
   });
 });
 
+const validators = {
+  email: (value) => {
+    const trimmed = value.trim();
+
+    if (!trimmed) {
+      return "";
+    }
+
+    const parts = trimmed.split("@");
+    const domain = parts[1] ?? "";
+
+    if (!trimmed.includes("@") || parts.length !== 2 || !parts[0] || !domain.includes(".") || domain.endsWith(".")) {
+      return "Wpisz poprawny adres e-mail.";
+    }
+
+    return "";
+  },
+  phone: (value) => {
+    const trimmed = value.trim();
+    const digits = trimmed.replace(/\D/g, "");
+
+    if (!trimmed) {
+      return "";
+    }
+
+    if (digits.length < 9) {
+      return "Wpisz poprawny numer telefonu.";
+    }
+
+    return "";
+  },
+  name: (value) => {
+    const trimmed = value.trim();
+
+    if (!trimmed) {
+      return "";
+    }
+
+    if (trimmed.length < 2) {
+      return "Imię i nazwisko jest zbyt krótkie.";
+    }
+
+    return "";
+  },
+  message: (value) => {
+    const trimmed = value.trim();
+
+    if (!trimmed) {
+      return "";
+    }
+
+    if (trimmed.length < 10) {
+      return "Wiadomość powinna mieć co najmniej 10 znaków.";
+    }
+
+    return "";
+  },
+};
+
+const formatPolishPhoneNumber = (value) => {
+  const digits = value.replace(/\D/g, "").slice(0, 9);
+  const groups = digits.match(/.{1,3}/g);
+
+  return groups ? groups.join(" ") : "";
+};
+
+const getFieldElements = (field) => {
+  const control = field.querySelector("input, textarea");
+  const error = field.querySelector(".field-error");
+
+  return { control, error };
+};
+
+const setFieldVisualState = (field, control) => {
+  const hasValue = Boolean(control.value.trim());
+  field.classList.toggle("is-filled", hasValue);
+};
+
+const validateControl = (control) => {
+  const validator = validators[control.name];
+
+  if (!validator) {
+    return "";
+  }
+
+  return validator(control.value);
+};
+
+const renderFieldError = (field, control, forceVisible = false) => {
+  const { error } = getFieldElements(field);
+  const message = validateControl(control);
+  const touched = control.dataset.touched === "true";
+  const hasValue = Boolean(control.value.trim());
+  const shouldShow = Boolean(message) && hasValue && (forceVisible || touched);
+
+  field.classList.toggle("has-error", shouldShow);
+  control.setAttribute("aria-invalid", shouldShow ? "true" : "false");
+
+  if (error) {
+    error.textContent = shouldShow ? message : "";
+  }
+
+  return message;
+};
+
+const updateSubmitState = () => {
+  if (!staticFormSubmit) {
+    return;
+  }
+
+  const isValid = staticFormFields.every((field) => {
+    const { control } = getFieldElements(field);
+    return control && Boolean(control.value.trim()) && !validateControl(control);
+  });
+
+  staticFormSubmit.disabled = !isValid;
+  staticFormSubmit.setAttribute("aria-disabled", String(!isValid));
+};
+
+staticFormFields.forEach((field) => {
+  const { control } = getFieldElements(field);
+
+  if (!(control instanceof HTMLInputElement || control instanceof HTMLTextAreaElement)) {
+    return;
+  }
+
+  setFieldVisualState(field, control);
+  renderFieldError(field, control);
+
+  control.addEventListener("focus", () => {
+    field.classList.add("is-active");
+  });
+
+  control.addEventListener("blur", () => {
+    field.classList.remove("is-active");
+    control.dataset.touched = "true";
+    setFieldVisualState(field, control);
+    renderFieldError(field, control, true);
+    updateSubmitState();
+  });
+
+  control.addEventListener("input", () => {
+    if (control.name === "phone") {
+      control.value = formatPolishPhoneNumber(control.value);
+    }
+
+    setFieldVisualState(field, control);
+    renderFieldError(field, control);
+    updateSubmitState();
+  });
+});
+
 staticForm?.addEventListener("submit", (event) => {
   event.preventDefault();
+  const invalidControls = [];
+
+  staticFormFields.forEach((field) => {
+    const { control } = getFieldElements(field);
+
+    if (!(control instanceof HTMLInputElement || control instanceof HTMLTextAreaElement)) {
+      return;
+    }
+
+    control.dataset.touched = "true";
+    const message = renderFieldError(field, control, true);
+
+    if (!control.value.trim() || message) {
+      invalidControls.push(control);
+    }
+  });
+
+  updateSubmitState();
+
+  if (invalidControls.length > 0) {
+    event.preventDefault();
+    invalidControls[0].focus();
+  }
 });
+
+updateSubmitState();
+
+const createProjectMediaLinks = () => {
+  projectCards.forEach((card) => {
+    const media = card.querySelector(".project-media");
+    const image = media?.querySelector("img");
+    const projectButton = card.querySelector(".project-copy .button[href]");
+    const projectHeading = card.querySelector(".project-copy h3");
+
+    if (!(media instanceof HTMLDivElement) || !(image instanceof HTMLImageElement) || !(projectButton instanceof HTMLAnchorElement)) {
+      return;
+    }
+
+    if (media.querySelector(".project-media-link")) {
+      return;
+    }
+
+    const mediaLink = document.createElement("a");
+    mediaLink.className = "project-media-link";
+    mediaLink.href = projectButton.href;
+    mediaLink.target = projectButton.target;
+    mediaLink.rel = projectButton.rel;
+    mediaLink.setAttribute("aria-label", `Zobacz projekt: ${(projectHeading?.textContent ?? "").trim()}`);
+
+    const mediaFrame = document.createElement("span");
+    mediaFrame.className = "project-media-frame";
+
+    const hoverCursor = document.createElement("span");
+    hoverCursor.className = "project-hover-cursor";
+    hoverCursor.setAttribute("aria-hidden", "true");
+    hoverCursor.textContent = "Zobacz projekt";
+
+    mediaFrame.appendChild(image);
+    mediaLink.append(mediaFrame, hoverCursor);
+    media.appendChild(mediaLink);
+  });
+};
+
+const initProjectHoverCursors = () => {
+  const mediaLinks = document.querySelectorAll(".project-media-link");
+
+  mediaLinks.forEach((link) => {
+    if (!(link instanceof HTMLAnchorElement) || link.dataset.cursorReady === "true") {
+      return;
+    }
+
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let animationFrame = 0;
+
+    const renderCursorPosition = () => {
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+
+      link.style.setProperty("--cursor-x", `${currentX}px`);
+      link.style.setProperty("--cursor-y", `${currentY}px`);
+
+      if (Math.abs(targetX - currentX) < 0.1 && Math.abs(targetY - currentY) < 0.1) {
+        animationFrame = 0;
+        return;
+      }
+
+      animationFrame = window.requestAnimationFrame(renderCursorPosition);
+    };
+
+    const ensureAnimation = () => {
+      if (animationFrame) {
+        return;
+      }
+
+      animationFrame = window.requestAnimationFrame(renderCursorPosition);
+    };
+
+    const setCursorPosition = (clientX, clientY) => {
+      const bounds = link.getBoundingClientRect();
+      targetX = clientX - bounds.left;
+      targetY = clientY - bounds.top;
+
+      if (!animationFrame) {
+        currentX = targetX;
+        currentY = targetY;
+        link.style.setProperty("--cursor-x", `${currentX}px`);
+        link.style.setProperty("--cursor-y", `${currentY}px`);
+      }
+
+      ensureAnimation();
+    };
+
+    link.addEventListener("pointerenter", (event) => {
+      setCursorPosition(event.clientX, event.clientY);
+      link.classList.add("is-hovering");
+    });
+
+    link.addEventListener("pointermove", (event) => {
+      setCursorPosition(event.clientX, event.clientY);
+    });
+
+    link.addEventListener("pointerleave", () => {
+      link.classList.remove("is-hovering");
+
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
+    });
+
+    link.addEventListener("focus", () => {
+      const bounds = link.getBoundingClientRect();
+      targetX = bounds.width / 2;
+      targetY = bounds.height / 2;
+      currentX = targetX;
+      currentY = targetY;
+      link.style.setProperty("--cursor-x", `${currentX}px`);
+      link.style.setProperty("--cursor-y", `${currentY}px`);
+      link.classList.add("is-hovering");
+    });
+
+    link.addEventListener("blur", () => {
+      link.classList.remove("is-hovering");
+
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
+    });
+
+    link.dataset.cursorReady = "true";
+  });
+};
+
+createProjectMediaLinks();
+initProjectHoverCursors();
+
+const splitProjectTitleLines = (link) => {
+  if (!(link instanceof HTMLAnchorElement)) {
+    return;
+  }
+
+  const originalText = (link.dataset.originalText ?? link.textContent ?? "").trim().replace(/\s+/g, " ");
+
+  if (!originalText) {
+    return;
+  }
+
+  link.dataset.originalText = originalText;
+  link.textContent = "";
+
+  const words = originalText.split(" ");
+  const fragments = [];
+
+  words.forEach((word, index) => {
+    const span = document.createElement("span");
+    span.className = "project-title-word";
+    span.textContent = index === 0 ? word : ` ${word}`;
+    link.appendChild(span);
+    fragments.push(span);
+  });
+
+  const lines = [];
+  let currentLine = [];
+  let currentTop = null;
+
+  fragments.forEach((fragment) => {
+    const top = Math.round(fragment.offsetTop);
+
+    if (currentTop === null || top === currentTop) {
+      currentLine.push(fragment);
+      currentTop = top;
+      return;
+    }
+
+    lines.push(currentLine);
+    currentLine = [fragment];
+    currentTop = top;
+  });
+
+  if (currentLine.length) {
+    lines.push(currentLine);
+  }
+
+  link.textContent = "";
+
+  lines.forEach((lineWords, index) => {
+    const line = document.createElement("span");
+    line.className = "project-title-line";
+    line.style.setProperty("--line-index", `${index}`);
+
+    lineWords.forEach((word) => {
+      line.appendChild(document.createTextNode(word.textContent ?? ""));
+    });
+
+    link.appendChild(line);
+
+    if (index < lines.length - 1) {
+      link.appendChild(document.createElement("br"));
+    }
+  });
+};
+
+const rebuildProjectTitleLines = () => {
+  projectTitleLinks.forEach((link) => {
+    splitProjectTitleLines(link);
+  });
+};
+
+rebuildProjectTitleLines();
+window.addEventListener("resize", rebuildProjectTitleLines);
 
 const wordSlideMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const wordSlideStagger = 0.1;
