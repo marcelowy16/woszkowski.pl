@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marcel Woszkowski</title>
+    <meta
+      name="description"
+      content="Portfolio Marcela Woszkowskiego odwzorowane jako statyczny frontend."
+    />
+    <link rel="preload" href="./assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="./assets/fonts/GangsterGroteskBold.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="./assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="./assets/images/bgimage-home-original.png"
+      as="image"
+      type="image/png"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <script defer src="./scripts/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Przejdź do treści</a>
+
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="#main" data-scroll-target="#main">Marcel Woszkowski</a>
+
+        <nav class="desktop-nav" aria-label="Główna nawigacja">
+          <a class="nav-link" href="#main" data-scroll-target="#main">Home</a>
+          <a class="nav-link is-disabled" href="#about" aria-disabled="true" data-disabled="true" tabindex="-1">O mnie</a>
+          <a class="nav-link" href="#projects" data-scroll-target="#projects">Portfolio</a>
+          <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
+            <span aria-hidden="true">◌</span>
+            Dribbble
+          </a>
+          <a class="nav-link nav-cta" href="#form" data-scroll-target="#form">Kontakt</a>
+        </nav>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Otwórz menu"
+        >
+          <span class="menu-toggle-label" data-open-label="Menu" data-close-label="Zamknij">Menu</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <div class="mobile-menu-backdrop" data-close-menu="true"></div>
+      <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
+        <a class="mobile-link" href="#main" data-scroll-target="#main">Home</a>
+        <a class="mobile-link is-disabled" href="#about" aria-disabled="true" data-disabled="true" tabindex="-1">O mnie</a>
+        <a class="mobile-link" href="#projects" data-scroll-target="#projects">Portfolio</a>
+        <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      <section class="hero section-frame">
+        <div class="hero-background" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy is-visible" data-reveal>
+            <p class="eyebrow">Marcel Woszkowski</p>
+            <h1>Projektowanie aplikacji dla firm i startupów</h1>
+            <p class="hero-lead">
+              Moją misją jest pomoc w budowaniu rozwiązań będących przyjaznym i intuicyjnym produktem dla użytkownika.
+            </p>
+
+            <ul class="hero-values" aria-label="Wartości projektowe">
+              <li>Innowacyjność</li>
+              <li>Użyteczność</li>
+              <li>Dostępność</li>
+              <li>Optymalizacja</li>
+              <li>Estetyka</li>
+            </ul>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects" data-scroll-target="#projects">Zobacz moje projekty</a>
+              <a class="button button-secondary" href="#form" data-scroll-target="#form">Napisz do mnie</a>
+            </div>
+          </div>
+
+          <div class="hero-visual is-visible" aria-hidden="true" data-reveal>
+            <div class="hero-orbit hero-orbit-primary"></div>
+            <div class="hero-orbit hero-orbit-secondary"></div>
+            <div class="hero-showcase">
+              <div class="hero-showcase-header">
+                <span>Portfolio</span>
+                <span>UI / UX</span>
+              </div>
+              <img
+                class="hero-showcase-image"
+                src="./assets/images/cover_assistant.png"
+                alt=""
+                width="527"
+                height="463"
+                decoding="async"
+              />
+              <div class="hero-showcase-meta">
+                <span>Produkt cyfrowy</span>
+                <span>Mikrointerakcje</span>
+              </div>
+            </div>
+            <img class="scroll-marker scroll-marker-left" src="./assets/gifs/scroll-down.gif" alt="" width="150" height="150" />
+            <img class="scroll-marker scroll-marker-right" src="./assets/gifs/scroll-down2.gif" alt="" width="150" height="153" />
+          </div>
+        </div>
+      </section>
+
+      <section class="projects section-frame" id="projects">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow eyebrow-dark">Portfolio</p>
+            <h2>Projekty</h2>
+          </div>
+
+          <div class="project-list">
+            <article class="project-card" data-reveal>
+              <div class="project-media project-media-dark">
+                <img
+                  src="./assets/gifs/000_1.gif"
+                  alt="Animacje i mikrointerakcje"
+                  width="791"
+                  height="695"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-copy">
+                <h3>Animacje i mikrointerakcje</h3>
+                <p>
+                  Praktyczne animacje, które ułatwiają użytkownikowi odbiór aplikacji poprzez dawanie wskazówek lub
+                  uwidocznianie zmian wynikających z jego działania.
+                </p>
+                <p>
+                  Celem ich jest zwiększenie intuicyjności witryny i sprawienie, że interakcja z nią będzie dla użytkownika
+                  łatwiejsza i bardziej naturalna.
+                </p>
+                <a class="button button-tertiary is-disabled" href="#project-1" aria-disabled="true" data-disabled="true" tabindex="-1">
+                  Zobacz projekt
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card" data-reveal>
+              <div class="project-media project-media-amber">
+                <img
+                  src="./assets/images/cover_assistant.png"
+                  alt="Redesign cyfrowego asystenta interkomu i kamer domowych"
+                  width="527"
+                  height="463"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-copy">
+                <h3>Redesign cyfrowego asystenta interkomu i kamer domowych</h3>
+                <p>
+                  Odświeżenie aplikacji pod względem UI i UX, która jest kierowana jako smart home assistant dla
+                  mieszkańców, chcących utrzymać bezpieczeństwo na swojej posesji.
+                </p>
+                <a class="button button-tertiary is-disabled" href="#project-2" aria-disabled="true" data-disabled="true" tabindex="-1">
+                  Zobacz projekt
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card" data-reveal>
+              <div class="project-media project-media-violet">
+                <img
+                  src="./assets/images/project_thumbnail_2update.png"
+                  alt="Aplikacja pomagająca w znajdywaniu osób chętnych do spędzania razem czasu"
+                  width="1112"
+                  height="977"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-copy">
+                <h3>Aplikacja, pomagająca w znajdywaniu osób chętnych do spędzania razem czasu</h3>
+                <p>
+                  Przeprowadzenie analizy grupy docelowej w celu zrozumienia ich życia społecznego, oceny otwartości na
+                  nowe relacje, zdolności do nawiązywania znajomości oraz oceny ewentualnych trudności w podejmowaniu
+                  inicjatywy ze strony członków grupy.
+                </p>
+                <a class="button button-tertiary is-disabled" href="#project-3" aria-disabled="true" data-disabled="true" tabindex="-1">
+                  Zobacz projekt
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card" data-reveal>
+              <div class="project-media project-media-burgundy">
+                <img
+                  src="./assets/images/project_thumbnail_3update.png"
+                  alt="Dodawanie i wyświetlanie widżetów na dashboardzie"
+                  width="1112"
+                  height="977"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-copy">
+                <h3>Dodawanie i wyświetlanie widżetów na dashboardzie</h3>
+                <p>
+                  Dla klienta zajmującego się tworzeniem oprogramowania w sektorze utrzymania produkcji do zaprojektowania
+                  był moduł odpowiedzialny za konfigurowanie dashboardu użytkownika, którego fundamentalną domeną jest
+                  czytelność, intuicyjność oraz dostosowanie do potrzeb pracowników, umożliwiając efektywne monitorowanie
+                  kluczowych wskaźników.
+                </p>
+                <a class="button button-tertiary is-disabled" href="#project-4" aria-disabled="true" data-disabled="true" tabindex="-1">
+                  Zobacz projekt
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card" data-reveal>
+              <div class="project-media project-media-lime">
+                <img
+                  src="./assets/images/project_thumbnail_4.png"
+                  alt="Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej"
+                  width="768"
+                  height="675"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-copy">
+                <h3>Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej</h3>
+                <p>
+                  Starannie wypracowany zbiór wytycznych, komponentów i wzorców, mający na celu usystematyzowanie i
+                  unifikację wszystkich interfejsów cyfrowych związanych z marką klienta.
+                </p>
+                <a class="button button-tertiary is-disabled" href="#project-5" aria-disabled="true" data-disabled="true" tabindex="-1">
+                  Zobacz projekt
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card" data-reveal>
+              <div class="project-media project-media-green">
+                <img
+                  src="./assets/images/project_thumbnail_1update.png"
+                  alt="Platforma dedykowana sprzedaży i edukacji unikatowych gatunków roślin"
+                  width="1112"
+                  height="977"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-copy">
+                <h3>Platforma dedykowana sprzedaży i edukacji unikatowych gatunków roślin</h3>
+                <p>
+                  Celem projektu było stworzenie produktu dla miłośników egzotycznych roślin, jednocześnie zachęcając do
+                  edukacji poprzez dostarczanie tematycznych treści i ułatwiając znalezienie interesujących okazów.
+                </p>
+                <a class="button button-tertiary is-disabled" href="#project-6" aria-disabled="true" data-disabled="true" tabindex="-1">
+                  Zobacz projekt
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience section-frame">
+        <div class="container">
+          <div class="section-head section-head-light" data-reveal>
+            <p class="eyebrow">Ścieżka zawodowa</p>
+            <h2>Doświadczenie</h2>
+          </div>
+
+          <div class="experience-grid">
+            <article class="experience-card" data-reveal>
+              <div class="experience-topline">
+                <h3>Queris</h3>
+                <p>02.2023 – Obecnie</p>
+              </div>
+              <p class="experience-role">Product Designer</p>
+              <p>
+                Projektowanie aplikacji webowej oraz mobilnej tworząc przy tym pełny design system. Praca nad
+                funkcjonalnościami związanymi z AI, harmonogramami Gantta oraz rozwój projektów na poziomie analizy
+                biznesowej.
+              </p>
+              <p>
+                Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające
+                usprawniać procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach
+                dedykowanych.
+              </p>
+              <a href="http://www.queris.pl">queris.pl</a>
+            </article>
+
+            <article class="experience-card" data-reveal>
+              <div class="experience-topline">
+                <h3>Flightscope</h3>
+                <p>04.2021 – 02.2023</p>
+              </div>
+              <p class="experience-role">UI/UX Designer / Leader</p>
+              <p>
+                Projektowanie iteracyjne dla: Desktop, Web i Mobile. Aktywna współpraca z zespołem QA i deweloperskim.
+                Tworzenie produktu na poziomie procesu koncepcji, developmentu jak i wspieranie wypuszczonej apki na sklep,
+                wzbogaconej o nowe funkcjonalności. Uczestniczenie w wyjazdach oraz rozmowach z grupą docelową.
+              </p>
+              <p>
+                Zagraniczna firma tworząca własne oprogramowanie kierowane dla graczy baseball’a, golfa, tenisa oraz
+                atletów. Trafia ono do klientów indywidualnych oraz drużyn rozgrywających turnieje na całym świecie.
+              </p>
+              <a href="https://flightscopemevo.eu/">flightscope.eu</a>
+            </article>
+
+            <article class="experience-card" data-reveal>
+              <div class="experience-topline">
+                <h3>Queris</h3>
+                <p>06.2018 – 04.2021</p>
+              </div>
+              <p class="experience-role">UI/UX Designer</p>
+              <p>
+                Opracowywanie koncepcji dashbordów i raportów na aplikacje wieloplatformowe dla hal produkcyjnych,
+                ulepszanie istniejących rozwiązań dla stałych klientów oraz współpraca z zespołem deweloperskim.
+              </p>
+              <p>
+                Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające
+                usprawniać procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach
+                dedykowanych.
+              </p>
+              <a href="http://www.queris.pl">queris.pl</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact section-frame" id="form">
+        <div class="container contact-grid">
+          <div class="contact-copy" data-reveal>
+            <p class="eyebrow eyebrow-dark">Kontakt</p>
+            <h2>Skontaktuj się ze mną</h2>
+            <p class="contact-intro">
+              Wystarczy jedno kliknięcie, aby pomóc zmienić pomysł w produkt. Wypełnij formularz, aby udostępnić mi więcej
+              szczegółów na temat projektu.
+            </p>
+
+            <div class="contact-meta">
+              <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+              <a href="tel:+48508278715">+48 508 278 715</a>
+              <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" novalidate data-static-form data-reveal>
+            <label class="field">
+              <span>E-mail</span>
+              <input type="email" name="email" inputmode="email" autocomplete="email" />
+            </label>
+
+            <label class="field">
+              <span>Numer telefonu</span>
+              <input type="tel" name="phone" inputmode="tel" autocomplete="tel" />
+            </label>
+
+            <label class="field field-wide">
+              <span>Imię i nazwisko</span>
+              <input type="text" name="name" autocomplete="name" />
+            </label>
+
+            <label class="field field-wide">
+              <span>Wiadomość</span>
+              <textarea name="message" rows="7"></textarea>
+            </label>
+
+            <button class="button button-primary" type="submit">Wyślij wiadomość</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <p>Marcel Woszkowski</p>
+        <div class="footer-links">
+          <a href="#main" data-scroll-target="#main">Home</a>
+          <a href="#projects" data-scroll-target="#projects">Portfolio</a>
+          <a href="#form" data-scroll-target="#form">Kontakt</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
