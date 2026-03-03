@@ -8,6 +8,7 @@
     <link rel="preload" href="./assets/fonts/Gordita-Light.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="./assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/images/bgimage-home-original.png" as="image" type="image/png" fetchpriority="high" />
     <link rel="stylesheet" href="./styles/main.css" />
     <script defer src="./scripts/main.js"></script>
@@ -36,7 +37,7 @@
             </svg>
             Dribbble
           </a>
-          <a class="nav-link nav-cta" href="#form" data-scroll-target="#form">Kontakt</a>
+          <a class="nav-link nav-cta" href="#form" data-scroll-target="#form"><span class="nav-cta-label">Kontakt</span></a>
         </nav>
 
         <button
@@ -89,6 +90,9 @@
 
           <div class="hero-visual" aria-hidden="true" data-reveal></div>
         </div>
+        <a class="scroll-marker" href="#projects" data-scroll-target="#projects" aria-label="Przewiń do portfolio">
+          <img src="./assets/gifs/scroll-down2.gif" alt="" width="150" height="153" loading="eager" decoding="async" />
+        </a>
       </section>
 
       <section class="projects section-frame" id="projects">
@@ -166,7 +170,7 @@
                 />
               </div>
               <div class="project-copy">
-                <h3>Aplikacja pomagająca w znajdywaniu osób chętnych do spędzania razem czasu</h3>
+                <h3>Aplikacja, pomagająca w znajdywaniu osób chętnych do spędzania razem czasu</h3>
                 <p>
                   Przeprowadzenie analizy grupy docelowej w celu zrozumienia ich życia społecznego, oceny otwartości na nowe
                   relacje, zdolności do nawiązywania znajomości oraz oceny ewentualnych trudności w podejmowaniu inicjatywy ze
@@ -280,17 +284,19 @@
                 <h3>Queris</h3>
                 <p>02.2023 – Obecnie</p>
               </div>
-              <p class="experience-role">Product Designer</p>
-              <p>
-                Projektowanie aplikacji webowej oraz mobilnej tworząc przy tym pełny design system. Praca nad
-                funkcjonalnościami związanymi z AI, harmonogramami Gantta oraz rozwój projektów na poziomie analizy
-                biznesowej.
-              </p>
-              <p>
-                Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające usprawniać
-                procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach dedykowanych.
-              </p>
-              <a href="http://www.queris.pl">queris.pl</a>
+              <div class="experience-copy">
+                <p class="experience-role">Product Designer</p>
+                <p>
+                  Projektowanie aplikacji webowej oraz mobilnej tworząc przy tym pełny design system. Praca nad
+                  funkcjonalnościami związanymi z AI, harmonogramami Gantta oraz rozwój projektów na poziomie analizy
+                  biznesowej.
+                </p>
+                <p>
+                  Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające usprawniać
+                  procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach dedykowanych.
+                </p>
+                <a href="http://www.queris.pl">queris.pl</a>
+              </div>
             </article>
 
             <article class="experience-card" data-reveal>
@@ -298,17 +304,19 @@
                 <h3>Flightscope</h3>
                 <p>04.2021 – 02.2023</p>
               </div>
-              <p class="experience-role">UI/UX Designer / Leader</p>
-              <p>
-                Projektowanie iteracyjne dla: Desktop, Web i Mobile. Aktywna współpraca z zespołem QA i deweloperskim.
-                Tworzenie produktu na poziomie procesu koncepcji, developmentu jak i wspieranie wypuszczonej apki na sklep,
-                wzbogaconej o nowe funkcjonalności. Uczestniczenie w wyjazdach oraz rozmowach z grupą docelową.
-              </p>
-              <p>
-                Zagraniczna firma tworząca własne oprogramowanie kierowane dla graczy baseball’a, golfa, tenisa oraz atletów.
-                Trafia ono do klientów indywidualnych oraz drużyn rozgrywających turnieje na całym świecie.
-              </p>
-              <a href="https://flightscopemevo.eu/">flightscope.eu</a>
+              <div class="experience-copy">
+                <p class="experience-role">UI/UX Designer / Leader</p>
+                <p>
+                  Projektowanie iteracyjne dla: Desktop, Web i Mobile. Aktywna współpraca z zespołem QA i deweloperskim.
+                  Tworzenie produktu na poziomie procesu koncepcji, developmentu jak i wspieranie wypuszczonej apki na sklep,
+                  wzbogaconej o nowe funkcjonalności. Uczestniczenie w wyjazdach oraz rozmowach z grupą docelową.
+                </p>
+                <p>
+                  Zagraniczna firma tworząca własne oprogramowanie kierowane dla graczy baseball’a, golfa, tenisa oraz atletów.
+                  Trafia ono do klientów indywidualnych oraz drużyn rozgrywających turnieje na całym świecie.
+                </p>
+                <a href="https://flightscopemevo.eu/">flightscope.eu</a>
+              </div>
             </article>
 
             <article class="experience-card" data-reveal>
@@ -316,16 +324,18 @@
                 <h3>Queris</h3>
                 <p>06.2018 – 04.2021</p>
               </div>
-              <p class="experience-role">UI/UX Designer</p>
-              <p>
-                Opracowywanie koncepcji dashboardów i raportów na aplikacje wieloplatformowe dla hal produkcyjnych, ulepszanie
-                istniejących rozwiązań dla stałych klientów oraz współpraca z zespołem deweloperskim.
-              </p>
-              <p>
-                Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające usprawniać
-                procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach dedykowanych.
-              </p>
-              <a href="http://www.queris.pl">queris.pl</a>
+              <div class="experience-copy">
+                <p class="experience-role">UI/UX Designer</p>
+                <p>
+                  Opracowywanie koncepcji dashbordów i raportów na aplikacje wieloplatformowe dla hal produkcyjnych, ulepszanie
+                  istniejących rozwiązań dla stałych klientów oraz współpraca z zespołem deweloperskim.
+                </p>
+                <p>
+                  Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające usprawniać
+                  procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach dedykowanych.
+                </p>
+                <a href="http://www.queris.pl">queris.pl</a>
+              </div>
             </article>
           </div>
         </div>
