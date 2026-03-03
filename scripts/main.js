@@ -3,9 +3,7 @@ const menu = document.getElementById("mobile-menu");
 const menuToggle = document.querySelector(".menu-toggle");
 const menuToggleLabel = document.querySelector(".menu-toggle-label");
 const scrollLinks = document.querySelectorAll("[data-scroll-target]");
-const disabledLinks = document.querySelectorAll("[data-disabled='true']");
 const staticForm = document.querySelector("[data-static-form]");
-const revealNodes = document.querySelectorAll("[data-reveal]");
 
 let returnFocusTo = null;
 
@@ -18,9 +16,7 @@ const setMenuState = (open) => {
   body.classList.toggle("menu-open", open);
   menuToggle.setAttribute("aria-expanded", String(open));
   menuToggle.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
-  menuToggleLabel.textContent = open
-    ? menuToggleLabel.dataset.closeLabel
-    : menuToggleLabel.dataset.openLabel;
+  menuToggleLabel.textContent = open ? menuToggleLabel.dataset.closeLabel : menuToggleLabel.dataset.openLabel;
 
   if (!open && returnFocusTo) {
     returnFocusTo.focus();
@@ -74,33 +70,6 @@ scrollLinks.forEach((link) => {
   });
 });
 
-disabledLinks.forEach((link) => {
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
-  });
-});
-
 staticForm?.addEventListener("submit", (event) => {
   event.preventDefault();
 });
-
-if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.18,
-      rootMargin: "0px 0px -10% 0px",
-    }
-  );
-
-  revealNodes.forEach((node) => revealObserver.observe(node));
-} else {
-  revealNodes.forEach((node) => node.classList.add("is-visible"));
-}
