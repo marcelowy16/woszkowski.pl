@@ -30,6 +30,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Gangster Grotesk";
+  src: url("../assets/fonts/GangsterGroteskRegular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --bg: #0f0f0f;
@@ -214,8 +222,10 @@ body.menu-open .site-header {
 
 .nav-link:not(.nav-cta):hover::after,
 .nav-link:not(.nav-cta):focus-visible::after,
+.nav-link.is-active:not(.nav-cta)::after,
 .mobile-link:hover::after,
-.mobile-link:focus-visible::after {
+.mobile-link:focus-visible::after,
+.mobile-link.is-active::after {
   display: block;
 }
 
@@ -359,7 +369,8 @@ body.menu-open .site-header {
   max-width: 553px;
 }
 
-.hero-copy h1 {
+.hero-copy h1,
+.about-kicker {
   margin: 0;
   font-family: "gordita-medium", sans-serif;
   font-size: 72px;
@@ -488,6 +499,75 @@ body.menu-open .site-header {
 .hero-orbit,
 .hero-showcase {
   display: none;
+}
+
+.about-page {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.about-hero {
+  padding: 126px 0 44px;
+  background: var(--bg);
+}
+
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 472px 553px;
+  gap: 48px 28px;
+  align-items: start;
+  justify-content: center;
+  min-height: auto;
+}
+
+.about-hero-media {
+  width: 100%;
+  max-width: 398px;
+  margin-top: 112px;
+  margin-left: 28px;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.about-hero-media img {
+  width: 100%;
+  height: auto;
+}
+
+.about-hero-copy {
+  display: grid;
+  gap: 0;
+  padding-top: 0;
+}
+
+.about-kicker {
+  margin: 0 0 36px;
+  color: #ffffff;
+  letter-spacing: normal;
+}
+
+.about-quote {
+  margin: 0;
+  padding-left: 22px;
+  border-left: 2px solid #ddf601;
+}
+
+.about-quote + .about-quote {
+  margin-top: 54px;
+}
+
+.about-quote p {
+  margin: 0;
+  color: #ffffff;
+  font-family: "gordita-regular", sans-serif;
+  font-size: clamp(1rem, 1.5vw, 20px);
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.about-quote strong {
+  color: #ffffff;
+  font-weight: 400;
 }
 
 .scroll-marker {
@@ -1078,6 +1158,10 @@ body.menu-open .site-header {
 }
 
 @media (min-width: 1200px) {
+  .about-hero-grid {
+    gap: 48px 40px;
+  }
+
   .hero-lead {
     margin-top: 20px;
   }
@@ -1213,6 +1297,12 @@ body.menu-open .site-header {
   }
 
   .hero-copy h1 {
+    font-size: clamp(2.65rem, 13.6vw, 3.9rem);
+    line-height: 1;
+    overflow-wrap: anywhere;
+  }
+
+  .about-kicker {
     font-size: clamp(3rem, 16vw, 4.25rem);
     line-height: 0.97;
   }
@@ -1385,6 +1475,34 @@ body.menu-open .site-header {
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  .about-hero {
+    padding-top: 120px;
+  }
+
+  .about-hero-grid {
+    grid-template-columns: minmax(300px, 360px) minmax(0, 553px);
+    gap: 42px 28px;
+    min-height: auto;
+  }
+
+  .about-hero-media {
+    max-width: 348px;
+    margin-top: 86px;
+    margin-left: 0;
+  }
+
+  .about-hero-copy {
+    padding-top: 0;
+  }
+
+  .about-kicker {
+    margin-bottom: 28px;
+  }
+
+  .about-quote + .about-quote {
+    margin-top: 36px;
+  }
+
   .hero-lead {
     margin-top: 20px;
   }
@@ -1497,6 +1615,45 @@ body.menu-open .site-header {
 }
 
 @media (max-width: 767px) {
+  .about-hero {
+    padding-top: 112px;
+  }
+
+  .about-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    min-height: auto;
+  }
+
+  .about-hero-media {
+    max-width: 344px;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+
+  .about-hero-copy {
+    gap: 16px;
+    padding-top: 0;
+    padding-bottom: 16px;
+  }
+
+  .about-kicker {
+    margin-bottom: 8px;
+  }
+
+  .about-quote {
+    padding-left: 16px;
+  }
+
+  .about-quote + .about-quote {
+    margin-top: 22px;
+  }
+
+  .about-quote p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
   .hero-lead {
     margin-top: 20px;
   }
@@ -1563,5 +1720,552 @@ body.menu-open .site-header {
 @media (max-width: 880px) {
   .scroll-marker {
     display: none;
+  }
+}
+
+.project-page-wip {
+  background: #ffffff;
+  color: #10131b;
+}
+
+.project-page-wip .container {
+  width: min(calc(100% - 120px), 1200px);
+}
+
+.project-page-wip main {
+  overflow: clip;
+}
+
+.wip-hero,
+.wip-rive,
+.wip-meta,
+.wip-copy-section,
+.wip-two-up,
+.wip-solutions,
+.wip-process,
+.wip-wide-image,
+.wip-ui,
+.wip-comments,
+.wip-creator {
+  background: #ffffff;
+}
+
+.wip-hero {
+  padding: 126px 0 10px;
+}
+
+.wip-hero-shell {
+  display: grid;
+  gap: 18px;
+}
+
+.wip-hero-copy {
+  display: grid;
+  gap: 14px;
+  max-width: none;
+}
+
+.wip-section-kicker {
+  margin: 0;
+  color: #6a6f7b;
+  font-family: "gordita-medium", sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.wip-section-kicker-muted {
+  color: #10131b;
+}
+
+.wip-hero-title,
+.wip-section-title {
+  margin: 0;
+  color: #10131b;
+  font-family: "Gangster Grotesk", sans-serif;
+  font-size: clamp(3rem, 5.4vw, 5rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+.wip-section-title {
+  font-size: clamp(2.75rem, 5vw, 4.6rem);
+}
+
+.wip-section-title-small {
+  font-size: clamp(2rem, 4.3vw, 3.15rem);
+}
+
+.wip-hero-media {
+  width: 100%;
+}
+
+.wip-hero-media img,
+.wip-image-card img,
+.wip-image-frame img,
+.wip-comments-media img {
+  width: 100%;
+  height: auto;
+}
+
+.wip-rive {
+  padding: 8px 0 8px;
+}
+
+.wip-rive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: center;
+}
+
+.wip-rive-card {
+  display: grid;
+  place-items: center;
+  min-height: 392px;
+  padding: 0;
+}
+
+.wip-rive-card canvas {
+  width: min(592px, 100%);
+  height: auto;
+  aspect-ratio: 1;
+  display: block;
+}
+
+.wip-rive-card canvas:not([data-rive-ready="true"]) {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(230, 255, 0, 0.18), transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+  border-radius: 24px;
+}
+
+.wip-meta {
+  padding: 6px 0 34px;
+}
+
+.wip-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.wip-meta-item {
+  display: grid;
+  gap: 12px;
+}
+
+.wip-meta-label {
+  margin: 0;
+  color: #9b9b9b;
+  font-family: "gordita-medium", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.wip-meta-value {
+  margin: 0;
+  color: #10131b;
+  font-family: "Gangster Grotesk", sans-serif;
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  line-height: 0.96;
+}
+
+.wip-copy-section {
+  padding: 42px 0 178px;
+}
+
+.wip-copy-lead,
+.wip-copy-block {
+  max-width: 940px;
+}
+
+.wip-copy-lead p,
+.wip-copy-block p,
+.wip-problem-card p,
+.wip-solution-box p:last-child {
+  margin: 0;
+  color: #10131b;
+  font-family: "gordita-regular", sans-serif;
+  font-size: clamp(1rem, 1.45vw, 20px);
+  line-height: 1.78;
+}
+
+.wip-copy-block p + p {
+  margin-top: 18px;
+}
+
+.wip-problem-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+  margin-top: 74px;
+}
+
+.wip-problem-card {
+  min-height: 100%;
+  padding: 40px 38px 44px;
+  border: 1px solid rgba(16, 19, 27, 0.12);
+  border-radius: 28px;
+  background: #f7f7f4;
+}
+
+.wip-card-title {
+  margin: 0 0 18px;
+  color: #10131b;
+  font-family: "gordita-medium", sans-serif;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.wip-two-up {
+  padding: 132px 0 292px;
+}
+
+.wip-two-up-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.wip-image-card,
+.wip-image-frame,
+.wip-comments-media {
+  margin: 0;
+}
+
+.wip-image-card img,
+.wip-image-frame img,
+.wip-comments-media img {
+  border-radius: 26px;
+}
+
+.wip-copy-block {
+  margin-top: 36px;
+}
+
+.wip-solutions {
+  padding: 48px 0 56px;
+}
+
+.wip-solutions-heading {
+  margin-bottom: 32px;
+}
+
+.wip-solutions-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.wip-solution-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.wip-solution-box {
+  min-height: 100%;
+  padding: 34px 34px 38px;
+  border-radius: 24px;
+  background: #f4f4ef;
+}
+
+.wip-solution-box-accent {
+  background: linear-gradient(180deg, rgba(230, 255, 0, 0.26), rgba(230, 255, 0, 0.12));
+}
+
+.wip-solution-label {
+  margin: 0 0 12px;
+  color: #10131b;
+  font-family: "gordita-medium", sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.wip-process {
+  padding: 88px 0 18px;
+}
+
+.wip-process-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.wip-process-copy {
+  max-width: 940px;
+}
+
+.wip-process-kicker {
+  margin: 0 0 20px;
+  color: #10131b;
+  font-family: "Gangster Grotesk", sans-serif;
+  font-size: clamp(2.7rem, 5vw, 4.35rem);
+  line-height: 0.95;
+}
+
+.wip-process-kicker s {
+  color: #9e9e9e;
+  text-decoration-thickness: 1px;
+}
+
+.wip-wide-image {
+  padding: 20px 0;
+}
+
+.wip-wide-image-last {
+  padding-bottom: 84px;
+}
+
+.wip-ui {
+  padding: 78px 0 24px;
+}
+
+.wip-ui-copy,
+.wip-creator-copy,
+.wip-comments-copy {
+  max-width: 880px;
+}
+
+.wip-comments {
+  padding: 88px 0 36px;
+}
+
+.wip-comments-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 576px;
+  gap: 48px;
+  align-items: center;
+}
+
+.wip-comments-media {
+  max-width: 576px;
+}
+
+.wip-creator {
+  padding: 46px 0 16px;
+}
+
+@media (min-width: 1200px) {
+  .wip-hero-shell {
+    gap: 22px;
+  }
+
+  .wip-hero-title {
+    max-width: 1200px;
+  }
+
+  .wip-problem-card {
+    min-height: 760px;
+  }
+
+  .wip-two-up-grid {
+    column-gap: 16px;
+  }
+
+  .wip-solutions-grid {
+    gap: 24px;
+  }
+
+  .wip-solution-pair {
+    gap: 22px;
+  }
+
+  .wip-solution-box {
+    min-height: 344px;
+  }
+
+  .wip-copy-section {
+    padding-top: 54px;
+  }
+
+  .wip-problem-grid {
+    gap: 32px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .wip-hero {
+    padding-top: 118px;
+  }
+
+  .wip-hero-title {
+    max-width: 100%;
+    font-size: clamp(3rem, 7vw, 4.4rem);
+  }
+
+  .wip-rive-card {
+    min-height: 320px;
+  }
+
+  .wip-meta-grid,
+  .wip-problem-grid,
+  .wip-solution-pair,
+  .wip-comments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wip-comments-media {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 767px) {
+  .wip-hero {
+    padding-top: 106px;
+    padding-bottom: 18px;
+  }
+
+  .project-page-wip .container {
+    width: min(calc(100% - 56px), 334px);
+  }
+
+  .wip-hero-shell,
+  .wip-rive-grid,
+  .wip-meta-grid,
+  .wip-problem-grid,
+  .wip-two-up-grid,
+  .wip-solution-pair,
+  .wip-comments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wip-hero-copy {
+    gap: 12px;
+  }
+
+  .wip-hero-title {
+    font-size: clamp(2.05rem, 9.6vw, 2.8rem);
+    line-height: 0.9;
+  }
+
+  .wip-rive {
+    padding-top: 30px;
+  }
+
+  .wip-rive-card {
+    min-height: auto;
+    padding: 0;
+  }
+
+  .wip-rive-card canvas {
+    width: 592px;
+  }
+
+  .wip-meta {
+    padding-top: 42px;
+    padding-bottom: 44px;
+  }
+
+  .wip-problem-grid {
+    margin-top: 52px;
+    gap: 36px;
+  }
+
+  .wip-problem-card,
+  .wip-solution-box {
+    padding: 24px 20px 26px;
+    border-radius: 22px;
+  }
+
+  .wip-card-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    line-height: 1.08;
+  }
+
+  .wip-problem-card {
+    min-height: 930px;
+  }
+
+  .wip-solution-box {
+    min-height: 320px;
+  }
+
+  .wip-image-card img,
+  .wip-image-frame img,
+  .wip-comments-media img {
+    border-radius: 18px;
+  }
+
+  .wip-copy-block {
+    margin-top: 26px;
+  }
+
+  .wip-solutions,
+  .wip-process,
+  .wip-ui,
+  .wip-comments,
+  .wip-creator {
+    padding-top: 72px;
+  }
+
+  .wip-comments-media {
+    max-width: 100%;
+  }
+
+  .wip-wide-image-last {
+    padding-bottom: 52px;
+  }
+
+  .wip-copy-section {
+    padding-bottom: 172px;
+  }
+
+  .wip-two-up {
+    padding-top: 124px;
+    padding-bottom: 220px;
+  }
+
+  .wip-comments {
+    padding-bottom: 36px;
+  }
+
+  .wip-solutions {
+    padding-bottom: 120px;
+  }
+
+  .wip-solutions-grid {
+    gap: 26px;
+  }
+
+  .wip-solution-pair {
+    gap: 22px;
+  }
+
+  .wip-process {
+    padding-bottom: 64px;
+  }
+
+  .wip-wide-image {
+    padding: 28px 0;
+  }
+
+  .wip-ui {
+    padding-bottom: 56px;
+  }
+
+  .wip-ui .wip-section-kicker {
+    color: #10131b;
+    font-family: "Gangster Grotesk", sans-serif;
+    font-size: clamp(2.8rem, 10vw, 3.9rem);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    text-transform: none;
+  }
+
+  .wip-ui .wip-section-title-small {
+    margin-top: 10px;
+    font-family: "gordita-medium", sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .wip-creator {
+    padding-bottom: 40px;
   }
 }

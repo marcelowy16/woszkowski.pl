@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WiP - Proces projektowy - Marcel Woszkowski</title>
+    <meta
+      name="description"
+      content="Proces projektowy aplikacji do przeglądania ankiet w formie feedu w portfolio Marcela Woszkowskiego."
+    />
+    <link rel="preload" href="../assets/fonts/Gordita-Light.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/images/wip/Frame-5.png" as="image" type="image/png" fetchpriority="high" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260304-4" />
+    <script defer src="https://unpkg.com/@rive-app/webgl"></script>
+    <script defer src="../scripts/main.js"></script>
+  </head>
+  <body class="project-page project-page-wip">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="../index.html">Marcel Woszkowski</a>
+
+        <nav class="desktop-nav" aria-label="Główna nawigacja">
+          <a class="nav-link" href="../index.html">Home</a>
+          <a class="nav-link" href="../o-mnie/">O mnie</a>
+          <a class="nav-link" href="../index.html#projects">Portfolio</a>
+          <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9" />
+              <path
+                d="M8.2 6.8c2.8 2.9 4.9 6.2 6.1 10.4M5.7 10.2c4.5-.3 8.6.2 12.3 1.5M10.3 18.4c1.6-3.1 3.9-5.4 7-6.8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+              />
+            </svg>
+            Dribbble
+          </a>
+          <a class="nav-link nav-cta" href="#form" data-scroll-target="#form"><span class="nav-cta-label">Kontakt</span></a>
+        </nav>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otwórz menu">
+          <span class="menu-toggle-label" data-open-label="Menu" data-close-label="Zamknij">Menu</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <div class="mobile-menu-backdrop" data-close-menu="true"></div>
+      <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
+        <a class="mobile-link" href="../index.html">Home</a>
+        <a class="mobile-link" href="../o-mnie/">O mnie</a>
+        <a class="mobile-link" href="../index.html#projects">Portfolio</a>
+        <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      <section class="wip-hero">
+        <div class="container wip-hero-shell">
+          <div class="wip-hero-copy is-visible" data-reveal>
+            <p class="wip-section-kicker">APLIKACJA MOBILNA</p>
+            <h1 class="wip-hero-title">Aplikacja do przeglądania ankiet w formie feedu</h1>
+          </div>
+
+          <div class="wip-hero-media" data-reveal>
+            <img
+              src="../assets/images/wip/Frame-5.png"
+              alt="Podgląd ekranów aplikacji ankietowej w formie feedu"
+              width="1202"
+              height="776"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-rive">
+        <div class="container wip-rive-grid">
+          <div class="wip-rive-card" data-reveal>
+            <canvas
+              width="592"
+              height="592"
+              data-rive-src="../assets/rive/canva_1.riv"
+              data-rive-artboard="Artboard"
+              data-rive-autoplay="true"
+              aria-label="Animacja interfejsu aplikacji"
+            ></canvas>
+          </div>
+
+          <div class="wip-rive-card" data-reveal>
+            <canvas
+              width="592"
+              height="592"
+              data-rive-src="../assets/rive/canva_1.riv"
+              data-rive-artboard="Artboard 2"
+              data-rive-autoplay="true"
+              aria-label="Animacja drugiego widoku interfejsu aplikacji"
+            ></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-meta">
+        <div class="container wip-meta-grid">
+          <div class="wip-meta-item" data-reveal>
+            <p class="wip-meta-label">BRANŻA</p>
+            <p class="wip-meta-value">Social media</p>
+          </div>
+          <div class="wip-meta-item" data-reveal>
+            <p class="wip-meta-label">NARZĘDZIA</p>
+            <p class="wip-meta-value">Figma</p>
+          </div>
+          <div class="wip-meta-item" data-reveal>
+            <p class="wip-meta-label">KLUCZOWE CZYNNOŚCI</p>
+            <p class="wip-meta-value">Spotkania z klientem, wsparcie przy opracowaniu biznesu</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-copy-section">
+        <div class="container">
+          <div class="wip-copy-lead" data-reveal>
+            <p>
+              Do współpracy zgłosił się klient z pomysłem na aplikację mobilną opartą na przeglądaniu pytań i ankiet w
+              formie ciągłego feedu. Zamiast klasycznego konsumowania treści wideo użytkownicy mieli odpowiadać na pytania
+              publikowane przez innych, brać udział w dyskusjach oraz analizować wyniki i statystyki odpowiedzi. Inspiracją
+              dla koncepcji były mechaniki znane z aplikacji social media, jednak celem projektu było zaprojektowanie
+              rozwiązania, które wykorzystuje je do zbierania opinii i danych, a nie wyłącznie do rozrywki.
+            </p>
+          </div>
+
+          <div class="wip-problem-grid">
+            <article class="wip-problem-card" data-reveal>
+              <h2 class="wip-card-title">CEL</h2>
+              <p>
+                Zaprojektowanie aplikacji, która zachęca do częstych, krótkich interakcji, a jednocześnie dostarcza
+                wartościowych insightów. Klientowi zależało na połączeniu lekkości znanej z aplikacji rozrywkowych z
+                funkcjonalnością narzędzia do zbierania opinii. Zakres pracy obejmował zaprojektowanie całego UX, od
+                koncepcji, przez architekturę informacji, aż po finalny interfejs.
+              </p>
+            </article>
+
+            <article class="wip-problem-card" data-reveal>
+              <h2 class="wip-card-title">PROBLEM DO ROZWIĄZANIA</h2>
+              <p>
+                Większość aplikacji społecznościowych skupia się na biernym konsumowaniu treści, a narzędzia ankietowe
+                często są skomplikowane i mało angażujące. Wyzwaniem było stworzenie rozwiązania, które umożliwia szybkie
+                wyrażanie opinii, nie obciążając użytkownika nadmiarem decyzji i formularzy, a przy tym daje dodatkowe dane
+                o użytkownikach. Mając na uwadze szeroki wiek grupy docelowej, interfejs musiał pozostać czytelny.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-two-up">
+        <div class="container">
+          <div class="wip-two-up-grid">
+            <figure class="wip-image-card" data-reveal>
+              <img
+                src="../assets/images/wip/Frame.png"
+                alt="Ekran ankiety z pionowym feedem"
+                width="598"
+                height="463"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <figure class="wip-image-card" data-reveal>
+              <img
+                src="../assets/images/wip/Frame-1.png"
+                alt="Drugi ekran ankiety z wynikami odpowiedzi"
+                width="598"
+                height="463"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+          <div class="wip-copy-block" data-reveal>
+            <p>
+              Centralnym elementem aplikacji jest feed, w którym jedno pytanie zajmuje cały ekran. Użytkownik wykonuje
+              zawsze jedną główną akcję, udziela odpowiedzi lub przechodzi do kolejnej ankiety.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-solutions">
+        <div class="container">
+          <div class="wip-solutions-heading" data-reveal>
+            <h2 class="wip-section-title">Problemy i rozwiązania</h2>
+          </div>
+
+          <div class="wip-solutions-grid">
+            <article class="wip-solution-pair" data-reveal>
+              <div class="wip-solution-box">
+                <p class="wip-solution-label">Problem</p>
+                <p>
+                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne
+                  zaangażowanie użytkowników i nie sprzyja wyrażaniu opinii.
+                </p>
+              </div>
+              <div class="wip-solution-box wip-solution-box-accent">
+                <p class="wip-solution-label">Rozwiązanie</p>
+                <p>
+                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne
+                  zaangażowanie użytkowników i nie sprzyja wyrażaniu opinii.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-solution-pair" data-reveal>
+              <div class="wip-solution-box">
+                <p class="wip-solution-label">Problem</p>
+                <p>
+                  W narzędziach ankietowych użytkownicy czasem muszą mierzyć się z rozbudowanymi formularzami, wieloma
+                  przyciskami i nieczytelną hierarchią informacji.
+                </p>
+              </div>
+              <div class="wip-solution-box wip-solution-box-accent">
+                <p class="wip-solution-label">Rozwiązanie</p>
+                <p>
+                  Interfejs został zaprojektowany tak, by na ekranie była jedna główna akcja. Ograniczenie liczby elementów
+                  pozwala skupić się użytkownikowi na pytaniu i odpowiedzi.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-solution-pair" data-reveal>
+              <div class="wip-solution-box">
+                <p class="wip-solution-label">Problem</p>
+                <p>
+                  Wiele ankiet nie oferuje użytkownikowi natychmiastowej informacji zwrotnej, co obniża chęć do udziału w
+                  kolejnych pytaniach.
+                </p>
+              </div>
+              <div class="wip-solution-box wip-solution-box-accent">
+                <p class="wip-solution-label">Rozwiązanie</p>
+                <p>
+                  Po każdej odpowiedzi użytkownik otrzymuje dostęp do statystyk i wyników ankiety. Statystyki pełnią rolę
+                  nagrody i zachęcają do dalszego korzystania z aplikacji.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-solution-pair" data-reveal>
+              <div class="wip-solution-box">
+                <p class="wip-solution-label">Problem</p>
+                <p>
+                  Rozbudowane panele analityczne często odstraszają użytkowników nietechnicznych i utrudniają szybkie
+                  wyciąganie wniosków.
+                </p>
+              </div>
+              <div class="wip-solution-box wip-solution-box-accent">
+                <p class="wip-solution-label">Rozwiązanie</p>
+                <p>
+                  Dane zostały przedstawione w uproszczonej wizualnie formie. Statystyki są integralną częścią doświadczenia,
+                  a nie osobnym narzędziem.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-solution-pair" data-reveal>
+              <div class="wip-solution-box">
+                <p class="wip-solution-label">Problem</p>
+                <p>
+                  Rozbudowane panele analityczne często odstraszają użytkowników nietechnicznych i utrudniają szybkie
+                  wyciąganie wniosków.
+                </p>
+              </div>
+              <div class="wip-solution-box wip-solution-box-accent">
+                <p class="wip-solution-label">Rozwiązanie</p>
+                <p>
+                  Proces ten został skrócony do kilku prostych kroków. Użytkownik wybiera typ pytania, definiuje odpowiedzi i
+                  publikuje ankietę.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-process">
+        <div class="container">
+          <div class="wip-process-grid">
+            <div class="wip-process-copy" data-reveal>
+              <p class="wip-process-kicker"><s>Projektowanie</s><br />Zrozumienie potrzeb</p>
+              <div class="wip-copy-block">
+                <p>
+                  Projekt rozpoczął się od szeregu spotkań, które pozwoliły przenieść zamysł na szkic. Dzięki nim ustalono
+                  między innymi fundamentalne parametry zachowania aplikacji, takie jak zasada działania scrollowania ankiet
+                  czy ilość statystyk w szczegółach ankiety.
+                </p>
+                <p>
+                  Spotkania były bardzo przydatne zarówno w procesie projektowym, jak i dla klienta. Pozwoliły mu spojrzeć na
+                  różne rzeczy z innej perspektywy i wyjść poza pudełko.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-wide-image">
+        <div class="container">
+          <figure class="wip-image-frame" data-reveal>
+            <img
+              src="../assets/images/wip/wireframe1.png"
+              alt="Dalsze iteracje wireframe'ów aplikacji ankietowej"
+              width="2235"
+              height="1102"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="wip-ui">
+        <div class="container">
+          <div class="wip-ui-copy" data-reveal>
+            <p class="wip-section-kicker wip-section-kicker-muted">Projekt UI</p>
+            <h2 class="wip-section-title wip-section-title-small">EKRAN GŁÓWNY</h2>
+            <div class="wip-copy-block">
+              <p>
+                Kluczowymi wartościami podczas projektowania docelowego interfejsu była wizualna prostota, która miała być
+                zrównoważona z wieloma kolorami.
+              </p>
+              <p>
+                Zostały one użyte jako tło dla każdej z kategorii pytania, którą ustala się podczas tworzenia ankiety, tak by
+                użytkownik szybciej skojarzył kategorię pytania, jakie mu się wyświetliło. Mimo tego jest ona również napisana
+                nad pytaniem.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-wide-image">
+        <div class="container">
+          <figure class="wip-image-frame" data-reveal>
+            <img
+              src="../assets/images/wip/ui1.png"
+              alt="Projekt interfejsu głównego aplikacji"
+              width="2235"
+              height="1102"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="wip-comments">
+        <div class="container wip-comments-grid">
+          <div class="wip-comments-copy" data-reveal>
+            <p class="wip-section-kicker wip-section-kicker-muted">KOMENTARZE</p>
+            <div class="wip-copy-block">
+              <p>
+                Sekcja komentarzy została zaprojektowana na bazie popularnych aplikacji, takich jak TikTok i YouTube, by
+                użytkownik używał już znanego mu schematu.
+              </p>
+              <p>
+                Na komentarze nie tylko składa się okno ich dodawania, ale także typ ankiety z pytaniem otwartym. Wtedy część
+                komentarzy jest widoczna pod pytaniem.
+              </p>
+            </div>
+          </div>
+
+          <figure class="wip-comments-media" data-reveal>
+            <img
+              src="../assets/images/wip/Frame3.png"
+              alt="Widok sekcji komentarzy w aplikacji ankietowej"
+              width="598"
+              height="758"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="wip-creator">
+        <div class="container">
+          <div class="wip-creator-copy" data-reveal>
+            <p class="wip-section-kicker wip-section-kicker-muted">KREATOR ANKIET</p>
+            <div class="wip-copy-block">
+              <p>
+                Przechodząc dalej do kreatora ankiet, korzystanie z niego musiało bazować na prostocie. Rozbicie na czytelne
+                kroki okazało się sprawdzać pozytywnie podczas testowania prototypu na grupie badanych użytkowników.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-wide-image wip-wide-image-last">
+        <div class="container">
+          <figure class="wip-image-frame" data-reveal>
+            <img
+              src="../assets/images/wip/ui1.png"
+              alt="Widok kreatora ankiet w aplikacji"
+              width="2235"
+              height="1102"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="contact section-frame">
+        <div class="contact-panel" id="form">
+          <div class="container contact-grid">
+            <div class="contact-copy" data-reveal>
+              <p class="contact-title">Skontaktuj się ze mną <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
+              <p class="contact-intro">
+                Wystarczy jedno kliknięcie, aby pomóc zmienić pomysł w produkt. Wypełnij formularz, aby udostępnić mi więcej
+                szczegółów na temat projektu.
+              </p>
+            </div>
+
+            <form class="contact-form" novalidate data-static-form data-reveal>
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    inputmode="email"
+                    autocomplete="email"
+                    required
+                    aria-describedby="contact-email-error"
+                  />
+                  <label for="contact-email">E-mail</label>
+                </div>
+                <p class="field-error" id="contact-email-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    required
+                    maxlength="11"
+                    aria-describedby="contact-phone-error"
+                  />
+                  <label for="contact-phone">Numer telefonu</label>
+                </div>
+                <p class="field-error" id="contact-phone-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    autocomplete="name"
+                    required
+                    aria-describedby="contact-name-error"
+                  />
+                  <label for="contact-name">Nazwa</label>
+                </div>
+                <p class="field-error" id="contact-name-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="7"
+                    required
+                    aria-describedby="contact-message-error"
+                  ></textarea>
+                  <label for="contact-message">Wiadomość</label>
+                </div>
+                <p class="field-error" id="contact-message-error" aria-live="polite"></p>
+              </div>
+
+              <button class="button button-primary" type="submit" disabled aria-disabled="true">Wyślij wiadomość</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
+        <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="tel:+48508278715">+48 508 278 715</a>
+      </div>
+    </footer>
+
+    <button class="scroll-to-top" type="button" aria-label="Przewiń na górę" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 17V7M12 7l-5 5M12 7l5 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </body>
+</html>

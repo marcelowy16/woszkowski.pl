@@ -9,9 +9,10 @@ const staticFormFields = staticForm ? Array.from(staticForm.querySelectorAll("[d
 const staticFormSubmit = staticForm?.querySelector('button[type="submit"]');
 const projectCards = document.querySelectorAll(".project-card");
 const projectTitleLinks = document.querySelectorAll(".project-copy h3 a");
-const wordSlideTargets = document.querySelectorAll(".hero-copy h1, .section-head h2");
+const wordSlideTargets = document.querySelectorAll(".hero-copy h1, .section-head h2, .about-kicker");
 const heroCopyBlocks = document.querySelectorAll(".hero-copy");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
+const riveCanvases = document.querySelectorAll("canvas[data-rive-src][data-rive-artboard]");
 
 let returnFocusTo = null;
 let lastScrollY = Math.max(window.scrollY, 0);
@@ -721,3 +722,38 @@ if (wordSlideTargets.length || heroCopyBlocks.length) {
     initializeWordSlides();
   }
 }
+
+const initRiveCanvases = () => {
+  if (!riveCanvases.length || !window.rive || typeof window.rive.Rive !== "function") {
+    return;
+  }
+
+  riveCanvases.forEach((canvas) => {
+    if (!(canvas instanceof HTMLCanvasElement) || canvas.dataset.riveInitialized === "true") {
+      return;
+    }
+
+    const { riveSrc, riveArtboard, riveAutoplay } = canvas.dataset;
+    if (!riveSrc || !riveArtboard) {
+      return;
+    }
+
+    canvas.dataset.riveInitialized = "true";
+
+    let riveInstance;
+    const markReady = () => {
+      canvas.dataset.riveReady = "true";
+      riveInstance?.resizeDrawingSurfaceToCanvas?.();
+    };
+
+    riveInstance = new window.rive.Rive({
+      src: riveSrc,
+      canvas,
+      artboard: riveArtboard,
+      autoplay: riveAutoplay !== "false",
+      onLoad: markReady,
+    });
+  });
+};
+
+initRiveCanvases();
