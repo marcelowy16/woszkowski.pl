@@ -9,7 +9,9 @@ const staticFormFields = staticForm ? Array.from(staticForm.querySelectorAll("[d
 const staticFormSubmit = staticForm?.querySelector('button[type="submit"]');
 const projectCards = document.querySelectorAll(".project-card");
 const projectTitleLinks = document.querySelectorAll(".project-copy h3 a");
-const wordSlideTargets = document.querySelectorAll(".hero-copy h1, .section-head h2, .about-kicker");
+const wordSlideTargets = document.querySelectorAll(
+  ".hero-copy h1, .section-head h2, .about-kicker, .contact-title, .wip-hero-title, .wip-card-title, .wip-section-title, .wip-process-kicker, .wip-section-kicker"
+);
 const heroCopyBlocks = document.querySelectorAll(".hero-copy");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
 const riveCanvases = document.querySelectorAll("canvas[data-rive-src][data-rive-artboard]");

@@ -444,6 +444,12 @@ body.menu-open .site-header {
   transform: translate3d(0, 0, 0);
 }
 
+.word-slide-target s .word-slide-word > span {
+  text-decoration: line-through;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: inherit;
+}
+
 .hero-sequence-item {
   opacity: 0;
   transform: translate3d(0, 24px, 0);
