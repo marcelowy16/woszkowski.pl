@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prezentacja animacji - Marcel Woszkowski</title>
+    <meta
+      name="description"
+      content="Projekt wykonania zestawu animacji i mikrointerakcji dla aplikacji webowej w portfolio Marcela Woszkowskiego."
+    />
+    <link rel="preload" href="../assets/fonts/Gordita-Light.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskBold.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/rive/animated_icons_1.riv" as="fetch" crossorigin />
+    <link rel="preload" href="../assets/images/animation-screen.png" as="image" type="image/png" fetchpriority="high" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260304-22" />
+    <script defer src="https://unpkg.com/@rive-app/webgl"></script>
+    <script defer src="../scripts/main.js?v=20260304-12"></script>
+  </head>
+  <body class="project-page project-page-showcase">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="../" aria-label="Marcel Woszkowski - strona glowna">
+          <span class="brand-text">Marcel Woszkowski</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Glowna nawigacja">
+          <a class="nav-link" href="../">Home</a>
+          <a class="nav-link" href="../o-mnie/">O mnie</a>
+          <a class="nav-link is-active" href="../#projects" aria-current="page">Portfolio</a>
+          <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9" />
+              <path
+                d="M8.2 6.8c2.8 2.9 4.9 6.2 6.1 10.4M5.7 10.2c4.5-.3 8.6.2 12.3 1.5M10.3 18.4c1.6-3.1 3.9-5.4 7-6.8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+              />
+            </svg>
+            Dribbble
+          </a>
+          <a class="nav-link nav-cta" href="#form" data-scroll-target="#form"><span class="nav-cta-label">Kontakt</span></a>
+        </nav>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otworz menu">
+          <span class="menu-toggle-label" data-open-label="Menu" data-close-label="Zamknij">Menu</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <div class="mobile-menu-backdrop" data-close-menu="true"></div>
+      <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
+        <a class="mobile-link" href="../">Home</a>
+        <a class="mobile-link" href="../o-mnie/">O mnie</a>
+        <a class="mobile-link is-active" href="../#projects" aria-current="page">Portfolio</a>
+        <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      <section class="animation-showcase-hero">
+        <div class="container animation-showcase-shell">
+          <div class="animation-showcase-copy is-visible">
+            <p class="animation-showcase-kicker">Motion Design</p>
+            <h1 class="animation-showcase-title">
+              Projekt wykonania zestawu animacji i mikrointerakcji, kt&oacute;re trafią do aplikacji webowej dla jednego z
+              klient&oacute;w.
+            </h1>
+          </div>
+
+          <div class="animation-showcase-stage">
+            <div class="animation-rive-strip" aria-label="Pierwszy zestaw animowanych ikon">
+              <div class="animation-rive-slot">
+                <canvas
+                  width="220"
+                  height="220"
+                  data-rive-src="../assets/rive/animated_icons_1.riv"
+                  data-rive-artboard="1"
+                  data-rive-autoplay="true"
+                  aria-label="Animacja ikony pracownika"
+                ></canvas>
+              </div>
+              <div class="animation-rive-slot">
+                <canvas
+                  width="220"
+                  height="220"
+                  data-rive-src="../assets/rive/animated_icons_1.riv"
+                  data-rive-artboard="2"
+                  data-rive-autoplay="true"
+                  aria-label="Animacja ikony stopera"
+                ></canvas>
+              </div>
+              <div class="animation-rive-slot">
+                <canvas
+                  width="220"
+                  height="220"
+                  data-rive-src="../assets/rive/animated_icons_1.riv"
+                  data-rive-artboard="3"
+                  data-rive-autoplay="true"
+                  aria-label="Animacja ikony dokumentu"
+                ></canvas>
+              </div>
+              <div class="animation-rive-slot">
+                <canvas
+                  width="220"
+                  height="220"
+                  data-rive-src="../assets/rive/animated_icons_1.riv"
+                  data-rive-artboard="4"
+                  data-rive-autoplay="true"
+                  aria-label="Animacja ikony odliczania"
+                ></canvas>
+              </div>
+            </div>
+
+            <div class="animation-secondary-grid">
+              <div class="animation-rive-panel animation-rive-panel-violet" aria-label="Drugi zestaw animowanych ikon">
+                <div class="animation-rive-slot">
+                  <canvas
+                    width="220"
+                    height="220"
+                    data-rive-src="../assets/rive/animated_icons_1.riv"
+                    data-rive-artboard="5"
+                    data-rive-autoplay="true"
+                    aria-label="Animacja ikony wiadomosci"
+                  ></canvas>
+                </div>
+                <div class="animation-rive-slot">
+                  <canvas
+                    width="220"
+                    height="220"
+                    data-rive-src="../assets/rive/animated_icons_1.riv"
+                    data-rive-artboard="6"
+                    data-rive-autoplay="true"
+                    aria-label="Animacja ikony dzwonka"
+                  ></canvas>
+                </div>
+                <div class="animation-rive-slot">
+                  <canvas
+                    width="220"
+                    height="220"
+                    data-rive-src="../assets/rive/animated_icons_1.riv"
+                    data-rive-artboard="7"
+                    data-rive-autoplay="true"
+                    aria-label="Animacja ikony wsparcia"
+                  ></canvas>
+                </div>
+                <div class="animation-rive-slot">
+                  <canvas
+                    width="220"
+                    height="220"
+                    data-rive-src="../assets/rive/animated_icons_1.riv"
+                    data-rive-artboard="8"
+                    data-rive-autoplay="true"
+                    aria-label="Animacja ikony kontrolera"
+                  ></canvas>
+                </div>
+              </div>
+
+              <figure class="animation-process-shot">
+                <img
+                  src="../assets/images/animation-screen.png"
+                  alt="Widok procesu przygotowania ikon w edytorze animacji"
+                  width="1289"
+                  height="781"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="animation-icon-wall">
+        <div class="container">
+          <div class="animation-icon-wall-card" aria-label="Galeria mikrointerakcji">
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_9.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.12">
+              <source src="../assets/videos/animacje/Anim_10.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.60">
+              <source src="../assets/videos/animacje/Anim_4.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_11.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_12.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_13.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_1_1.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_2_2.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_7_.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_5__.mp4" type="video/mp4" />
+            </video>
+            <video class="animation-icon-video" autoplay muted loop playsinline preload="metadata" data-start-time="0.90">
+              <source src="../assets/videos/animacje/Anim_8_.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact section-frame">
+        <div class="contact-panel" id="form">
+          <div class="container contact-grid">
+            <div class="contact-copy">
+              <p class="contact-title">Skontaktuj si&#281; ze mn&#261; <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
+              <p class="contact-intro">
+                Wystarczy jedno klikni&#281;cie, aby pom&oacute;c zmieni&#263; pomys&#322; w produkt. Wype&#322;nij formularz, aby
+                udost&#281;pni&#263; mi wi&#281;cej szczeg&oacute;&#322;&oacute;w na temat projektu.
+              </p>
+            </div>
+
+            <form class="contact-form" novalidate data-static-form>
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    inputmode="email"
+                    autocomplete="email"
+                    required
+                    aria-describedby="contact-email-error"
+                  />
+                  <label for="contact-email">E-mail</label>
+                </div>
+                <p class="field-error" id="contact-email-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    required
+                    maxlength="11"
+                    aria-describedby="contact-phone-error"
+                  />
+                  <label for="contact-phone">Numer telefonu</label>
+                </div>
+                <p class="field-error" id="contact-phone-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    autocomplete="name"
+                    required
+                    aria-describedby="contact-name-error"
+                  />
+                  <label for="contact-name">Nazwa</label>
+                </div>
+                <p class="field-error" id="contact-name-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="7"
+                    required
+                    aria-describedby="contact-message-error"
+                  ></textarea>
+                  <label for="contact-message">Wiadomo&#347;&#263;</label>
+                </div>
+                <p class="field-error" id="contact-message-error" aria-live="polite"></p>
+              </div>
+
+              <button class="button button-primary" type="submit" disabled aria-disabled="true">Wy&#347;lij wiadomo&#347;&#263;</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
+        <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="tel:+48508278715">+48 508 278 715</a>
+      </div>
+    </footer>
+
+    <button class="scroll-to-top" type="button" aria-label="Przewin na gore" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 17V7M12 7l-5 5M12 7l5 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </body>
+</html>

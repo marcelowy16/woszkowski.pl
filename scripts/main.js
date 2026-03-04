@@ -15,6 +15,7 @@ const wordSlideTargets = document.querySelectorAll(
 const heroCopyBlocks = document.querySelectorAll(".hero-copy");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
 const riveCanvases = document.querySelectorAll("canvas[data-rive-src][data-rive-artboard]");
+const offsetVideos = document.querySelectorAll("video[data-start-time]");
 const wipZoomableImages = document.querySelectorAll(
   ".project-page-wip .wip-hero-media img, .project-page-wip .wip-image-card img, .project-page-wip .wip-image-frame img, .project-page-wip .wip-comments-media img"
 );
@@ -1008,3 +1009,40 @@ const initRiveCanvases = () => {
 };
 
 initRiveCanvases();
+
+const initOffsetVideos = () => {
+  offsetVideos.forEach((video) => {
+    if (!(video instanceof HTMLVideoElement) || video.dataset.offsetInitialized === "true") {
+      return;
+    }
+
+    const startTime = Number.parseFloat(video.dataset.startTime ?? "");
+
+    if (!Number.isFinite(startTime)) {
+      return;
+    }
+
+    const syncStartTime = () => {
+      const duration = video.duration;
+      if (!Number.isFinite(duration) || duration <= 0) {
+        return;
+      }
+
+      const targetTime =
+        startTime > 0 && startTime <= 1 ? duration * startTime : startTime;
+
+      video.currentTime = Math.min(Math.max(targetTime, 0.01), Math.max(duration - 0.05, 0.01));
+      void video.play().catch(() => {});
+    };
+
+    if (Number.isFinite(video.duration) && video.duration > 0) {
+      syncStartTime();
+    } else {
+      video.addEventListener("loadedmetadata", syncStartTime, { once: true });
+    }
+
+    video.dataset.offsetInitialized = "true";
+  });
+};
+
+initOffsetVideos();

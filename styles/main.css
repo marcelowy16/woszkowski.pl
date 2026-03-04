@@ -2632,3 +2632,270 @@ body.menu-open .site-header {
   }
 
 }
+
+.project-page-showcase {
+  background: #ffffff;
+  color: #10131b;
+}
+
+.project-page-showcase .container {
+  width: min(calc(100% - 120px), 1200px);
+}
+
+.project-page-showcase .contact .container {
+  width: min(calc(100% - 10vw), var(--container));
+}
+
+.project-page-showcase .site-footer .container {
+  width: min(calc(100% - 10vw), var(--container));
+}
+
+.project-page-showcase main {
+  overflow: clip;
+}
+
+.animation-showcase-hero {
+  padding: 166px 0 0;
+  background: #ffffff;
+}
+
+.animation-showcase-shell {
+  display: grid;
+  gap: 34px;
+}
+
+.animation-showcase-copy {
+  display: grid;
+  gap: 22px;
+  max-width: none;
+}
+
+.animation-showcase-kicker {
+  margin: 0;
+  color: #979797;
+  font-family: "Gangster Grotesk", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.animation-showcase-title {
+  max-width: none;
+  margin: 0;
+  color: #252525;
+  font-family: "Gangster Grotesk", sans-serif;
+  font-size: clamp(3rem, 5.3vw, 68px);
+  font-weight: 700;
+  line-height: 74.8px;
+  letter-spacing: 0;
+}
+
+.animation-showcase-stage {
+  display: grid;
+  gap: 8px;
+}
+
+.animation-rive-strip,
+.animation-rive-panel,
+.animation-process-shot {
+  border-radius: 8px;
+}
+
+.animation-rive-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 10px;
+  min-height: 164px;
+  padding: 20px 34px;
+  background: #f6c537;
+}
+
+.animation-secondary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+}
+
+.animation-rive-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 10px;
+  min-height: 274px;
+  padding: 18px 28px;
+}
+
+.animation-rive-panel-violet {
+  background: #7977f0;
+}
+
+.animation-rive-slot {
+  display: grid;
+  place-items: center;
+}
+
+.animation-rive-slot canvas {
+  display: block;
+  width: min(136px, 100%);
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.animation-rive-slot canvas:not([data-rive-ready="true"]) {
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.animation-process-shot {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: #bdd44d;
+}
+
+.animation-process-shot img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 8px 18px rgba(16, 19, 27, 0.12);
+}
+
+.animation-icon-wall {
+  padding: 6px 0 236px;
+  background: #ffffff;
+}
+
+.animation-icon-wall .container {
+  width: min(100%, 1200px);
+}
+
+.animation-icon-wall-card {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px 24px;
+  padding: 22px 44px 28px;
+  border-radius: 8px;
+  background: #d6e7f7;
+}
+
+.animation-icon-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  background: transparent;
+  object-fit: cover;
+}
+
+.animation-icon-video:nth-child(9) {
+  grid-column: 1;
+}
+
+.animation-icon-video:nth-child(10) {
+  grid-column: 2;
+}
+
+.animation-icon-video:nth-child(11) {
+  grid-column: 3;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .animation-showcase-hero {
+    padding-top: 146px;
+  }
+
+  .project-page-showcase .container {
+    width: min(calc(100% - 72px), 1200px);
+  }
+
+  .animation-rive-strip {
+    padding-inline: 24px;
+  }
+
+  .animation-rive-panel {
+    padding-inline: 20px;
+  }
+
+  .animation-rive-slot canvas {
+    width: min(112px, 100%);
+  }
+
+  .animation-icon-wall-card {
+    padding-inline: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .project-page-showcase .container {
+    width: min(calc(100% - 32px), 1200px);
+  }
+
+  .project-page-showcase .contact .container,
+  .project-page-showcase .site-footer .container {
+    width: min(calc(100% - 32px), var(--container));
+  }
+
+  .animation-showcase-hero {
+    padding-top: 116px;
+  }
+
+  .animation-showcase-shell {
+    gap: 28px;
+  }
+
+  .animation-showcase-title {
+    font-size: 34px;
+    line-height: 1.1;
+  }
+
+  .animation-rive-strip,
+  .animation-secondary-grid,
+  .animation-icon-wall-card {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .animation-rive-strip {
+    min-height: 0;
+    padding: 18px 16px;
+  }
+
+  .animation-secondary-grid {
+    gap: 12px;
+  }
+
+  .animation-rive-panel {
+    min-height: 0;
+    padding: 18px 16px;
+  }
+
+  .animation-rive-slot canvas {
+    width: min(120px, 100%);
+  }
+
+  .animation-process-shot {
+    padding: 12px;
+  }
+
+  .animation-icon-wall {
+    padding-bottom: 112px;
+  }
+
+  .animation-icon-wall .container {
+    width: min(calc(100% - 32px), 1200px);
+  }
+
+  .animation-icon-wall-card {
+    gap: 18px;
+    padding: 20px 16px;
+  }
+
+  .animation-icon-video:nth-child(9),
+  .animation-icon-video:nth-child(10),
+  .animation-icon-video:nth-child(11) {
+    grid-column: auto;
+  }
+}
