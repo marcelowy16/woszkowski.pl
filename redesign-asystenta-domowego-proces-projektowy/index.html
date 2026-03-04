@@ -15,9 +15,9 @@
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/assistant/mockup_4a-3.png" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="../styles/main.css?v=20260304-22" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260304-23" />
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
-    <script defer src="../scripts/main.js?v=20260304-12"></script>
+    <script defer src="../scripts/main.js?v=20260304-13"></script>
   </head>
   <body class="project-page project-page-wip project-page-assistant">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -280,14 +280,39 @@
 
       <section class="assistant-large-rive">
         <div class="container">
-          <div class="assistant-large-rive-card" data-reveal>
-            <canvas
-              width="1320"
-              height="1320"
-              data-rive-src="../assets/rive/canva1.riv"
-              data-rive-autoplay="true"
-              aria-label="Prezentacja g&#322;&oacute;wnej animacji aplikacji"
-            ></canvas>
+          <div class="assistant-tech-grid">
+            <figure class="assistant-tech-card" data-reveal>
+              <canvas
+                width="1212"
+                height="1212"
+                data-rive-src="./tech_anim.riv"
+                data-rive-artboard="Artboard"
+                data-rive-autoplay="true"
+                aria-label="Animacja widoku kamer w aplikacji"
+              ></canvas>
+            </figure>
+
+            <figure class="assistant-tech-card" data-reveal>
+              <canvas
+                width="1212"
+                height="1212"
+                data-rive-src="./tech_anim.riv"
+                data-rive-artboard="Artboard 2"
+                data-rive-autoplay="true"
+                aria-label="Animacja sterowania bram&#261; w aplikacji"
+              ></canvas>
+            </figure>
+
+            <figure class="assistant-tech-card assistant-tech-card-centered" data-reveal>
+              <canvas
+                width="1212"
+                height="1212"
+                data-rive-src="./tech_anim.riv"
+                data-rive-artboard="Artboard 3"
+                data-rive-autoplay="true"
+                aria-label="Animacja historii po&#322;&#261;cze&#324; w aplikacji"
+              ></canvas>
+            </figure>
           </div>
         </div>
       </section>

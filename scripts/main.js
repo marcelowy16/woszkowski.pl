@@ -20,6 +20,7 @@ const wipZoomableImages = document.querySelectorAll(
   ".project-page-wip .wip-hero-media img, .project-page-wip .wip-image-card img, .project-page-wip .wip-image-frame img, .project-page-wip .wip-comments-media img"
 );
 const lightboxTransitionDuration = 380;
+const riveCanvasInstances = new WeakMap();
 
 let returnFocusTo = null;
 let lastScrollY = Math.max(window.scrollY, 0);
@@ -699,7 +700,7 @@ const initWipImageLightbox = () => {
 };
 
 initWipImageLightbox();
-initHoverCursorTargets(".project-media-link, .project-page-wip .wip-zoom-target");
+initHoverCursorTargets(".project-media-link, .project-page-wip .wip-zoom-target, .rive-zoom-target");
 
 const splitProjectTitleLines = (link) => {
   if (!(link instanceof HTMLAnchorElement)) {
@@ -1010,10 +1011,298 @@ const initRiveCanvases = () => {
     }
 
     riveInstance = new window.rive.Rive(options);
+    riveCanvasInstances.set(canvas, riveInstance);
   });
 };
 
 initRiveCanvases();
+
+const resizeRiveCanvas = (canvas) => {
+  if (!(canvas instanceof HTMLCanvasElement)) {
+    return;
+  }
+
+  riveCanvasInstances.get(canvas)?.resizeDrawingSurfaceToCanvas?.();
+};
+
+const initRiveCanvasLightbox = () => {
+  if (!riveCanvases.length) {
+    return;
+  }
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "rive-lightbox";
+  lightbox.hidden = true;
+  lightbox.tabIndex = -1;
+  lightbox.setAttribute("aria-hidden", "true");
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-label", "Powiekszona animacja");
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "rive-lightbox-backdrop";
+  backdrop.setAttribute("aria-hidden", "true");
+
+  const figure = document.createElement("figure");
+  figure.className = "rive-lightbox-figure";
+
+  lightbox.append(backdrop, figure);
+  body.appendChild(lightbox);
+
+  let activeTrigger = null;
+  let activeCanvas = null;
+  let activePlaceholder = null;
+  let activeCanvasInlineStyle = null;
+  let closeLightboxTimeout = 0;
+  let animationTimeout = 0;
+  let isAnimating = false;
+
+  const getTargetRect = (canvas) => {
+    const viewportPadding = window.innerWidth < 768 ? 24 : 72;
+    const maxWidth = Math.max(160, window.innerWidth - viewportPadding * 2);
+    const maxHeight = Math.max(160, window.innerHeight - viewportPadding * 2);
+    const intrinsicWidth = Number.parseFloat(canvas.getAttribute("width") ?? "") || canvas.clientWidth || 1;
+    const intrinsicHeight = Number.parseFloat(canvas.getAttribute("height") ?? "") || canvas.clientHeight || 1;
+    const aspectRatio = intrinsicWidth > 0 && intrinsicHeight > 0 ? intrinsicWidth / intrinsicHeight : 1;
+
+    let width = maxWidth;
+    let height = width / aspectRatio;
+
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * aspectRatio;
+    }
+
+    return {
+      left: (window.innerWidth - width) / 2,
+      top: (window.innerHeight - height) / 2,
+      width,
+      height,
+    };
+  };
+
+  const getTransformFromRects = (fromRect, toRect) => {
+    const scaleX = fromRect.width / toRect.width;
+    const scaleY = fromRect.height / toRect.height;
+    const translateX = fromRect.left + fromRect.width / 2 - (toRect.left + toRect.width / 2);
+    const translateY = fromRect.top + fromRect.height / 2 - (toRect.top + toRect.height / 2);
+    return `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+  };
+
+  const clearActiveCanvasStyles = () => {
+    if (!(activeCanvas instanceof HTMLCanvasElement)) {
+      return;
+    }
+
+    if (activeCanvasInlineStyle === null) {
+      activeCanvas.removeAttribute("style");
+    } else {
+      activeCanvas.setAttribute("style", activeCanvasInlineStyle);
+    }
+  };
+
+  const syncActiveCanvasBounds = () => {
+    if (!(activeCanvas instanceof HTMLCanvasElement)) {
+      return;
+    }
+
+    const targetRect = getTargetRect(activeCanvas);
+    activeCanvas.style.left = `${targetRect.left}px`;
+    activeCanvas.style.top = `${targetRect.top}px`;
+    activeCanvas.style.width = `${targetRect.width}px`;
+    activeCanvas.style.height = `${targetRect.height}px`;
+    resizeRiveCanvas(activeCanvas);
+  };
+
+  const restoreCanvas = () => {
+    if (!(activeCanvas instanceof HTMLCanvasElement)) {
+      return;
+    }
+
+    if (activePlaceholder instanceof HTMLElement && activePlaceholder.isConnected) {
+      activePlaceholder.replaceWith(activeCanvas);
+    }
+
+    activeCanvas.classList.remove("rive-lightbox-active-canvas");
+    clearActiveCanvasStyles();
+    resizeRiveCanvas(activeCanvas);
+  };
+
+  const finishClose = () => {
+    window.clearTimeout(animationTimeout);
+    animationTimeout = 0;
+    isAnimating = false;
+    lightbox.hidden = true;
+    lightbox.setAttribute("aria-hidden", "true");
+    lightbox.classList.remove("is-open", "is-closing");
+    body.classList.remove("image-lightbox-open");
+    restoreCanvas();
+    activeTrigger?.focus();
+    activeTrigger = null;
+    activeCanvas = null;
+    activePlaceholder = null;
+    activeCanvasInlineStyle = null;
+  };
+
+  const closeLightbox = () => {
+    if (!(activeCanvas instanceof HTMLCanvasElement) || isAnimating) {
+      return;
+    }
+
+    const sourceRect =
+      activePlaceholder instanceof HTMLElement && activePlaceholder.isConnected
+        ? activePlaceholder.getBoundingClientRect()
+        : activeCanvas.getBoundingClientRect();
+
+    isAnimating = true;
+    lightbox.classList.add("is-closing");
+    lightbox.classList.remove("is-open");
+    activeCanvas.style.transform = getTransformFromRects(sourceRect, getTargetRect(activeCanvas));
+
+    window.clearTimeout(closeLightboxTimeout);
+    closeLightboxTimeout = window.setTimeout(() => {
+      closeLightboxTimeout = 0;
+      finishClose();
+    }, lightboxTransitionDuration);
+  };
+
+  const openLightbox = (canvas, trigger = canvas.parentElement) => {
+    if (!(canvas instanceof HTMLCanvasElement) || isAnimating || lightbox.classList.contains("is-open")) {
+      return;
+    }
+
+    const sourceRect = canvas.getBoundingClientRect();
+    if (!sourceRect.width || !sourceRect.height) {
+      return;
+    }
+
+    window.clearTimeout(closeLightboxTimeout);
+    window.clearTimeout(animationTimeout);
+    closeLightboxTimeout = 0;
+    animationTimeout = 0;
+    activeTrigger = trigger instanceof HTMLElement ? trigger : canvas;
+    activeCanvas = canvas;
+    activeCanvasInlineStyle = canvas.getAttribute("style");
+    activePlaceholder = document.createElement("span");
+    activePlaceholder.className = "rive-lightbox-placeholder";
+    activePlaceholder.style.width = `${sourceRect.width}px`;
+    activePlaceholder.style.height = `${sourceRect.height}px`;
+    canvas.insertAdjacentElement("afterend", activePlaceholder);
+    figure.appendChild(canvas);
+    canvas.classList.add("rive-lightbox-active-canvas");
+    isAnimating = true;
+    lightbox.hidden = false;
+    lightbox.classList.remove("is-closing");
+    lightbox.setAttribute("aria-label", `Powiekszona animacja: ${(canvas.getAttribute("aria-label") ?? "Animacja").trim()}`);
+    body.classList.add("image-lightbox-open");
+    lightbox.setAttribute("aria-hidden", "false");
+
+    const targetRect = getTargetRect(canvas);
+    canvas.style.left = `${targetRect.left}px`;
+    canvas.style.top = `${targetRect.top}px`;
+    canvas.style.width = `${targetRect.width}px`;
+    canvas.style.height = `${targetRect.height}px`;
+    canvas.style.transform = getTransformFromRects(sourceRect, targetRect);
+
+    window.requestAnimationFrame(() => {
+      lightbox.classList.add("is-open");
+      lightbox.focus();
+      canvas.style.transform = "translate(0, 0) scale(1)";
+      resizeRiveCanvas(canvas);
+      animationTimeout = window.setTimeout(() => {
+        animationTimeout = 0;
+        isAnimating = false;
+      }, lightboxTransitionDuration);
+    });
+  };
+
+  lightbox.addEventListener("click", () => {
+    closeLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      closeLightbox();
+    }
+  });
+
+  window.addEventListener(
+    "wheel",
+    () => {
+      if (lightbox.classList.contains("is-open") && !isAnimating) {
+        closeLightbox();
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchmove",
+    () => {
+      if (lightbox.classList.contains("is-open") && !isAnimating) {
+        closeLightbox();
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (lightbox.classList.contains("is-open") && !isAnimating) {
+        closeLightbox();
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", () => {
+    if (lightbox.classList.contains("is-open")) {
+      syncActiveCanvasBounds();
+    }
+  });
+
+  riveCanvases.forEach((canvas) => {
+    if (!(canvas instanceof HTMLCanvasElement)) {
+      return;
+    }
+
+    const trigger = canvas.parentElement;
+    if (!(trigger instanceof HTMLElement) || trigger.dataset.riveZoomReady === "true") {
+      return;
+    }
+
+    trigger.classList.add("rive-zoom-target");
+    trigger.tabIndex = 0;
+    trigger.setAttribute("role", "button");
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("aria-label", `${(canvas.getAttribute("aria-label") ?? "Animacja").trim()} - kliknij, aby powiekszyc`);
+
+    const hoverCursor = document.createElement("span");
+    hoverCursor.className = "project-hover-cursor";
+    hoverCursor.setAttribute("aria-hidden", "true");
+    hoverCursor.textContent = "Powieksz";
+    trigger.appendChild(hoverCursor);
+
+    trigger.addEventListener("click", () => {
+      openLightbox(canvas, trigger);
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      openLightbox(canvas, trigger);
+    });
+
+    trigger.dataset.riveZoomReady = "true";
+  });
+};
+
+initRiveCanvasLightbox();
+initHoverCursorTargets(".rive-zoom-target");
 
 const initOffsetVideos = () => {
   offsetVideos.forEach((video) => {
