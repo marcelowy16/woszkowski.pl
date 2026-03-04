@@ -14,7 +14,7 @@ const wordSlideTargets = document.querySelectorAll(
 );
 const heroCopyBlocks = document.querySelectorAll(".hero-copy");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
-const riveCanvases = document.querySelectorAll("canvas[data-rive-src][data-rive-artboard]");
+const riveCanvases = document.querySelectorAll("canvas[data-rive-src]");
 const offsetVideos = document.querySelectorAll("video[data-start-time]");
 const wipZoomableImages = document.querySelectorAll(
   ".project-page-wip .wip-hero-media img, .project-page-wip .wip-image-card img, .project-page-wip .wip-image-frame img, .project-page-wip .wip-comments-media img"
@@ -986,7 +986,7 @@ const initRiveCanvases = () => {
     }
 
     const { riveSrc, riveArtboard, riveAutoplay } = canvas.dataset;
-    if (!riveSrc || !riveArtboard) {
+    if (!riveSrc) {
       return;
     }
 
@@ -998,13 +998,18 @@ const initRiveCanvases = () => {
       riveInstance?.resizeDrawingSurfaceToCanvas?.();
     };
 
-    riveInstance = new window.rive.Rive({
+    const options = {
       src: riveSrc,
       canvas,
-      artboard: riveArtboard,
       autoplay: riveAutoplay !== "false",
       onLoad: markReady,
-    });
+    };
+
+    if (riveArtboard) {
+      options.artboard = riveArtboard;
+    }
+
+    riveInstance = new window.rive.Rive(options);
   });
 };
 
