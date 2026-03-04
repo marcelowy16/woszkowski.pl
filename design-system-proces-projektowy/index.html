@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System (Mobile) - Proces projektowy - Marcel Woszkowski</title>
+    <meta
+      name="description"
+      content="Proces projektowy kompaktowego design systemu dostosowanego do potrzeb aplikacji mobilnej."
+    />
+    <link rel="preload" href="../assets/fonts/Gordita-Light.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskBold.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="../assets/images/design-system/designsystem_anim_banner2.gif"
+      as="image"
+      type="image/gif"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="../styles/main.css?v=20260304-23" />
+    <script defer src="../scripts/main.js?v=20260304-13"></script>
+  </head>
+  <body class="project-page project-page-wip project-page-design-system">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="../" aria-label="Marcel Woszkowski - strona glowna">
+          <span class="brand-text">Marcel Woszkowski</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Glowna nawigacja">
+          <a class="nav-link" href="../">Home</a>
+          <a class="nav-link" href="../o-mnie/">O mnie</a>
+          <a class="nav-link is-active" href="../#projects" aria-current="page">Portfolio</a>
+          <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9" />
+              <path
+                d="M8.2 6.8c2.8 2.9 4.9 6.2 6.1 10.4M5.7 10.2c4.5-.3 8.6.2 12.3 1.5M10.3 18.4c1.6-3.1 3.9-5.4 7-6.8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+              />
+            </svg>
+            Dribbble
+          </a>
+          <a class="nav-link nav-cta" href="#form" data-scroll-target="#form"><span class="nav-cta-label">Kontakt</span></a>
+        </nav>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otworz menu">
+          <span class="menu-toggle-label" data-open-label="Menu" data-close-label="Zamknij">Menu</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <div class="mobile-menu-backdrop" data-close-menu="true"></div>
+      <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
+        <a class="mobile-link" href="../">Home</a>
+        <a class="mobile-link" href="../o-mnie/">O mnie</a>
+        <a class="mobile-link is-active" href="../#projects" aria-current="page">Portfolio</a>
+        <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      <section class="wip-hero">
+        <div class="container wip-hero-shell design-system-hero-shell">
+          <div class="wip-hero-copy is-visible" data-reveal>
+            <p class="wip-section-kicker">DESIGN SYSTEM</p>
+            <h1 class="wip-hero-title">Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej</h1>
+          </div>
+
+          <figure class="wip-hero-media design-system-hero-media" data-reveal>
+            <img
+              src="../assets/images/design-system/designsystem_anim_banner2.gif"
+              alt="Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej"
+              width="1920"
+              height="1080"
+              loading="eager"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="wip-meta">
+        <div class="container wip-meta-grid">
+          <div class="wip-meta-item" data-reveal>
+            <p class="wip-meta-label">BRAN&#379;A</p>
+            <p class="wip-meta-value">Us&#322;ugi samoobs&#322;ugowe</p>
+          </div>
+          <div class="wip-meta-item" data-reveal>
+            <p class="wip-meta-label">NARZ&#280;DZIA</p>
+            <p class="wip-meta-value">Figma</p>
+          </div>
+          <div class="wip-meta-item" data-reveal>
+            <p class="wip-meta-label">KLUCZOWE CZYNNO&#346;CI</p>
+            <p class="wip-meta-value">UI/UX</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-copy-section design-system-story">
+        <div class="container">
+          <div class="wip-problem-grid design-system-problem-grid">
+            <article class="wip-problem-card" data-reveal>
+              <h2 class="wip-card-title">O PROJEKCIE</h2>
+              <div class="design-system-copy-stack">
+                <p>
+                  Projekt Design Systemu to starannie wypracowany zbi&#243;r wytycznych, komponent&#243;w i wzorc&#243;w, maj&#261;cy na
+                  celu usystematyzowanie i unifikacj&#281; wszystkich interfejs&#243;w cyfrowych zwi&#261;zanych z mark&#261; klienta. Ten
+                  projekt nie tylko definiuje estetyk&#281;, ale r&#243;wnie&#380; kreuje solidn&#261; podstaw&#281; dla sp&#243;jno&#347;ci w
+                  do&#347;wiadczeniach u&#380;ytkownik&#243;w.
+                </p>
+                <p>
+                  Projektowany Design System obejmuje kompleksow&#261; palet&#281; kolor&#243;w, zasady typografii, ikonografi&#281;,
+                  interaktywne komponenty oraz szczeg&#243;&#322;ow&#261; dokumentacj&#281; w Figmie. To wi&#281;cej ni&#380; zbi&#243;r
+                  element&#243;w projektowych - to narz&#281;dzie, kt&#243;re usprawnia procesy projektowe i gwarantuje sp&#243;jno&#347;&#263; we
+                  wszelkich interakcjach cyfrowych zwi&#261;zanych z mark&#261;.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-problem-card" data-reveal>
+              <h2 class="wip-card-title">WYZWANIE</h2>
+              <p>
+                Przygotowanie przejrzystego i &#322;atwego w implementacji systemu dla aplikacji mobilnej. Integracja nowych
+                koncepcji z ju&#380; istniej&#261;cymi elementami wymagaj&#261;ca subtelnej r&#243;wnowagi, dodatkowo projekt powinien by&#263;
+                &#322;atwo dost&#281;pny dla ka&#380;dego cz&#322;onka organizacji.
+              </p>
+            </article>
+
+            <article class="wip-problem-card" data-reveal>
+              <h2 class="wip-card-title">ZA&#321;O&#379;ENIA</h2>
+              <ul class="design-system-bullet-list">
+                <li>Kolory i typografia musz&#261; bazowa&#263; na aktualnym stylu produktu od klienta</li>
+                <li>Komponenty bazuj&#261;ce na bibliotece Material Design</li>
+                <li>Docelowym produktem jest tylko aplikacja mobilna</li>
+                <li>Szybki i prosty dost&#281;p dla programist&#243;w do szczeg&#243;&#322;&#243;w komponent&#243;w (wielko&#347;&#263;, kolor, itd.)</li>
+                <li>Dalsza wsp&#243;&#322;praca z programistami przy tworzeniu i weryfikowaniu komponent&#243;w takich jakie s&#261; w style guides</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="design-system-media">
+        <div class="container design-system-media-shell">
+          <article class="design-system-media-block">
+            <h2 class="design-system-media-title" data-reveal>Paleta kolor&#243;w</h2>
+            <figure class="wip-image-frame" data-reveal>
+              <img
+                src="../assets/images/design-system/design-system-color-palette.png"
+                alt="Paleta kolorow dla design systemu"
+                width="2048"
+                height="1151"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </article>
+
+          <article class="design-system-media-block">
+            <h2 class="design-system-media-title" data-reveal>Typografia</h2>
+            <figure class="wip-image-frame" data-reveal>
+              <img
+                src="../assets/images/design-system/design-system-typography.png"
+                alt="Typografia design systemu"
+                width="2048"
+                height="1389"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="design-system-media design-system-buttons">
+        <div class="container design-system-media-shell">
+          <article class="design-system-media-block">
+            <h2 class="design-system-media-title" data-reveal>Buttony</h2>
+            <div class="design-system-media-stack">
+              <figure class="wip-image-frame" data-reveal>
+                <img
+                  src="../assets/images/design-system/buttonanimation.gif"
+                  alt="Animacja i zachowanie przyciskow"
+                  width="1800"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+
+              <figure class="wip-image-frame" data-reveal>
+                <img
+                  src="../assets/images/design-system/design-system-buttons-palette.png"
+                  alt="Paleta stylow przyciskow"
+                  width="2017"
+                  height="2048"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+
+              <figure class="wip-image-frame" data-reveal>
+                <img
+                  src="../assets/images/design-system/design-system-other-button.png"
+                  alt="Pozostale warianty przyciskow"
+                  width="2048"
+                  height="509"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="design-system-media">
+        <div class="container design-system-media-shell">
+          <article class="design-system-media-block">
+            <h2 class="design-system-media-title" data-reveal>Formularze</h2>
+            <figure class="wip-image-frame" data-reveal>
+              <img
+                src="../assets/images/design-system/design-system-forms.png"
+                alt="System formularzy i pol"
+                width="2044"
+                height="2048"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="design-system-media design-system-components">
+        <div class="container design-system-media-shell">
+          <article class="design-system-media-block">
+            <h2 class="design-system-media-title" data-reveal>Pozosta&#322;e komponenty</h2>
+            <div class="design-system-components-grid">
+              <figure class="design-system-video-card" data-reveal>
+                <video autoplay muted loop playsinline preload="metadata">
+                  <source src="../assets/videos/design-system/pop-animation.mp4" type="video/mp4" />
+                </video>
+              </figure>
+
+              <figure class="wip-image-frame" data-reveal>
+                <img
+                  src="../assets/images/design-system/design-system-others-comp.png"
+                  alt="Pozostale komponenty design systemu"
+                  width="1365"
+                  height="2048"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact section-frame">
+        <div class="contact-panel" id="form">
+          <div class="container contact-grid">
+            <div class="contact-copy" data-reveal>
+              <p class="contact-title">Skontaktuj si&#281; ze mn&#261; <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
+              <p class="contact-intro">
+                Wystarczy jedno klikni&#281;cie, aby pom&#243;c zmieni&#263; pomys&#322; w produkt. Wype&#322;nij formularz, aby
+                udost&#281;pni&#263; mi wi&#281;cej szczeg&#243;&#322;&#243;w na temat projektu.
+              </p>
+            </div>
+
+            <form class="contact-form" novalidate data-static-form data-reveal>
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    inputmode="email"
+                    autocomplete="email"
+                    required
+                    aria-describedby="contact-email-error"
+                  />
+                  <label for="contact-email">E-mail</label>
+                </div>
+                <p class="field-error" id="contact-email-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    required
+                    maxlength="11"
+                    aria-describedby="contact-phone-error"
+                  />
+                  <label for="contact-phone">Numer telefonu</label>
+                </div>
+                <p class="field-error" id="contact-phone-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    autocomplete="name"
+                    required
+                    aria-describedby="contact-name-error"
+                  />
+                  <label for="contact-name">Nazwa</label>
+                </div>
+                <p class="field-error" id="contact-name-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="7"
+                    required
+                    aria-describedby="contact-message-error"
+                  ></textarea>
+                  <label for="contact-message">Wiadomo&#347;&#263;</label>
+                </div>
+                <p class="field-error" id="contact-message-error" aria-live="polite"></p>
+              </div>
+
+              <button class="button button-primary" type="submit" disabled aria-disabled="true">Wy&#347;lij wiadomo&#347;&#263;</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
+        <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="tel:+48508278715">+48 508 278 715</a>
+        <a href="#" data-open-cookie-policy="true">Cookies</a>
+      </div>
+    </footer>
+
+    <button class="scroll-to-top" type="button" aria-label="Przewin na gore" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 17V7M12 7l-5 5M12 7l5 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </body>
+</html>
