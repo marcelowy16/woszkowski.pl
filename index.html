@@ -10,18 +10,20 @@
     <link rel="preload" href="./assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/images/bgimage-home-original.png" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="./styles/main.css?v=20260304-2" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260304-21" />
     <script defer src="./scripts/main.js"></script>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-shell">
-        <a class="brand" href="#main" data-scroll-target="#main">Marcel Woszkowski</a>
+        <a class="brand" href="./" aria-label="Marcel Woszkowski - strona glowna">
+          <span class="brand-text">Marcel Woszkowski</span>
+        </a>
 
         <nav class="desktop-nav" aria-label="Główna nawigacja">
-          <a class="nav-link" href="#main" data-scroll-target="#main">Home</a>
+          <a class="nav-link is-active" href="./" aria-current="page">Home</a>
           <a class="nav-link" href="./o-mnie/">O mnie</a>
           <a class="nav-link" href="#projects" data-scroll-target="#projects">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
@@ -55,7 +57,7 @@
     <div class="mobile-menu" id="mobile-menu" hidden>
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
-        <a class="mobile-link" href="#main" data-scroll-target="#main">Home</a>
+        <a class="mobile-link is-active" href="./" aria-current="page">Home</a>
         <a class="mobile-link" href="./o-mnie/">O mnie</a>
         <a class="mobile-link" href="#projects" data-scroll-target="#projects">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>

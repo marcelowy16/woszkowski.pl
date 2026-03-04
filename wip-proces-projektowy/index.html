@@ -11,24 +11,27 @@
     <link rel="preload" href="../assets/fonts/Gordita-Light.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="../assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="../assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskBold.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/wip/Frame-5.png" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="../styles/main.css?v=20260304-4" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260304-21" />
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
-    <script defer src="../scripts/main.js"></script>
+    <script defer src="../scripts/main.js?v=20260304-11"></script>
   </head>
   <body class="project-page project-page-wip">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-shell">
-        <a class="brand" href="../index.html">Marcel Woszkowski</a>
+        <a class="brand" href="../" aria-label="Marcel Woszkowski - strona glowna">
+          <span class="brand-text">Marcel Woszkowski</span>
+        </a>
 
         <nav class="desktop-nav" aria-label="Główna nawigacja">
-          <a class="nav-link" href="../index.html">Home</a>
+          <a class="nav-link" href="../">Home</a>
           <a class="nav-link" href="../o-mnie/">O mnie</a>
-          <a class="nav-link" href="../index.html#projects">Portfolio</a>
+          <a class="nav-link is-active" href="../#projects" aria-current="page">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9" />
@@ -54,9 +57,9 @@
     <div class="mobile-menu" id="mobile-menu" hidden>
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
-        <a class="mobile-link" href="../index.html">Home</a>
+        <a class="mobile-link" href="../">Home</a>
         <a class="mobile-link" href="../o-mnie/">O mnie</a>
-        <a class="mobile-link" href="../index.html#projects">Portfolio</a>
+        <a class="mobile-link is-active" href="../#projects" aria-current="page">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
         <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
       </nav>
@@ -130,11 +133,11 @@
         <div class="container">
           <div class="wip-copy-lead" data-reveal>
             <p>
-              Do współpracy zgłosił się klient z pomysłem na aplikację mobilną opartą na przeglądaniu pytań i ankiet w
-              formie ciągłego feedu. Zamiast klasycznego konsumowania treści wideo użytkownicy mieli odpowiadać na pytania
-              publikowane przez innych, brać udział w dyskusjach oraz analizować wyniki i statystyki odpowiedzi. Inspiracją
-              dla koncepcji były mechaniki znane z aplikacji social media, jednak celem projektu było zaprojektowanie
-              rozwiązania, które wykorzystuje je do zbierania opinii i danych, a nie wyłącznie do rozrywki.
+              Do współpracy zgłosił się klient z pomysłem na aplikację mobilną opartą na przeglądaniu pytań i ankiet w formie
+              ciągłego feedu. Zamiast klasycznego konsumowania treści wideo użytkownicy mieli odpowiadać na pytania publikowane
+              przez innych, brać udział w dyskusjach oraz analizować wyniki i statystyki odpowiedzi. Inspiracją dla koncepcji
+              były mechaniki znane z aplikacji SM, jednak celem projektu było zaprojektowanie rozwiązania, które wykorzystuje je
+              do zbierania opinii i danych, a nie wyłącznie do rozrywki.
             </p>
           </div>
 
@@ -144,7 +147,7 @@
               <p>
                 Zaprojektowanie aplikacji, która zachęca do częstych, krótkich interakcji, a jednocześnie dostarcza
                 wartościowych insightów. Klientowi zależało na połączeniu lekkości znanej z aplikacji rozrywkowych z
-                funkcjonalnością narzędzia do zbierania opinii. Zakres pracy obejmował zaprojektowanie całego UX, od
+                funkcjonalnością narzędzia do zbierania opinii. Zakres pracy obejmował zaprojektowanie całego UX – od
                 koncepcji, przez architekturę informacji, aż po finalny interfejs.
               </p>
             </article>
@@ -152,10 +155,10 @@
             <article class="wip-problem-card" data-reveal>
               <h2 class="wip-card-title">PROBLEM DO ROZWIĄZANIA</h2>
               <p>
-                Większość aplikacji społecznościowych skupia się na biernym konsumowaniu treści, a narzędzia ankietowe
-                często są skomplikowane i mało angażujące. Wyzwaniem było stworzenie rozwiązania, które umożliwia szybkie
-                wyrażanie opinii, nie obciążając użytkownika nadmiarem decyzji i formularzy, a przy tym daje dodatkowe dane
-                o użytkownikach. Mając na uwadze szeroki wiek grupy docelowej, interfejs musiał pozostać czytelny.
+                Większość aplikacji społecznościowych skupia się na biernym konsumowaniu treści, a narzędzia ankietowe często są
+                skomplikowane i mało angażujące. Wyzwaniem było stworzenie rozwiązania, które umożliwia szybkie wyrażanie
+                opinii, nie obciążając użytkownika nadmiarem decyzji i formularzy dając przy tym dodatkowe dane o użytkownikach.
+                Mając na uwadze że wiek grupy docelowej jest bardzo szeroki, interfejs musiał być czytelny.
               </p>
             </article>
           </div>
@@ -188,8 +191,8 @@
           </div>
           <div class="wip-copy-block" data-reveal>
             <p>
-              Centralnym elementem aplikacji jest feed, w którym jedno pytanie zajmuje cały ekran. Użytkownik wykonuje
-              zawsze jedną główną akcję, udziela odpowiedzi lub przechodzi do kolejnej ankiety.
+              Centralnym elementem aplikacji jest feed, w którym jedno pytanie zajmuje cały ekran. Użytkownik wykonuje zawsze
+              jedną główną akcję – udziela odpowiedzi lub przechodzi do kolejnej ankiety.
             </p>
           </div>
         </div>
@@ -206,15 +209,15 @@
               <div class="wip-solution-box">
                 <p class="wip-solution-label">Problem</p>
                 <p>
-                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne
-                  zaangażowanie użytkowników i nie sprzyja wyrażaniu opinii.
+                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne zaangażowanie
+                  użytkowników i nie sprzyja wyrażaniu opinii.
                 </p>
               </div>
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
-                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne
-                  zaangażowanie użytkowników i nie sprzyja wyrażaniu opinii.
+                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne zaangażowanie
+                  użytkowników i nie sprzyja wyrażaniu opinii.
                 </p>
               </div>
             </article>
@@ -230,8 +233,8 @@
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
-                  Interfejs został zaprojektowany tak, by na ekranie była jedna główna akcja. Ograniczenie liczby elementów
-                  pozwala skupić się użytkownikowi na pytaniu i odpowiedzi.
+                  Interfejs został zaprojektowany, tak by była jedna główna akcja na ekran. Ograniczenie liczby elementów
+                  pozwala skupić się userowi na pytaniu i odpowiedzi.
                 </p>
               </div>
             </article>
@@ -248,7 +251,7 @@
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
                   Po każdej odpowiedzi użytkownik otrzymuje dostęp do statystyk i wyników ankiety. Statystyki pełnią rolę
-                  nagrody i zachęcają do dalszego korzystania z aplikacji.
+                  „nagrody” i zachęcają do dalszego korzystania z aplikacji.
                 </p>
               </div>
             </article>
@@ -264,8 +267,8 @@
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
-                  Dane zostały przedstawione w uproszczonej wizualnie formie. Statystyki są integralną częścią doświadczenia,
-                  a nie osobnym narzędziem.
+                  Dane zostały przedstawione w uproszczonej wizualnie formie. Statystyki są integralną częścią doświadczenia, a
+                  nie osobnym narzędziem.
                 </p>
               </div>
             </article>
@@ -297,13 +300,10 @@
               <p class="wip-process-kicker"><s>Projektowanie</s><br />Zrozumienie potrzeb</p>
               <div class="wip-copy-block">
                 <p>
-                  Projekt rozpoczął się od szeregu spotkań, które pozwoliły przenieść zamysł na szkic. Dzięki nim ustalono
-                  między innymi fundamentalne parametry zachowania aplikacji, takie jak zasada działania scrollowania ankiet
-                  czy ilość statystyk w szczegółach ankiety.
-                </p>
-                <p>
-                  Spotkania były bardzo przydatne zarówno w procesie projektowym, jak i dla klienta. Pozwoliły mu spojrzeć na
-                  różne rzeczy z innej perspektywy i wyjść poza pudełko.
+                  Projekt rozpoczął się od szeregu spotkań, które pozwoliły przenieść zamysł na szkic. Dzięki nim ustalono m.in
+                  fundamentalne parametry zachowania aplikacji, takie jak zasadę działania scrollowania ankiet, czy też ilość
+                  statystyki w szczegółach ankiety. Spotkania były bardzo przydatne zarówno w procesie projektowym, jak i dla
+                  klienta. Pozwoliły mu one spojrzeć na różne rzeczy z innej perspektywy i wyjść „poza pudełko”.
                 </p>
               </div>
             </div>
@@ -329,17 +329,17 @@
       <section class="wip-ui">
         <div class="container">
           <div class="wip-ui-copy" data-reveal>
-            <p class="wip-section-kicker wip-section-kicker-muted">Projekt UI</p>
-            <h2 class="wip-section-title wip-section-title-small">EKRAN GŁÓWNY</h2>
+            <h2 class="wip-section-title wip-ui-title">Projekt UI</h2>
+            <p class="wip-section-kicker wip-section-kicker-muted wip-ui-eyebrow">EKRAN GŁÓWNY</p>
             <div class="wip-copy-block">
               <p>
                 Kluczowymi wartościami podczas projektowania docelowego interfejsu była wizualna prostota, która miała być
                 zrównoważona z wieloma kolorami.
               </p>
               <p>
-                Zostały one użyte jako tło dla każdej z kategorii pytania, którą ustala się podczas tworzenia ankiety, tak by
-                użytkownik szybciej skojarzył kategorię pytania, jakie mu się wyświetliło. Mimo tego jest ona również napisana
-                nad pytaniem.
+                One zatem zostały użyte jako tło dla każdej z kategorii pytania, którą ustala się podczas tworzenia ankiety, tak
+                by użytkownik szybciej skojarzył kategorię pytania, jakie mu się wyświetliło. Mimo tego jest ona również
+                napisana nad pytaniem.
               </p>
             </div>
           </div>
@@ -367,8 +367,8 @@
             <p class="wip-section-kicker wip-section-kicker-muted">KOMENTARZE</p>
             <div class="wip-copy-block">
               <p>
-                Sekcja komentarzy została zaprojektowana na bazie popularnych aplikacji, takich jak TikTok i YouTube, by
-                użytkownik używał już znanego mu schematu.
+                Sekcja komentarzy została zaprojektowana na bazie popularnych aplikacji (Tiktok, Youtube), by użytkownik używał
+                już znanego mu schematu.
               </p>
               <p>
                 Na komentarze nie tylko składa się okno ich dodawania, ale także typ ankiety z pytaniem otwartym. Wtedy część
@@ -396,8 +396,8 @@
             <p class="wip-section-kicker wip-section-kicker-muted">KREATOR ANKIET</p>
             <div class="wip-copy-block">
               <p>
-                Przechodząc dalej do kreatora ankiet, korzystanie z niego musiało bazować na prostocie. Rozbicie na czytelne
-                kroki okazało się sprawdzać pozytywnie podczas testowania prototypu na grupie badanych użytkowników.
+                Przechodząc dalej, do kreatora ankiet – korzystanie z niego musiało bazować na prostocie. Rozbicie na czytelne
+                kroki okazało się sprawdzić pozytywnie podczas testowania prototypu na grupie badanych użytkowników.
               </p>
             </div>
           </div>

@@ -13,6 +13,10 @@ const wordSlideTargets = document.querySelectorAll(".hero-copy h1, .section-head
 const heroCopyBlocks = document.querySelectorAll(".hero-copy");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
 const riveCanvases = document.querySelectorAll("canvas[data-rive-src][data-rive-artboard]");
+const wipZoomableImages = document.querySelectorAll(
+  ".project-page-wip .wip-hero-media img, .project-page-wip .wip-image-card img, .project-page-wip .wip-image-frame img, .project-page-wip .wip-comments-media img"
+);
+const lightboxTransitionDuration = 380;
 
 let returnFocusTo = null;
 let lastScrollY = Math.max(window.scrollY, 0);
@@ -352,11 +356,11 @@ const createProjectMediaLinks = () => {
   });
 };
 
-const initProjectHoverCursors = () => {
-  const mediaLinks = document.querySelectorAll(".project-media-link");
+const initHoverCursorTargets = (selector) => {
+  const hoverTargets = document.querySelectorAll(selector);
 
-  mediaLinks.forEach((link) => {
-    if (!(link instanceof HTMLAnchorElement) || link.dataset.cursorReady === "true") {
+  hoverTargets.forEach((target) => {
+    if (!(target instanceof HTMLElement) || target.dataset.cursorReady === "true") {
       return;
     }
 
@@ -370,8 +374,8 @@ const initProjectHoverCursors = () => {
       currentX += (targetX - currentX) * 0.18;
       currentY += (targetY - currentY) * 0.18;
 
-      link.style.setProperty("--cursor-x", `${currentX}px`);
-      link.style.setProperty("--cursor-y", `${currentY}px`);
+      target.style.setProperty("--cursor-x", `${currentX}px`);
+      target.style.setProperty("--cursor-y", `${currentY}px`);
 
       if (Math.abs(targetX - currentX) < 0.1 && Math.abs(targetY - currentY) < 0.1) {
         animationFrame = 0;
@@ -390,31 +394,31 @@ const initProjectHoverCursors = () => {
     };
 
     const setCursorPosition = (clientX, clientY) => {
-      const bounds = link.getBoundingClientRect();
+      const bounds = target.getBoundingClientRect();
       targetX = clientX - bounds.left;
       targetY = clientY - bounds.top;
 
       if (!animationFrame) {
         currentX = targetX;
         currentY = targetY;
-        link.style.setProperty("--cursor-x", `${currentX}px`);
-        link.style.setProperty("--cursor-y", `${currentY}px`);
+        target.style.setProperty("--cursor-x", `${currentX}px`);
+        target.style.setProperty("--cursor-y", `${currentY}px`);
       }
 
       ensureAnimation();
     };
 
-    link.addEventListener("pointerenter", (event) => {
+    target.addEventListener("pointerenter", (event) => {
       setCursorPosition(event.clientX, event.clientY);
-      link.classList.add("is-hovering");
+      target.classList.add("is-hovering");
     });
 
-    link.addEventListener("pointermove", (event) => {
+    target.addEventListener("pointermove", (event) => {
       setCursorPosition(event.clientX, event.clientY);
     });
 
-    link.addEventListener("pointerleave", () => {
-      link.classList.remove("is-hovering");
+    target.addEventListener("pointerleave", () => {
+      target.classList.remove("is-hovering");
 
       if (animationFrame) {
         window.cancelAnimationFrame(animationFrame);
@@ -422,19 +426,19 @@ const initProjectHoverCursors = () => {
       }
     });
 
-    link.addEventListener("focus", () => {
-      const bounds = link.getBoundingClientRect();
+    target.addEventListener("focus", () => {
+      const bounds = target.getBoundingClientRect();
       targetX = bounds.width / 2;
       targetY = bounds.height / 2;
       currentX = targetX;
       currentY = targetY;
-      link.style.setProperty("--cursor-x", `${currentX}px`);
-      link.style.setProperty("--cursor-y", `${currentY}px`);
-      link.classList.add("is-hovering");
+      target.style.setProperty("--cursor-x", `${currentX}px`);
+      target.style.setProperty("--cursor-y", `${currentY}px`);
+      target.classList.add("is-hovering");
     });
 
-    link.addEventListener("blur", () => {
-      link.classList.remove("is-hovering");
+    target.addEventListener("blur", () => {
+      target.classList.remove("is-hovering");
 
       if (animationFrame) {
         window.cancelAnimationFrame(animationFrame);
@@ -442,12 +446,257 @@ const initProjectHoverCursors = () => {
       }
     });
 
-    link.dataset.cursorReady = "true";
+    target.dataset.cursorReady = "true";
   });
 };
 
 createProjectMediaLinks();
-initProjectHoverCursors();
+
+const initWipImageLightbox = () => {
+  if (!body.classList.contains("project-page-wip") || !wipZoomableImages.length) {
+    return;
+  }
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "wip-lightbox";
+  lightbox.hidden = true;
+  lightbox.tabIndex = -1;
+  lightbox.setAttribute("aria-hidden", "true");
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-label", "Powiększony obraz");
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "wip-lightbox-backdrop";
+  backdrop.setAttribute("aria-hidden", "true");
+
+  const figure = document.createElement("figure");
+  figure.className = "wip-lightbox-figure";
+
+  const lightboxImage = document.createElement("img");
+  lightboxImage.className = "wip-lightbox-image";
+  lightboxImage.alt = "";
+
+  const caption = document.createElement("figcaption");
+  caption.className = "wip-lightbox-caption";
+  caption.hidden = true;
+
+  figure.append(lightboxImage, caption);
+  lightbox.append(backdrop, figure);
+  body.appendChild(lightbox);
+
+  let activeTrigger = null;
+  let activeSourceImage = null;
+  let closeLightboxTimeout = 0;
+  let animationTimeout = 0;
+  let isAnimating = false;
+
+  const clearLightboxStyles = () => {
+    lightboxImage.style.left = "";
+    lightboxImage.style.top = "";
+    lightboxImage.style.width = "";
+    lightboxImage.style.height = "";
+    lightboxImage.style.transform = "";
+  };
+
+  const getTargetRect = (image) => {
+    const viewportPadding = window.innerWidth < 768 ? 32 : 72;
+    const maxWidth = Math.max(120, window.innerWidth - viewportPadding * 2);
+    const maxHeight = Math.max(120, window.innerHeight - viewportPadding * 2);
+    const aspectRatio = image.naturalWidth && image.naturalHeight ? image.naturalWidth / image.naturalHeight : 1;
+
+    let width = maxWidth;
+    let height = width / aspectRatio;
+
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * aspectRatio;
+    }
+
+    return {
+      left: (window.innerWidth - width) / 2,
+      top: (window.innerHeight - height) / 2,
+      width,
+      height,
+    };
+  };
+
+  const getTransformFromRects = (fromRect, toRect) => {
+    const scaleX = fromRect.width / toRect.width;
+    const scaleY = fromRect.height / toRect.height;
+    const translateX = fromRect.left + fromRect.width / 2 - (toRect.left + toRect.width / 2);
+    const translateY = fromRect.top + fromRect.height / 2 - (toRect.top + toRect.height / 2);
+    return `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+  };
+
+  const finishClose = () => {
+    isAnimating = false;
+    lightbox.hidden = true;
+    lightbox.setAttribute("aria-hidden", "true");
+    lightbox.classList.remove("is-open", "is-closing");
+    body.classList.remove("image-lightbox-open");
+    lightboxImage.removeAttribute("src");
+    lightboxImage.alt = "";
+    activeSourceImage?.style.removeProperty("opacity");
+    clearLightboxStyles();
+    activeTrigger?.focus();
+    activeTrigger = null;
+    activeSourceImage = null;
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox.classList.contains("is-open") || isAnimating) {
+      return;
+    }
+
+    isAnimating = true;
+    lightbox.classList.add("is-closing");
+    lightbox.classList.remove("is-open");
+
+    if (activeSourceImage instanceof HTMLImageElement && activeSourceImage.isConnected) {
+      const sourceRect = activeSourceImage.getBoundingClientRect();
+      lightboxImage.style.transform = getTransformFromRects(sourceRect, getTargetRect(lightboxImage));
+    }
+
+    window.clearTimeout(closeLightboxTimeout);
+    closeLightboxTimeout = window.setTimeout(() => {
+      closeLightboxTimeout = 0;
+      finishClose();
+    }, lightboxTransitionDuration);
+  };
+
+  const openLightbox = (image, trigger = image) => {
+    if (!(image instanceof HTMLImageElement) || !image.currentSrc || isAnimating) {
+      return;
+    }
+
+    window.clearTimeout(closeLightboxTimeout);
+    window.clearTimeout(animationTimeout);
+    closeLightboxTimeout = 0;
+    animationTimeout = 0;
+    activeSourceImage?.style.removeProperty("opacity");
+    activeTrigger = trigger instanceof HTMLElement ? trigger : image;
+    activeSourceImage = image;
+    activeSourceImage.style.opacity = "0";
+    isAnimating = true;
+    lightbox.hidden = false;
+    lightbox.classList.remove("is-closing");
+    lightboxImage.src = image.currentSrc;
+    lightboxImage.alt = image.alt;
+    caption.hidden = true;
+
+    const sourceRect = image.getBoundingClientRect();
+
+    const animateIn = () => {
+      const targetRect = getTargetRect(lightboxImage);
+      lightboxImage.style.left = `${targetRect.left}px`;
+      lightboxImage.style.top = `${targetRect.top}px`;
+      lightboxImage.style.width = `${targetRect.width}px`;
+      lightboxImage.style.height = `${targetRect.height}px`;
+      lightboxImage.style.transform = getTransformFromRects(sourceRect, targetRect);
+
+      lightbox.setAttribute("aria-hidden", "false");
+      body.classList.add("image-lightbox-open");
+
+      window.requestAnimationFrame(() => {
+        lightbox.classList.add("is-open");
+        lightbox.focus();
+        lightboxImage.style.transform = "translate(0, 0) scale(1)";
+        animationTimeout = window.setTimeout(() => {
+          animationTimeout = 0;
+          isAnimating = false;
+        }, lightboxTransitionDuration);
+      });
+    };
+
+    if (lightboxImage.complete) {
+      animateIn();
+    } else {
+      lightboxImage.addEventListener("load", animateIn, { once: true });
+    }
+  };
+
+  lightbox.addEventListener("click", () => {
+    closeLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      closeLightbox();
+    }
+  });
+
+  window.addEventListener(
+    "wheel",
+    () => {
+      if (lightbox.classList.contains("is-open") && !isAnimating) {
+        closeLightbox();
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchmove",
+    () => {
+      if (lightbox.classList.contains("is-open") && !isAnimating) {
+        closeLightbox();
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (lightbox.classList.contains("is-open") && !isAnimating) {
+        closeLightbox();
+      }
+    },
+    { passive: true }
+  );
+
+  wipZoomableImages.forEach((image) => {
+    if (!(image instanceof HTMLImageElement)) {
+      return;
+    }
+
+    const trigger = image.parentElement;
+    if (!(trigger instanceof HTMLElement) || trigger.dataset.zoomReady === "true") {
+      return;
+    }
+
+    trigger.classList.add("wip-zoom-target");
+    trigger.tabIndex = 0;
+    trigger.setAttribute("role", "button");
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("aria-label", `${image.alt.trim() || "Obraz"} - kliknij, aby powiększyć`);
+
+    const hoverCursor = document.createElement("span");
+    hoverCursor.className = "project-hover-cursor";
+    hoverCursor.setAttribute("aria-hidden", "true");
+    hoverCursor.textContent = "Powiększ";
+    trigger.appendChild(hoverCursor);
+
+    trigger.addEventListener("click", () => {
+      openLightbox(image, trigger);
+    });
+
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      openLightbox(image, trigger);
+    });
+
+    trigger.dataset.zoomReady = "true";
+  });
+};
+
+initWipImageLightbox();
+initHoverCursorTargets(".project-media-link, .project-page-wip .wip-zoom-target");
 
 const splitProjectTitleLines = (link) => {
   if (!(link instanceof HTMLAnchorElement)) {

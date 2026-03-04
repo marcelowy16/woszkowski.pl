@@ -11,7 +11,7 @@
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/about-photo.jpg" as="image" type="image/jpeg" fetchpriority="high" />
-    <link rel="stylesheet" href="../styles/main.css?v=20260304-3" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260304-21" />
     <script defer src="../scripts/main.js"></script>
   </head>
   <body class="about-page">
@@ -19,12 +19,14 @@
 
     <header class="site-header">
       <div class="container header-shell">
-        <a class="brand" href="../index.html">Marcel Woszkowski</a>
+        <a class="brand" href="../" aria-label="Marcel Woszkowski - strona glowna">
+          <span class="brand-text">Marcel Woszkowski</span>
+        </a>
 
         <nav class="desktop-nav" aria-label="Główna nawigacja">
-          <a class="nav-link" href="../index.html">Home</a>
+          <a class="nav-link" href="../">Home</a>
           <a class="nav-link is-active" href="./" aria-current="page">O mnie</a>
-          <a class="nav-link" href="../index.html#projects">Portfolio</a>
+          <a class="nav-link" href="../#projects">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9" />
@@ -50,9 +52,9 @@
     <div class="mobile-menu" id="mobile-menu" hidden>
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
-        <a class="mobile-link" href="../index.html">Home</a>
+        <a class="mobile-link" href="../">Home</a>
         <a class="mobile-link is-active" href="./" aria-current="page">O mnie</a>
-        <a class="mobile-link" href="../index.html#projects">Portfolio</a>
+        <a class="mobile-link" href="../#projects">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
         <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
       </nav>
