@@ -31,11 +31,30 @@ let headerTicking = false;
 const headerScrollTolerance = 10;
 const headerRevealOffset = 16;
 const scrollToTopRevealOffset = 480;
+const headerHiddenBodyClass = "site-header-is-hidden";
 const cookieConsentStorageKey = "mw-cookie-consent-v1";
 const cookieConsentAcceptedValue = "accepted";
 const cookieConsentEssentialOnlyValue = "essential-only";
 const cookieConsentCloseDelay = 260;
 const cookiePolicyModalCloseDelay = 220;
+const pageScrollStorageKeyPrefix = "mw-scroll-pos-v1:";
+const homeScrollRestoreIntentStorageKey = "mw-home-scroll-restore-intent-v1";
+const homeScrollRestoreIntentTtlMs = 20000;
+const supportsDocumentPrefetch =
+  typeof document !== "undefined" &&
+  (() => {
+    const prefetchProbe = document.createElement("link");
+    return Boolean(prefetchProbe.relList?.supports?.("prefetch"));
+  })();
+const prefetchedPageUrls = new Set();
+
+const syncHeaderStateClass = () => {
+  if (!siteHeader) {
+    return;
+  }
+
+  body.classList.toggle(headerHiddenBodyClass, siteHeader.classList.contains("site-header-hidden"));
+};
 
 const getCookieConsentValue = () => {
   try {
@@ -319,6 +338,7 @@ const syncHeaderVisibility = () => {
     siteHeader.classList.toggle("site-header-hidden", scrollDelta > 0);
   }
 
+  syncHeaderStateClass();
   lastScrollY = currentScrollY;
   headerTicking = false;
 };
@@ -357,6 +377,7 @@ const setMenuState = (open) => {
   }
 
   siteHeader?.classList.remove("site-header-hidden");
+  syncHeaderStateClass();
   lastScrollY = Math.max(window.scrollY, 0);
 };
 
@@ -416,6 +437,278 @@ scrollLinks.forEach((link) => {
     }
   });
 });
+
+const normalizePathname = (pathname) => {
+  const normalizedPathname = pathname.replace(/\/+$/, "");
+  return normalizedPathname || "/";
+};
+
+document.addEventListener("click", (event) => {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    return;
+  }
+
+  const target = event.target;
+  if (!(target instanceof Element)) {
+    return;
+  }
+
+  const backToHomeLink = target.closest("a.back-to-home[href]");
+  if (!(backToHomeLink instanceof HTMLAnchorElement)) {
+    return;
+  }
+
+  const linkTarget = (backToHomeLink.getAttribute("target") ?? "_self").trim().toLowerCase();
+  if (linkTarget && linkTarget !== "_self") {
+    return;
+  }
+
+  if (backToHomeLink.hasAttribute("download")) {
+    return;
+  }
+
+  let nextUrl;
+  try {
+    nextUrl = new URL(backToHomeLink.href, window.location.href);
+  } catch (error) {
+    return;
+  }
+
+  if (nextUrl.origin !== window.location.origin) {
+    return;
+  }
+
+  const nextPathname = normalizePathname(nextUrl.pathname);
+  if (nextPathname !== "/" || nextUrl.search || nextUrl.hash) {
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem(homeScrollRestoreIntentStorageKey, String(Date.now()));
+  } catch (error) {
+    return;
+  }
+});
+
+const getPrefetchCandidateHref = (link) => {
+  if (!(link instanceof HTMLAnchorElement)) {
+    return "";
+  }
+
+  const linkTarget = (link.getAttribute("target") ?? "_self").trim().toLowerCase();
+  if (linkTarget && linkTarget !== "_self") {
+    return "";
+  }
+
+  if (link.hasAttribute("download") || link.dataset.scrollTarget) {
+    return "";
+  }
+
+  let nextUrl;
+  try {
+    nextUrl = new URL(link.href, window.location.href);
+  } catch (error) {
+    return "";
+  }
+
+  if (nextUrl.protocol !== "http:" && nextUrl.protocol !== "https:") {
+    return "";
+  }
+
+  if (nextUrl.origin !== window.location.origin) {
+    return "";
+  }
+
+  const currentPathname = normalizePathname(window.location.pathname);
+  const nextPathname = normalizePathname(nextUrl.pathname);
+  const isSamePathAndSearch = nextPathname === currentPathname && nextUrl.search === window.location.search;
+
+  if (isSamePathAndSearch && nextUrl.hash) {
+    return "";
+  }
+
+  if (nextUrl.href === window.location.href) {
+    return "";
+  }
+
+  return nextUrl.href;
+};
+
+const queueDocumentPrefetch = (href) => {
+  if (!supportsDocumentPrefetch || !href || prefetchedPageUrls.has(href)) {
+    return;
+  }
+
+  prefetchedPageUrls.add(href);
+  const prefetchLink = document.createElement("link");
+  prefetchLink.rel = "prefetch";
+  prefetchLink.as = "document";
+  prefetchLink.href = href;
+  document.head.appendChild(prefetchLink);
+};
+
+const prefetchFromEventTarget = (target) => {
+  if (!(target instanceof Element)) {
+    return;
+  }
+
+  const link = target.closest("a[href]");
+  if (!(link instanceof HTMLAnchorElement)) {
+    return;
+  }
+
+  const href = getPrefetchCandidateHref(link);
+  if (!href) {
+    return;
+  }
+
+  queueDocumentPrefetch(href);
+};
+
+const warmupInternalPagePrefetch = () => {
+  if (!supportsDocumentPrefetch) {
+    return;
+  }
+
+  const seenUrls = new Set();
+  const links = document.querySelectorAll("a[href]");
+  let remaining = 10;
+
+  for (const link of links) {
+    if (!(link instanceof HTMLAnchorElement)) {
+      continue;
+    }
+
+    const href = getPrefetchCandidateHref(link);
+    if (!href || seenUrls.has(href)) {
+      continue;
+    }
+
+    seenUrls.add(href);
+    queueDocumentPrefetch(href);
+    remaining -= 1;
+
+    if (remaining <= 0) {
+      break;
+    }
+  }
+};
+
+const getCurrentPageScrollStorageKey = () => {
+  const normalizedPath = normalizePathname(window.location.pathname);
+  return `${pageScrollStorageKeyPrefix}${normalizedPath}${window.location.search}`;
+};
+
+const saveCurrentPageScrollPosition = () => {
+  try {
+    const scrollY = Math.max(window.scrollY, 0);
+    window.sessionStorage.setItem(getCurrentPageScrollStorageKey(), String(scrollY));
+  } catch (error) {
+    return;
+  }
+};
+
+const consumeHomeScrollRestoreIntent = () => {
+  try {
+    const timestampRaw = window.sessionStorage.getItem(homeScrollRestoreIntentStorageKey);
+    if (timestampRaw === null) {
+      return false;
+    }
+
+    window.sessionStorage.removeItem(homeScrollRestoreIntentStorageKey);
+
+    const timestamp = Number.parseInt(timestampRaw, 10);
+    if (!Number.isFinite(timestamp)) {
+      return true;
+    }
+
+    return Date.now() - timestamp <= homeScrollRestoreIntentTtlMs;
+  } catch (error) {
+    return false;
+  }
+};
+
+const isBackForwardNavigation = () => {
+  const navigationEntries = window.performance?.getEntriesByType?.("navigation");
+  const latestEntry = Array.isArray(navigationEntries) ? navigationEntries[0] : null;
+  return latestEntry?.type === "back_forward";
+};
+
+const restoreHomeScrollPositionOnBack = (pageshowEvent) => {
+  if (normalizePathname(window.location.pathname) !== "/") {
+    return;
+  }
+
+  const shouldRestoreFromBackForward = pageshowEvent?.persisted || isBackForwardNavigation();
+  const shouldRestoreFromBackToHomeLink = consumeHomeScrollRestoreIntent();
+
+  if (!shouldRestoreFromBackForward && !shouldRestoreFromBackToHomeLink) {
+    return;
+  }
+
+  let savedScroll = null;
+
+  try {
+    savedScroll = window.sessionStorage.getItem(getCurrentPageScrollStorageKey());
+  } catch (error) {
+    return;
+  }
+
+  if (savedScroll === null) {
+    return;
+  }
+
+  const scrollY = Number.parseFloat(savedScroll);
+  if (!Number.isFinite(scrollY) || scrollY < 0) {
+    return;
+  }
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
+    });
+  });
+};
+
+window.addEventListener("pageshow", (event) => {
+  restoreHomeScrollPositionOnBack(event);
+});
+window.addEventListener("pagehide", () => {
+  saveCurrentPageScrollPosition();
+});
+
+if (supportsDocumentPrefetch) {
+  document.addEventListener(
+    "mouseover",
+    (event) => {
+      prefetchFromEventTarget(event.target);
+    },
+    { passive: true }
+  );
+  document.addEventListener("focusin", (event) => {
+    prefetchFromEventTarget(event.target);
+  });
+  document.addEventListener(
+    "pointerdown",
+    (event) => {
+      prefetchFromEventTarget(event.target);
+    },
+    { passive: true }
+  );
+  document.addEventListener(
+    "touchstart",
+    (event) => {
+      prefetchFromEventTarget(event.target);
+    },
+    { passive: true }
+  );
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(warmupInternalPagePrefetch, { timeout: 1200 });
+  } else {
+    window.setTimeout(warmupInternalPagePrefetch, 700);
+  }
+}
 
 const validators = {
   email: (value) => {
