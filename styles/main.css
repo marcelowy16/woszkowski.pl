@@ -59,6 +59,7 @@
   --bg: #0f0f0f;
   --surface: #f3f1ee;
   --surface-field: #f3f3f3;
+  --surface-field-accent: #daf200;
   --text: #ffffff;
   --text-muted: #979797;
   --text-dark: #10131b;
@@ -1074,7 +1075,7 @@ body.menu-open .site-header {
 
 .contact {
   padding: 0;
-  background: #fbfbfb;
+  background: var(--accent);
   color: var(--text-dark);
 }
 
@@ -1156,7 +1157,7 @@ body.menu-open .site-header {
   padding: 18px 16px;
   border: 0;
   border-radius: 4px;
-  background: var(--surface-field);
+  background: var(--surface-field-accent);
   color: var(--text-dark);
   font-family: "gordita-regular", sans-serif;
   font-size: 18px;
@@ -1169,13 +1170,18 @@ body.menu-open .site-header {
   position: absolute;
   top: 50%;
   left: 16px;
-  color: #616775;
+  color: #909f00;
   font-family: "gordita-regular", sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 1;
   pointer-events: none;
   transform: translateY(-50%);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #909f00;
 }
 
 .field textarea + label {
@@ -1191,11 +1197,17 @@ body.menu-open .site-header {
   min-height: 176px;
 }
 
+.field input:hover,
+.field textarea:hover {
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(8, 13, 16, 0.5);
+}
+
 .field input:focus,
 .field textarea:focus {
-  outline: 1px solid rgba(16, 19, 27, 0.18);
-  box-shadow: inset 0 0 0 1px rgba(16, 19, 27, 0.18);
-  background: #f7f7f7;
+  outline: none;
+  box-shadow: inset 0 0 0 2px #080d10;
+  background: var(--surface-field-accent);
 }
 
 .field-error {
@@ -1228,6 +1240,12 @@ body.menu-open .site-header {
   margin-top: 2px;
 }
 
+.contact-form .button-primary {
+  border-color: #000;
+  background: #000;
+  color: var(--accent);
+}
+
 .contact-form .button:disabled {
   opacity: 0.42;
   cursor: not-allowed;
@@ -1235,8 +1253,8 @@ body.menu-open .site-header {
 
 .site-footer {
   padding: 24px 0 42px;
-  background: #fbfbfb;
-  color: #6e7480;
+  background: var(--accent);
+  color: var(--text-dark);
 }
 
 .scroll-to-top,
@@ -1644,7 +1662,7 @@ body.cookie-consent-visible .scroll-to-top {
   right: 22px;
   bottom: -4px;
   height: 2px;
-  background: var(--accent-on-light);
+  background: currentColor;
   display: none;
 }
 
@@ -2863,11 +2881,13 @@ body.cookie-consent-visible .scroll-to-top {
 
 .wip-card-title {
   margin: 0;
+  align-self: start;
   color: #252525;
   font-family: "gordita-light", sans-serif;
   font-size: 24px;
   font-weight: 400;
-  line-height: 43.2px;
+  line-height: 32px;
+  padding-top: 6px;
 }
 
 .wip-two-up {
@@ -3570,6 +3590,33 @@ body.cookie-consent-visible .scroll-to-top {
 
 .assistant-wide-image-intro {
   padding-top: 60px;
+}
+
+.assistant-intro-mosaic,
+.assistant-intro-mosaic-row {
+  display: grid;
+  gap: 16px;
+}
+
+.assistant-intro-mosaic-row-top {
+  grid-template-columns: minmax(0, 1.2004fr) minmax(0, 1fr);
+}
+
+.assistant-intro-mosaic-row-bottom {
+  grid-template-columns: minmax(0, 0.8359fr) minmax(0, 1fr);
+}
+
+.assistant-intro-shot {
+  margin: 0;
+  overflow: visible;
+}
+
+.assistant-intro-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 24px;
 }
 
 .assistant-wide-image-wireframes {

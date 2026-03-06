@@ -18,7 +18,7 @@ const riveCanvases = document.querySelectorAll("canvas[data-rive-src]");
 const offsetVideos = document.querySelectorAll("video[data-start-time]");
 const subtropicaSurveyCarousels = document.querySelectorAll("[data-subtropica-carousel]");
 const wipZoomableImages = document.querySelectorAll(
-  ".project-page-wip .wip-hero-media img, .project-page-wip .wip-image-card img, .project-page-wip .wip-image-frame img, .project-page-wip .wip-comments-media img"
+  ".project-page-wip .wip-hero-media img, .project-page-wip .wip-image-card img, .project-page-wip .wip-image-frame img, .project-page-wip .wip-comments-media img, .project-page-wip .assistant-intro-shot img"
 );
 const wipZoomableVideos = document.querySelectorAll(".project-page-wip video");
 const lightboxTransitionDuration = 380;
@@ -1283,7 +1283,7 @@ const initWipVideoLightbox = () => {
   lightbox.setAttribute("aria-hidden", "true");
   lightbox.setAttribute("role", "dialog");
   lightbox.setAttribute("aria-modal", "true");
-  lightbox.setAttribute("aria-label", "Powiekszone wideo");
+  lightbox.setAttribute("aria-label", "Powiększone wideo");
 
   const backdrop = document.createElement("div");
   backdrop.className = "wip-video-lightbox-backdrop";
@@ -1513,7 +1513,7 @@ const initWipVideoLightbox = () => {
     const hoverCursor = document.createElement("span");
     hoverCursor.className = "project-hover-cursor";
     hoverCursor.setAttribute("aria-hidden", "true");
-    hoverCursor.textContent = "Powieksz";
+    hoverCursor.textContent = "Powiększ";
     trigger.appendChild(hoverCursor);
 
     trigger.addEventListener("click", () => {
@@ -1871,7 +1871,7 @@ const initRiveCanvasLightbox = () => {
   lightbox.setAttribute("aria-hidden", "true");
   lightbox.setAttribute("role", "dialog");
   lightbox.setAttribute("aria-modal", "true");
-  lightbox.setAttribute("aria-label", "Powiekszona animacja");
+  lightbox.setAttribute("aria-label", "Powiększona animacja");
 
   const backdrop = document.createElement("div");
   backdrop.className = "rive-lightbox-backdrop";
@@ -2027,7 +2027,7 @@ const initRiveCanvasLightbox = () => {
     isAnimating = true;
     lightbox.hidden = false;
     lightbox.classList.remove("is-closing");
-    lightbox.setAttribute("aria-label", `Powiekszona animacja: ${(canvas.getAttribute("aria-label") ?? "Animacja").trim()}`);
+    lightbox.setAttribute("aria-label", `Powiększona animacja: ${(canvas.getAttribute("aria-label") ?? "Animacja").trim()}`);
     body.classList.add("image-lightbox-open");
     lightbox.setAttribute("aria-hidden", "false");
 
@@ -2115,7 +2115,7 @@ const initRiveCanvasLightbox = () => {
     const hoverCursor = document.createElement("span");
     hoverCursor.className = "project-hover-cursor";
     hoverCursor.setAttribute("aria-hidden", "true");
-    hoverCursor.textContent = "Powieksz";
+    hoverCursor.textContent = "Powiększ";
     trigger.appendChild(hoverCursor);
 
     trigger.addEventListener("click", () => {
