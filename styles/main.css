@@ -1271,7 +1271,7 @@ body.menu-open .site-header {
   border-radius: 999px;
   background: rgba(15, 15, 15, 0.88);
   color: var(--accent);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+  box-shadow: none;
   backdrop-filter: blur(12px);
   transition:
     top 320ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -4206,6 +4206,27 @@ body.cookie-consent-visible .scroll-to-top {
   padding: 48px 0 100px;
 }
 
+.project-page-pogo .pogo-meta-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
+}
+
+.project-page-pogo .wip-meta-item:nth-child(2) .pogo-meta-tools .wip-meta-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-height: 36px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  background: #ffc736;
+  font-size: 20px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
 .pogo-story {
   padding: 0 0 160px;
   background: #ffffff;
@@ -4223,6 +4244,10 @@ body.cookie-consent-visible .scroll-to-top {
 .project-page-pogo .pogo-story .wip-problem-card {
   grid-template-columns: 360px minmax(0, 1fr);
   column-gap: 72px;
+}
+
+.project-page-pogo .wip-copy-section.pogo-story {
+  padding-bottom: 96px;
 }
 
 .project-page-pogo .pogo-story .wip-problem-card p,
@@ -4446,6 +4471,13 @@ body.cookie-consent-visible .scroll-to-top {
 @media (max-width: 767px) {
   .project-page-pogo .wip-meta {
     padding: 48px 0 56px;
+  }
+
+  .project-page-pogo .wip-meta-item:nth-child(2) .pogo-meta-tools .wip-meta-value {
+    min-height: 34px;
+    padding: 8px 16px;
+    font-size: 18px;
+    line-height: 18px;
   }
 
   .pogo-story {

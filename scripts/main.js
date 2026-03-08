@@ -10,9 +10,9 @@ const staticFormSubmit = staticForm?.querySelector('button[type="submit"]');
 const projectCards = document.querySelectorAll(".project-card");
 const projectTitleLinks = document.querySelectorAll(".project-copy h3 a");
 const wordSlideTargets = document.querySelectorAll(
-  ".hero-copy h1, .section-head h2, .about-kicker, .contact-title, .wip-hero-title, .wip-card-title, .wip-section-title, .wip-process-kicker, .wip-section-kicker"
+  ".hero-copy h1, .section-head h2, .about-kicker, .contact-title, .wip-hero-title, .wip-card-title, .wip-section-title, .wip-process-kicker, .wip-section-kicker, .animation-showcase-title"
 );
-const heroCopyBlocks = document.querySelectorAll(".hero-copy");
+const heroCopyBlocks = document.querySelectorAll(".hero-copy, .animation-showcase-copy");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
 const riveCanvases = document.querySelectorAll("canvas[data-rive-src]");
 const offsetVideos = document.querySelectorAll("video[data-start-time]");
@@ -1671,15 +1671,22 @@ const revealWordSlide = (element) => {
   element.classList.add("word-slide-visible");
 };
 
+const getAnimatedCopyBlock = (element) => element?.closest(".hero-copy, .animation-showcase-copy") ?? null;
+
 const getHeroSequenceItems = (heroCopy) => {
   const items = [];
   const eyebrow = heroCopy.querySelector(".eyebrow");
+  const showcaseKicker = heroCopy.querySelector(".animation-showcase-kicker");
   const lead = heroCopy.querySelector(".hero-lead");
   const values = heroCopy.querySelector(".hero-values");
   const buttons = heroCopy.querySelectorAll(".hero-actions .button");
 
   if (eyebrow) {
     items.push(eyebrow);
+  }
+
+  if (showcaseKicker) {
+    items.push(showcaseKicker);
   }
 
   if (lead) {
@@ -1739,7 +1746,7 @@ const initWordSlides = () => {
   wordSlideTargets.forEach((element) => {
     prepareWordSlide(element);
 
-    const heroCopy = element.closest(".hero-copy");
+    const heroCopy = getAnimatedCopyBlock(element);
     if (heroCopy) {
       prepareHeroSequence(heroCopy, Number.parseFloat(element.dataset.wordSlideDuration ?? `${wordSlideDuration}`));
     }
@@ -1749,7 +1756,7 @@ const initWordSlides = () => {
     wordSlideTargets.forEach((element) => {
       revealWordSlide(element);
 
-      const heroCopy = element.closest(".hero-copy");
+      const heroCopy = getAnimatedCopyBlock(element);
       if (heroCopy) {
         revealHeroSequence(heroCopy);
       }
@@ -1763,7 +1770,7 @@ const initWordSlides = () => {
         wordSlideTargets.forEach((element) => {
           revealWordSlide(element);
 
-          const heroCopy = element.closest(".hero-copy");
+          const heroCopy = getAnimatedCopyBlock(element);
           if (heroCopy) {
             revealHeroSequence(heroCopy);
           }
@@ -1782,7 +1789,7 @@ const initWordSlides = () => {
 
         revealWordSlide(entry.target);
 
-        const heroCopy = entry.target.closest(".hero-copy");
+        const heroCopy = getAnimatedCopyBlock(entry.target);
         if (heroCopy) {
           revealHeroSequence(heroCopy);
         }
@@ -2098,6 +2105,10 @@ const initRiveCanvasLightbox = () => {
 
   riveCanvases.forEach((canvas) => {
     if (!(canvas instanceof HTMLCanvasElement)) {
+      return;
+    }
+
+    if (canvas.closest("[data-disable-rive-zoom='true']")) {
       return;
     }
 
