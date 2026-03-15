@@ -1,13 +1,35 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl-PL">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WiP - Proces projektowy - Marcel Woszkowski</title>
+    <title>Aplikacja ankietowa z feedem - case study UI/UX | Marcel Woszkowski</title>
     <meta
       name="description"
-      content="Proces projektowy aplikacji do przeglądania ankiet w formie feedu w portfolio Marcela Woszkowskiego."
+      content="Case study UI/UX aplikacji do przegladania ankiet w formie feedu. Projekt obejmuje UX, architekture informacji, interfejs i kluczowe scenariusze uzytkownika."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Marcel Woszkowski" />
+    <link rel="canonical" href="https://woszkowski.pl/wip-proces-projektowy/" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Aplikacja ankietowa z feedem - case study UI/UX | Marcel Woszkowski" />
+    <meta
+      property="og:description"
+      content="Case study UI/UX aplikacji do przegladania ankiet w formie feedu. Projekt obejmuje UX, architekture informacji, interfejs i kluczowe scenariusze uzytkownika."
+    />
+    <meta property="og:url" content="https://woszkowski.pl/wip-proces-projektowy/" />
+    <meta property="og:site_name" content="Marcel Woszkowski" />
+    <meta property="og:image" content="https://woszkowski.pl/assets/images/wip/Frame-5.png" />
+    <meta property="og:image:alt" content="Aplikacja ankietowa z feedem - case study UI/UX" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aplikacja ankietowa z feedem - case study UI/UX | Marcel Woszkowski" />
+    <meta
+      name="twitter:description"
+      content="Case study UI/UX aplikacji do przegladania ankiet w formie feedu. Projekt obejmuje UX, architekture informacji, interfejs i kluczowe scenariusze uzytkownika."
+    />
+    <meta name="twitter:image" content="https://woszkowski.pl/assets/images/wip/Frame-5.png" />
+    <meta name="twitter:image:alt" content="Aplikacja ankietowa z feedem - case study UI/UX" />
     <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
     <link rel="icon" href="../assets/images/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
@@ -19,6 +41,46 @@
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/wip/Frame-5.png" as="image" type="image/png" fetchpriority="high" />
     <link rel="stylesheet" href="../styles/main.css?v=20260304-23" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://woszkowski.pl/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Aplikacja ankietowa z feedem - case study UI/UX",
+                "item": "https://woszkowski.pl/wip-proces-projektowy/"
+              }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://woszkowski.pl/wip-proces-projektowy/#creativework",
+            "url": "https://woszkowski.pl/wip-proces-projektowy/",
+            "name": "Aplikacja ankietowa z feedem - case study UI/UX",
+            "headline": "Aplikacja do przegladania ankiet w formie feedu",
+            "description": "Case study UI/UX aplikacji do przegladania ankiet w formie feedu. Projekt obejmuje UX, architekture informacji, interfejs i kluczowe scenariusze uzytkownika.",
+            "inLanguage": "pl-PL",
+            "image": "https://woszkowski.pl/assets/images/wip/Frame-5.png",
+            "author": {
+              "@type": "Person",
+              "name": "Marcel Woszkowski",
+              "url": "https://woszkowski.pl/",
+              "jobTitle": "Projektant UI/UX i Product Designer"
+            }
+          }
+        ]
+      }
+    </script>
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
     <script defer src="../scripts/main.js?v=20260304-13"></script>
   </head>
@@ -33,7 +95,7 @@
 
         <nav class="desktop-nav" aria-label="Główna nawigacja">
           <a class="nav-link" href="../">Home</a>
-          <a class="nav-link" href="../o-mnie/">O mnie</a>
+          <a class="nav-link" href="../o-mnie/">O&nbsp;mnie</a>
           <a class="nav-link is-active" href="../#projects" aria-current="page">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -61,7 +123,7 @@
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
         <a class="mobile-link" href="../">Home</a>
-        <a class="mobile-link" href="../o-mnie/">O mnie</a>
+        <a class="mobile-link" href="../o-mnie/">O&nbsp;mnie</a>
         <a class="mobile-link is-active" href="../#projects" aria-current="page">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
         <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
@@ -73,7 +135,7 @@
         <div class="container wip-hero-shell">
           <div class="wip-hero-copy is-visible" data-reveal>
             <p class="wip-section-kicker">APLIKACJA MOBILNA</p>
-            <h1 class="wip-hero-title">Aplikacja do przeglądania ankiet w formie feedu</h1>
+            <h1 class="wip-hero-title">Aplikacja do przeglądania ankiet w&nbsp;formie feedu</h1>
           </div>
 
           <div class="wip-hero-media" data-reveal>
@@ -127,7 +189,7 @@
           </div>
           <div class="wip-meta-item" data-reveal>
             <p class="wip-meta-label">KLUCZOWE CZYNNOŚCI</p>
-            <p class="wip-meta-value">Spotkania z klientem, wsparcie przy opracowaniu biznesu</p>
+            <p class="wip-meta-value">Spotkania z&nbsp;klientem, wsparcie przy opracowaniu biznesu</p>
           </div>
         </div>
       </section>
@@ -136,11 +198,11 @@
         <div class="container">
           <div class="wip-copy-lead" data-reveal>
             <p>
-              Do współpracy zgłosił się klient z pomysłem na aplikację mobilną opartą na przeglądaniu pytań i ankiet w formie
+              Do współpracy zgłosił się klient z&nbsp;pomysłem na aplikację mobilną opartą na przeglądaniu pytań i&nbsp;ankiet w&nbsp;formie
               ciągłego feedu. Zamiast klasycznego konsumowania treści wideo użytkownicy mieli odpowiadać na pytania publikowane
-              przez innych, brać udział w dyskusjach oraz analizować wyniki i statystyki odpowiedzi. Inspiracją dla koncepcji
-              były mechaniki znane z aplikacji SM, jednak celem projektu było zaprojektowanie rozwiązania, które wykorzystuje je
-              do zbierania opinii i danych, a nie wyłącznie do rozrywki.
+              przez innych, brać udział w&nbsp;dyskusjach oraz analizować wyniki i&nbsp;statystyki odpowiedzi. Inspiracją dla koncepcji
+              były mechaniki znane z&nbsp;aplikacji SM, jednak celem projektu było&nbsp;zaprojektowanie rozwiązania, które wykorzystuje je
+              do zbierania opinii i&nbsp;danych, a&nbsp;nie wyłącznie do rozrywki.
             </p>
           </div>
 
@@ -148,9 +210,8 @@
             <article class="wip-problem-card" data-reveal>
               <h2 class="wip-card-title">CEL</h2>
               <p>
-                Zaprojektowanie aplikacji, która zachęca do częstych, krótkich interakcji, a jednocześnie dostarcza
-                wartościowych insightów. Klientowi zależało na połączeniu lekkości znanej z aplikacji rozrywkowych z
-                funkcjonalnością narzędzia do zbierania opinii. Zakres pracy obejmował zaprojektowanie całego UX – od
+                Zaprojektowanie aplikacji, która zachęca do częstych, krótkich interakcji, a&nbsp;jednocześnie dostarcza
+                wartościowych insightów. Klientowi zależało&nbsp;na połączeniu lekkości znanej z&nbsp;aplikacji rozrywkowych z&nbsp;funkcjonalnością narzędzia do zbierania opinii. Zakres pracy obejmował zaprojektowanie całego UX – od
                 koncepcji, przez architekturę informacji, aż po finalny interfejs.
               </p>
             </article>
@@ -158,9 +219,9 @@
             <article class="wip-problem-card" data-reveal>
               <h2 class="wip-card-title">PROBLEM DO ROZWIĄZANIA</h2>
               <p>
-                Większość aplikacji społecznościowych skupia się na biernym konsumowaniu treści, a narzędzia ankietowe często są
-                skomplikowane i mało angażujące. Wyzwaniem było stworzenie rozwiązania, które umożliwia szybkie wyrażanie
-                opinii, nie obciążając użytkownika nadmiarem decyzji i formularzy, a przy tym dostarczając dodatkowe dane o użytkownikach.
+                Większość aplikacji społecznościowych skupia się na biernym konsumowaniu treści, a&nbsp;narzędzia ankietowe często są
+                skomplikowane i&nbsp;mało&nbsp;angażujące. Wyzwaniem było&nbsp;stworzenie rozwiązania, które umożliwia szybkie wyrażanie
+                opinii, nie obciążając użytkownika nadmiarem decyzji i&nbsp;formularzy, a&nbsp;przy tym dostarczając dodatkowe dane o&nbsp;użytkownikach.
                 Mając na uwadze, że wiek grupy docelowej jest bardzo szeroki, interfejs musiał być czytelny.
               </p>
             </article>
@@ -194,7 +255,7 @@
           </div>
           <div class="wip-copy-block" data-reveal>
             <p>
-              Centralnym elementem aplikacji jest feed, w którym jedno pytanie zajmuje cały ekran. Użytkownik wykonuje zawsze
+              Centralnym elementem aplikacji jest feed, w&nbsp;którym jedno pytanie zajmuje cały ekran. Użytkownik wykonuje zawsze
               jedną główną akcję – udziela odpowiedzi lub przechodzi do kolejnej ankiety.
             </p>
           </div>
@@ -204,7 +265,7 @@
       <section class="wip-solutions">
         <div class="container">
           <div class="wip-solutions-heading" data-reveal>
-            <h2 class="wip-section-title">Problemy i rozwiązania</h2>
+            <h2 class="wip-section-title">Problemy i&nbsp;rozwiązania</h2>
           </div>
 
           <div class="wip-solutions-grid">
@@ -213,14 +274,14 @@
                 <p class="wip-solution-label">Problem</p>
                 <p>
                   Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne zaangażowanie
-                  użytkowników i nie sprzyja wyrażaniu opinii.
+                  użytkowników&nbsp;i&nbsp;nie sprzyja wyrażaniu opinii.
                 </p>
               </div>
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
                   Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne zaangażowanie
-                  użytkowników i nie sprzyja wyrażaniu opinii.
+                  użytkowników&nbsp;i&nbsp;nie sprzyja wyrażaniu opinii.
                 </p>
               </div>
             </article>
@@ -229,15 +290,15 @@
               <div class="wip-solution-box">
                 <p class="wip-solution-label">Problem</p>
                 <p>
-                  W narzędziach ankietowych użytkownicy czasem muszą mierzyć się z rozbudowanymi formularzami, wieloma
-                  przyciskami i nieczytelną hierarchią informacji.
+                  W&nbsp;narzędziach ankietowych użytkownicy czasem muszą mierzyć się z&nbsp;rozbudowanymi formularzami, wieloma
+                  przyciskami i&nbsp;nieczytelną hierarchią informacji.
                 </p>
               </div>
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
-                  Interfejs został zaprojektowany tak, aby na ekranie znajdowała się jedna główna akcja. Ograniczenie liczby
-                  elementów pozwala użytkownikowi skupić się na pytaniu i odpowiedzi.
+                  Interfejs został zaprojektowany tak, aby na ekranie znajdowała&nbsp;się jedna główna akcja. Ograniczenie liczby
+                  elementów&nbsp;pozwala użytkownikowi skupić się na pytaniu i&nbsp;odpowiedzi.
                 </p>
               </div>
             </article>
@@ -246,15 +307,14 @@
               <div class="wip-solution-box">
                 <p class="wip-solution-label">Problem</p>
                 <p>
-                  Wiele ankiet nie oferuje użytkownikowi natychmiastowej informacji zwrotnej, co obniża chęć do udziału w
-                  kolejnych pytaniach.
+                  Wiele ankiet nie oferuje użytkownikowi natychmiastowej informacji zwrotnej, co obniża&nbsp;chęć do udziału&nbsp;w&nbsp;kolejnych pytaniach.
                 </p>
               </div>
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
-                  Po każdej odpowiedzi użytkownik otrzymuje dostęp do statystyk i wyników ankiety. Statystyki pełnią rolę
-                  „nagrody” i zachęcają do dalszego korzystania z aplikacji.
+                  Po każdej odpowiedzi użytkownik otrzymuje dostęp do statystyk i&nbsp;wyników&nbsp;ankiety. Statystyki pełnią rolę
+                  „nagrody” i&nbsp;zachęcają do dalszego korzystania z&nbsp;aplikacji.
                 </p>
               </div>
             </article>
@@ -263,15 +323,14 @@
               <div class="wip-solution-box">
                 <p class="wip-solution-label">Problem</p>
                 <p>
-                  Rozbudowane panele analityczne często odstraszają użytkowników nietechnicznych i utrudniają szybkie
+                  Rozbudowane panele analityczne często odstraszają użytkowników&nbsp;nietechnicznych i&nbsp;utrudniają szybkie
                   wyciąganie wniosków.
                 </p>
               </div>
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
-                  Dane zostały przedstawione w uproszczonej wizualnie formie. Statystyki są integralną częścią doświadczenia, a
-                  nie osobnym narzędziem.
+                  Dane zostały przedstawione w&nbsp;uproszczonej wizualnie formie. Statystyki są integralną częścią doświadczenia, a&nbsp;nie osobnym narzędziem.
                 </p>
               </div>
             </article>
@@ -280,15 +339,14 @@
               <div class="wip-solution-box">
                 <p class="wip-solution-label">Problem</p>
                 <p>
-                  Rozbudowane panele analityczne często odstraszają użytkowników nietechnicznych i utrudniają szybkie
+                  Rozbudowane panele analityczne często odstraszają użytkowników&nbsp;nietechnicznych i&nbsp;utrudniają szybkie
                   wyciąganie wniosków.
                 </p>
               </div>
               <div class="wip-solution-box wip-solution-box-accent">
                 <p class="wip-solution-label">Rozwiązanie</p>
                 <p>
-                  Proces ten został skrócony do kilku prostych kroków. Użytkownik wybiera typ pytania, definiuje odpowiedzi i
-                  publikuje ankietę.
+                  Proces ten został skrócony do kilku prostych kroków. Użytkownik wybiera typ pytania, definiuje odpowiedzi i&nbsp;publikuje ankietę.
                 </p>
               </div>
             </article>
@@ -305,8 +363,8 @@
                 <p>
                   Projekt rozpoczął się od szeregu spotkań, które pozwoliły przenieść zamysł na szkic. Dzięki nim ustalono m.in.
                   fundamentalne parametry zachowania aplikacji, takie jak zasada działania scrollowania ankiet czy też zakres
-                  statystyk widocznych w szczegółach ankiety. Spotkania były bardzo przydatne zarówno w procesie projektowym, jak i dla
-                  klienta. Pozwoliły mu one spojrzeć na różne rzeczy z innej perspektywy i wyjść „poza pudełko”.
+                  statystyk widocznych w&nbsp;szczegółach ankiety. Spotkania były bardzo przydatne zarówno w&nbsp;procesie projektowym, jak i&nbsp;dla
+                  klienta. Pozwoliły mu one spojrzeć na różne rzeczy z&nbsp;innej perspektywy i&nbsp;wyjść „poza pudełko”.
                 </p>
               </div>
             </div>
@@ -336,11 +394,11 @@
             <p class="wip-section-kicker wip-section-kicker-muted wip-ui-eyebrow">EKRAN GŁÓWNY</p>
             <div class="wip-copy-block">
               <p>
-                Kluczowymi wartościami podczas projektowania docelowego interfejsu była wizualna prostota, która miała być
-                zrównoważona z wieloma kolorami.
+                Kluczowymi wartościami podczas projektowania docelowego interfejsu była&nbsp;wizualna prostota, która miała&nbsp;być
+                zrównoważona z&nbsp;wieloma kolorami.
               </p>
               <p>
-                Zostały one użyte jako tło dla każdej kategorii pytania ustalanej podczas tworzenia ankiety, tak
+                Zostały one użyte jako tło&nbsp;dla każdej kategorii pytania ustalanej podczas tworzenia ankiety, tak
                 by użytkownik szybciej skojarzył kategorię pytania, która mu się wyświetliła. Mimo to jest ona również
                 napisana nad pytaniem.
               </p>
@@ -370,11 +428,11 @@
             <p class="wip-section-kicker wip-section-kicker-muted">KOMENTARZE</p>
             <div class="wip-copy-block">
               <p>
-                Sekcja komentarzy została zaprojektowana na bazie popularnych aplikacji (Tiktok, Youtube), by użytkownik używał
+                Sekcja komentarzy została&nbsp;zaprojektowana na bazie popularnych aplikacji (Tiktok, Youtube), by użytkownik używał
                 już znanego mu schematu.
               </p>
               <p>
-                Na komentarze nie tylko składa się okno ich dodawania, ale także typ ankiety z pytaniem otwartym. Wtedy część
+                Na komentarze nie tylko składa się okno ich dodawania, ale także typ ankiety z&nbsp;pytaniem otwartym. Wtedy część
                 komentarzy jest widoczna pod pytaniem.
               </p>
             </div>
@@ -399,8 +457,8 @@
             <p class="wip-section-kicker wip-section-kicker-muted">KREATOR ANKIET</p>
             <div class="wip-copy-block">
               <p>
-                Przechodząc dalej, do kreatora ankiet – korzystanie z niego musiało bazować na prostocie. Rozbicie procesu na czytelne
-                kroki sprawdziło się podczas testowania prototypu na grupie badanych użytkowników.
+                Przechodząc dalej, do kreatora ankiet – korzystanie z&nbsp;niego musiało&nbsp;bazować na prostocie. Rozbicie procesu na czytelne
+                kroki sprawdziło&nbsp;się podczas testowania prototypu na grupie badanych użytkowników.
               </p>
             </div>
           </div>
@@ -428,12 +486,12 @@
             <div class="contact-copy" data-reveal>
               <p class="contact-title">Skontaktuj się ze mną <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
               <p class="contact-intro">
-                Wystarczy jedno kliknięcie, aby pomóc zmienić pomysł w produkt. Wypełnij formularz, aby udostępnić mi więcej
-                szczegółów na temat projektu.
+                Wystarczy jedno kliknięcie, aby pomóc zmienić pomysł w&nbsp;produkt. Wypełnij formularz, aby udostępnić mi więcej
+                szczegółów&nbsp;na temat projektu.
               </p>
             </div>
 
-            <form class="contact-form" novalidate data-static-form data-reveal>
+            <form class="contact-form" action="https://formspree.io/f/mqeypowo" method="POST" novalidate data-static-form data-reveal>
               <div class="field" data-field>
                 <div class="field-control">
                   <input
@@ -508,7 +566,7 @@
         <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
         <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
-        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="mailto:kontakt@woszkowski.pl">kontakt@woszkowski.pl</a>
         <a href="tel:+48508278715">+48 508 278 715</a>
         <a href="#" data-open-cookie-policy="true">Cookies</a>
       </div>

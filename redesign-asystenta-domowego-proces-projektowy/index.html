@@ -1,13 +1,35 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl-PL">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redesign asystenta domofonu i kamer - Proces projektowy - Marcel Woszkowski</title>
+    <title>Smart home assistant - case study UI/UX redesignu | Marcel Woszkowski</title>
     <meta
       name="description"
-      content="Proces projektowy redesignu cyfrowego asystenta interkomu i kamer domowych w portfolio Marcela Woszkowskiego."
+      content="Case study UI/UX redesignu cyfrowego asystenta interkomu i kamer domowych. Projekt obejmuje wireframes, architekture ekranu i finalny interfejs."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Marcel Woszkowski" />
+    <link rel="canonical" href="https://woszkowski.pl/redesign-asystenta-domowego-proces-projektowy/" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Smart home assistant - case study UI/UX redesignu | Marcel Woszkowski" />
+    <meta
+      property="og:description"
+      content="Case study UI/UX redesignu cyfrowego asystenta interkomu i kamer domowych. Projekt obejmuje wireframes, architekture ekranu i finalny interfejs."
+    />
+    <meta property="og:url" content="https://woszkowski.pl/redesign-asystenta-domowego-proces-projektowy/" />
+    <meta property="og:site_name" content="Marcel Woszkowski" />
+    <meta property="og:image" content="https://woszkowski.pl/assets/images/cover_assistant.png" />
+    <meta property="og:image:alt" content="Smart home assistant - case study UI/UX" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Smart home assistant - case study UI/UX redesignu | Marcel Woszkowski" />
+    <meta
+      name="twitter:description"
+      content="Case study UI/UX redesignu cyfrowego asystenta interkomu i kamer domowych. Projekt obejmuje wireframes, architekture ekranu i finalny interfejs."
+    />
+    <meta name="twitter:image" content="https://woszkowski.pl/assets/images/cover_assistant.png" />
+    <meta name="twitter:image:alt" content="Smart home assistant - case study UI/UX" />
     <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
     <link rel="icon" href="../assets/images/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
@@ -19,6 +41,46 @@
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/assistant/mockup_4a-3.png" as="image" type="image/png" fetchpriority="high" />
     <link rel="stylesheet" href="../styles/main.css?v=20260304-23" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://woszkowski.pl/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Smart home assistant - case study UI/UX redesignu",
+                "item": "https://woszkowski.pl/redesign-asystenta-domowego-proces-projektowy/"
+              }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://woszkowski.pl/redesign-asystenta-domowego-proces-projektowy/#creativework",
+            "url": "https://woszkowski.pl/redesign-asystenta-domowego-proces-projektowy/",
+            "name": "Smart home assistant - case study UI/UX redesignu",
+            "headline": "Redesign cyfrowego asystenta interkomu i kamer domowych",
+            "description": "Case study UI/UX redesignu cyfrowego asystenta interkomu i kamer domowych. Projekt obejmuje wireframes, architekture ekranu i finalny interfejs.",
+            "inLanguage": "pl-PL",
+            "image": "https://woszkowski.pl/assets/images/cover_assistant.png",
+            "author": {
+              "@type": "Person",
+              "name": "Marcel Woszkowski",
+              "url": "https://woszkowski.pl/",
+              "jobTitle": "Projektant UI/UX i Product Designer"
+            }
+          }
+        ]
+      }
+    </script>
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
     <script defer src="../scripts/main.js?v=20260304-13"></script>
   </head>
@@ -33,7 +95,7 @@
 
         <nav class="desktop-nav" aria-label="Glowna nawigacja">
           <a class="nav-link" href="../">Home</a>
-          <a class="nav-link" href="../o-mnie/">O mnie</a>
+          <a class="nav-link" href="../o-mnie/">O&nbsp;mnie</a>
           <a class="nav-link is-active" href="../#projects" aria-current="page">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -61,7 +123,7 @@
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
         <a class="mobile-link" href="../">Home</a>
-        <a class="mobile-link" href="../o-mnie/">O mnie</a>
+        <a class="mobile-link" href="../o-mnie/">O&nbsp;mnie</a>
         <a class="mobile-link is-active" href="../#projects" aria-current="page">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
         <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
@@ -73,7 +135,7 @@
         <div class="container wip-hero-shell assistant-hero-shell">
           <div class="wip-hero-copy is-visible" data-reveal>
             <p class="wip-section-kicker">APLIKACJA MOBILNA</p>
-            <h1 class="wip-hero-title">Redesign cyfrowego asystenta interkomu i kamer domowych</h1>
+            <h1 class="wip-hero-title">Redesign cyfrowego asystenta interkomu i&nbsp;kamer domowych</h1>
           </div>
 
           <figure class="wip-hero-media assistant-hero-media" data-reveal>
@@ -112,16 +174,16 @@
             <article class="wip-problem-card" data-reveal>
               <h2 class="wip-card-title">WPROWADZENIE</h2>
               <p>
-                Wraz z rozwojem firmy ka&#380;dy produkt przechodzi swoj&#261; ewolucj&#281;, kt&oacute;ra z wersji na wersj&#281;
-                jest aktualizowana z my&#347;l&#261; o nowych i obecnych u&#380;ytkownikach. W przypadku tego projektu cz&#281;&#347;ci&#261; ewolucji
-                by&#322;o od&#347;wie&#380;enie aplikacji zar&oacute;wno pod wzgl&#281;dem wizualnym, jak i u&#380;ytkowym.
+                Wraz z&nbsp;rozwojem firmy ka&#380;dy produkt przechodzi swoj&#261; ewolucj&#281;, kt&oacute;ra z&nbsp;wersji na wersj&#281;
+                jest aktualizowana z&nbsp;my&#347;l&#261; o&nbsp;nowych i&nbsp;obecnych u&#380;ytkownikach. W&nbsp;przypadku tego projektu cz&#281;&#347;ci&#261; ewolucji
+                by&#322;o&nbsp;od&#347;wie&#380;enie aplikacji zar&oacute;wno pod wzgl&#281;dem wizualnym, jak i&nbsp;u&#380;ytkowym.
               </p>
             </article>
 
             <article class="wip-problem-card" data-reveal>
               <h2 class="wip-card-title">CEL</h2>
               <p>
-                G&#322;&oacute;wnym celem klienta by&#322;o uproszczenie interfejsu pod k&#261;tem kolor&oacute;w i architektury
+                G&#322;&oacute;wnym celem klienta by&#322;o&nbsp;uproszczenie interfejsu pod k&#261;tem kolor&oacute;w&nbsp;i&nbsp;architektury
                 informacji, dlatego redesign musia&#322; obj&#261;&#263; r&oacute;wnie&#380; UX produktu.
               </p>
             </article>
@@ -129,9 +191,9 @@
             <article class="wip-problem-card" data-reveal>
               <h2 class="wip-card-title">PRZEGL&#260;D APLIKACJI</h2>
               <p>
-                Na tym etapie potrzebowa&#322;em wiedzy, jak wygl&#261;da ca&#322;a aplikacja, dok&#261;d prowadz&#261; wszystkie
+                Na tym etapie potrzebowa&#322;em wiedzy, jak wygl&#261;da ca&#322;a&nbsp;aplikacja, dok&#261;d prowadz&#261; wszystkie
                 klikalne &#347;cie&#380;ki oraz jakie odczucia wywo&#322;uje jej UI/UX. Dlatego przetestowa&#322;em j&#261; na
-                grupie docelowej, chc&#261;c sprawdzi&#263; jak radz&#261; sobie z ni&#261; potencjalni u&#380;ytkownicy.
+                grupie docelowej, chc&#261;c sprawdzi&#263; jak radz&#261; sobie z&nbsp;ni&#261; potencjalni u&#380;ytkownicy.
               </p>
             </article>
           </div>
@@ -195,15 +257,14 @@
             <h2 class="wip-card-title">Wireframes</h2>
             <div class="assistant-problem-copy">
               <p>
-                Na etapie makiet skupi&#322;em si&#281; na dw&oacute;ch kluczowych aspektach aplikacji: prostocie w u&#380;ytkowaniu i
-                czytelno&#347;ci interfejsu.
+                Na etapie makiet skupi&#322;em si&#281; na dw&oacute;ch kluczowych aspektach aplikacji: prostocie w&nbsp;u&#380;ytkowaniu i&nbsp;czytelno&#347;ci interfejsu.
               </p>
               <p>
-                Po pierwsze, zaplanowany zosta&#322; podstawowy user flow. Obejmowa&#322;o to usprawnienie procesu wyboru
-                urz&#261;dzenia, wej&#347;cia w pozosta&#322;e funkcjonalno&#347;ci i poruszania si&#281; po ustawieniach.
+                Po pierwsze, zaplanowany zosta&#322; podstawowy user flow. Obejmowa&#322;o&nbsp;to usprawnienie procesu wyboru
+                urz&#261;dzenia, wej&#347;cia w&nbsp;pozosta&#322;e funkcjonalno&#347;ci i&nbsp;poruszania si&#281; po ustawieniach.
               </p>
               <p>
-                Po drugie, rozmiar przycisk&oacute;w zosta&#322; zwi&#281;kszony z my&#347;l&#261; o odbiorcach, jakimi s&#261;
+                Po drugie, rozmiar przycisk&oacute;w&nbsp;zosta&#322; zwi&#281;kszony z&nbsp;my&#347;l&#261; o&nbsp;odbiorcach, jakimi s&#261;
                 m.in. dzieci oraz osoby starsze.
               </p>
             </div>
@@ -232,9 +293,8 @@
             <h2 class="wip-card-title">Finalny projekt</h2>
             <div class="assistant-problem-copy">
               <p>
-                Charakterystyka od&#347;wie&#380;onej wersji opiera&#322;a si&#281; na tym, by by&#322;a l&#380;ejsza, prostsza oraz
-                odm&#322;odzona na miar&#281; dzisiejszych trend&oacute;w. Dodane zosta&#322;y mikrointerakcje w postaci animacji i
-                przej&#347;&#263;, kt&oacute;re wynosz&#261; odbi&oacute;r aplikacji przez u&#380;ytkownika na wy&#380;szy poziom.
+                Charakterystyka od&#347;wie&#380;onej wersji opiera&#322;a&nbsp;si&#281; na tym, by by&#322;a&nbsp;l&#380;ejsza, prostsza oraz
+                odm&#322;odzona na miar&#281; dzisiejszych trend&oacute;w. Dodane zosta&#322;y mikrointerakcje w&nbsp;postaci animacji i&nbsp;przej&#347;&#263;, kt&oacute;re wynosz&#261; odbi&oacute;r aplikacji przez u&#380;ytkownika na wy&#380;szy poziom.
               </p>
             </div>
           </article>
@@ -376,12 +436,12 @@
             <div class="contact-copy" data-reveal>
               <p class="contact-title">Skontaktuj si&#281; ze mn&#261; <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
               <p class="contact-intro">
-                Wystarczy jedno klikni&#281;cie, aby pom&oacute;c zmieni&#263; pomys&#322; w produkt. Wype&#322;nij formularz, aby
-                udost&#281;pni&#263; mi wi&#281;cej szczeg&oacute;&#322;&oacute;w na temat projektu.
+                Wystarczy jedno klikni&#281;cie, aby pom&oacute;c zmieni&#263; pomys&#322; w&nbsp;produkt. Wype&#322;nij formularz, aby
+                udost&#281;pni&#263; mi wi&#281;cej szczeg&oacute;&#322;&oacute;w&nbsp;na temat projektu.
               </p>
             </div>
 
-            <form class="contact-form" novalidate data-static-form data-reveal>
+            <form class="contact-form" action="https://formspree.io/f/mqeypowo" method="POST" novalidate data-static-form data-reveal>
               <div class="field" data-field>
                 <div class="field-control">
                   <input
@@ -456,7 +516,7 @@
         <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
         <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
-        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="mailto:kontakt@woszkowski.pl">kontakt@woszkowski.pl</a>
         <a href="tel:+48508278715">+48 508 278 715</a>
         <a href="#" data-open-cookie-policy="true">Cookies</a>
       </div>

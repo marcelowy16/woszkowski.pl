@@ -1,13 +1,35 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl-PL">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Prezentacja animacji - Marcel Woszkowski</title>
+    <title>Animacje i mikrointerakcje - portfolio UI/UX | Marcel Woszkowski</title>
     <meta
       name="description"
-      content="Projekt wykonania zestawu animacji i mikrointerakcji dla aplikacji webowej w portfolio Marcela Woszkowskiego."
+      content="Projekt animacji i mikrointerakcji dla aplikacji webowej. Portfolio UI/UX pokazujace jak ruch wspiera zrozumienie interfejsu i odbior produktu."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Marcel Woszkowski" />
+    <link rel="canonical" href="https://woszkowski.pl/prezentacja-animacji/" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Animacje i mikrointerakcje - portfolio UI/UX | Marcel Woszkowski" />
+    <meta
+      property="og:description"
+      content="Projekt animacji i mikrointerakcji dla aplikacji webowej. Portfolio UI/UX pokazujace jak ruch wspiera zrozumienie interfejsu i odbior produktu."
+    />
+    <meta property="og:url" content="https://woszkowski.pl/prezentacja-animacji/" />
+    <meta property="og:site_name" content="Marcel Woszkowski" />
+    <meta property="og:image" content="https://woszkowski.pl/assets/images/animation-screen.png" />
+    <meta property="og:image:alt" content="Animacje i mikrointerakcje w portfolio UI/UX" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Animacje i mikrointerakcje - portfolio UI/UX | Marcel Woszkowski" />
+    <meta
+      name="twitter:description"
+      content="Projekt animacji i mikrointerakcji dla aplikacji webowej. Portfolio UI/UX pokazujace jak ruch wspiera zrozumienie interfejsu i odbior produktu."
+    />
+    <meta name="twitter:image" content="https://woszkowski.pl/assets/images/animation-screen.png" />
+    <meta name="twitter:image:alt" content="Animacje i mikrointerakcje w portfolio UI/UX" />
     <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
     <link rel="icon" href="../assets/images/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
@@ -20,6 +42,46 @@
     <link rel="preload" href="../assets/rive/animated_icons_1.riv" as="fetch" crossorigin />
     <link rel="preload" href="../assets/images/animation-screen.png" as="image" type="image/png" fetchpriority="high" />
     <link rel="stylesheet" href="../styles/main.css?v=20260304-23" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://woszkowski.pl/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Animacje i mikrointerakcje - portfolio UI/UX",
+                "item": "https://woszkowski.pl/prezentacja-animacji/"
+              }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://woszkowski.pl/prezentacja-animacji/#creativework",
+            "url": "https://woszkowski.pl/prezentacja-animacji/",
+            "name": "Animacje i mikrointerakcje - portfolio UI/UX",
+            "headline": "Animacje i mikrointerakcje",
+            "description": "Projekt animacji i mikrointerakcji dla aplikacji webowej. Portfolio UI/UX pokazujace jak ruch wspiera zrozumienie interfejsu i odbior produktu.",
+            "inLanguage": "pl-PL",
+            "image": "https://woszkowski.pl/assets/images/animation-screen.png",
+            "author": {
+              "@type": "Person",
+              "name": "Marcel Woszkowski",
+              "url": "https://woszkowski.pl/",
+              "jobTitle": "Projektant UI/UX i Product Designer"
+            }
+          }
+        ]
+      }
+    </script>
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
     <script defer src="../scripts/main.js?v=20260304-13"></script>
   </head>
@@ -34,7 +96,7 @@
 
         <nav class="desktop-nav" aria-label="Glowna nawigacja">
           <a class="nav-link" href="../">Home</a>
-          <a class="nav-link" href="../o-mnie/">O mnie</a>
+          <a class="nav-link" href="../o-mnie/">O&nbsp;mnie</a>
           <a class="nav-link is-active" href="../#projects" aria-current="page">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -62,7 +124,7 @@
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
         <a class="mobile-link" href="../">Home</a>
-        <a class="mobile-link" href="../o-mnie/">O mnie</a>
+        <a class="mobile-link" href="../o-mnie/">O&nbsp;mnie</a>
         <a class="mobile-link is-active" href="../#projects" aria-current="page">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
         <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
@@ -75,8 +137,7 @@
           <div class="animation-showcase-copy is-visible">
             <p class="animation-showcase-kicker">Motion Design</p>
             <h1 class="animation-showcase-title">
-              Projekt wykonania zestawu animacji i mikrointerakcji, kt&oacute;re trafią do aplikacji webowej dla jednego z
-              klient&oacute;w.
+              Projekt wykonania zestawu animacji i&nbsp;mikrointerakcji, kt&oacute;re trafią do aplikacji webowej dla jednego z&nbsp;klient&oacute;w.
             </h1>
           </div>
 
@@ -226,15 +287,15 @@
       <section class="contact section-frame">
         <div class="contact-panel" id="form">
           <div class="container contact-grid">
-            <div class="contact-copy">
+            <div class="contact-copy" data-reveal>
               <p class="contact-title">Skontaktuj si&#281; ze mn&#261; <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
               <p class="contact-intro">
-                Wystarczy jedno klikni&#281;cie, aby pom&oacute;c zmieni&#263; pomys&#322; w produkt. Wype&#322;nij formularz, aby
-                udost&#281;pni&#263; mi wi&#281;cej szczeg&oacute;&#322;&oacute;w na temat projektu.
+                Wystarczy jedno klikni&#281;cie, aby pom&oacute;c zmieni&#263; pomys&#322; w&nbsp;produkt. Wype&#322;nij formularz, aby
+                udost&#281;pni&#263; mi wi&#281;cej szczeg&oacute;&#322;&oacute;w&nbsp;na temat projektu.
               </p>
             </div>
 
-            <form class="contact-form" novalidate data-static-form data-reveal>
+            <form class="contact-form" action="https://formspree.io/f/mqeypowo" method="POST" novalidate data-static-form data-reveal>
               <div class="field" data-field>
                 <div class="field-control">
                   <input
@@ -309,7 +370,7 @@
         <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
         <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
-        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="mailto:kontakt@woszkowski.pl">kontakt@woszkowski.pl</a>
         <a href="tel:+48508278715">+48 508 278 715</a>
         <a href="#" data-open-cookie-policy="true">Cookies</a>
       </div>

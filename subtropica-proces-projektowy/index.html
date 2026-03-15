@@ -1,13 +1,35 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl-PL">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Subtropica - Proces projektowy - Marcel Woszkowski</title>
+    <title>Subtropica - case study UI/UX e-commerce | Marcel Woszkowski</title>
     <meta
       name="description"
-      content="Proces projektowy platformy Subtropica dedykowanej sprzeda&#380;y i edukacji unikatowych gatunk&#243;w ro&#347;lin."
+      content="Case study UI/UX platformy e-commerce Subtropica do sprzedazy i edukacji o egzotycznych roslinach. Research, user stories, MoSCoW i finalny UI."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Marcel Woszkowski" />
+    <link rel="canonical" href="https://woszkowski.pl/subtropica-proces-projektowy/" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Subtropica - case study UI/UX e-commerce | Marcel Woszkowski" />
+    <meta
+      property="og:description"
+      content="Case study UI/UX platformy e-commerce Subtropica do sprzedazy i edukacji o egzotycznych roslinach. Research, user stories, MoSCoW i finalny UI."
+    />
+    <meta property="og:url" content="https://woszkowski.pl/subtropica-proces-projektowy/" />
+    <meta property="og:site_name" content="Marcel Woszkowski" />
+    <meta property="og:image" content="https://woszkowski.pl/assets/images/project_thumbnail_4.png" />
+    <meta property="og:image:alt" content="Subtropica - case study UI/UX e-commerce" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Subtropica - case study UI/UX e-commerce | Marcel Woszkowski" />
+    <meta
+      name="twitter:description"
+      content="Case study UI/UX platformy e-commerce Subtropica do sprzedazy i edukacji o egzotycznych roslinach. Research, user stories, MoSCoW i finalny UI."
+    />
+    <meta name="twitter:image" content="https://woszkowski.pl/assets/images/project_thumbnail_4.png" />
+    <meta name="twitter:image:alt" content="Subtropica - case study UI/UX e-commerce" />
     <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
     <link rel="icon" href="../assets/images/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
@@ -19,89 +41,46 @@
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/subtropica/subtropica_banner_1.png" as="image" type="image/png" fetchpriority="high" />
     <link rel="stylesheet" href="../styles/main.css?v=20260304-25" />
-    <style>
-      .subtropica-survey-carousel {
-        position: relative;
-        display: grid;
-        gap: 18px;
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://woszkowski.pl/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Subtropica - case study UI/UX e-commerce",
+                "item": "https://woszkowski.pl/subtropica-proces-projektowy/"
+              }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://woszkowski.pl/subtropica-proces-projektowy/#creativework",
+            "url": "https://woszkowski.pl/subtropica-proces-projektowy/",
+            "name": "Subtropica - case study UI/UX e-commerce",
+            "headline": "Platforma dedykowana sprzedazy i edukacji unikatowych gatunkow roslin",
+            "description": "Case study UI/UX platformy e-commerce Subtropica do sprzedazy i edukacji o egzotycznych roslinach. Research, user stories, MoSCoW i finalny UI.",
+            "inLanguage": "pl-PL",
+            "image": "https://woszkowski.pl/assets/images/project_thumbnail_4.png",
+            "author": {
+              "@type": "Person",
+              "name": "Marcel Woszkowski",
+              "url": "https://woszkowski.pl/",
+              "jobTitle": "Projektant UI/UX i Product Designer"
+            }
+          }
+        ]
       }
-
-      .subtropica-survey-track {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-      }
-
-      .subtropica-survey-slide {
-        margin: 0;
-        display: none !important;
-      }
-
-      .subtropica-survey-slide.is-active {
-        display: block !important;
-      }
-
-      .subtropica-survey-slide[hidden] {
-        display: none !important;
-      }
-
-      .subtropica-survey-slide img {
-        width: 100%;
-        height: auto;
-        border-radius: 16px;
-      }
-
-      .subtropica-survey-arrow {
-        position: absolute;
-        top: calc(50% - 24px);
-        z-index: 2;
-        width: 48px;
-        height: 48px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        border: 1px solid #dce5e0;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.94);
-        color: #252525;
-      }
-
-      .subtropica-survey-arrow svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      .subtropica-survey-arrow-prev {
-        left: 16px;
-      }
-
-      .subtropica-survey-arrow-next {
-        right: 16px;
-      }
-
-      .subtropica-survey-pagination {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      .subtropica-survey-dot {
-        width: 10px;
-        height: 10px;
-        padding: 0;
-        border: 0;
-        border-radius: 999px;
-        background: #d3d3d3;
-      }
-
-      .subtropica-survey-dot.is-active {
-        background: #252525;
-        transform: scale(1.2);
-      }
-    </style>
+    </script>
     <script defer src="../scripts/main.js?v=20260304-15"></script>
   </head>
   <body class="project-page project-page-wip project-page-subtropica">
@@ -115,7 +94,7 @@
 
         <nav class="desktop-nav" aria-label="Glowna nawigacja">
           <a class="nav-link" href="../">Home</a>
-          <a class="nav-link" href="../o-mnie/">O mnie</a>
+          <a class="nav-link" href="../o-mnie/">O&nbsp;mnie</a>
           <a class="nav-link is-active" href="../#projects" aria-current="page">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -143,7 +122,7 @@
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
         <a class="mobile-link" href="../">Home</a>
-        <a class="mobile-link" href="../o-mnie/">O mnie</a>
+        <a class="mobile-link" href="../o-mnie/">O&nbsp;mnie</a>
         <a class="mobile-link is-active" href="../#projects" aria-current="page">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
         <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
@@ -155,7 +134,7 @@
         <div class="container wip-hero-shell subtropica-hero-shell">
           <div class="wip-hero-copy is-visible" data-reveal>
             <p class="wip-section-kicker">STRONA INTERNETOWA</p>
-            <h1 class="wip-hero-title">Platforma dedykowana sprzeda&#380;y i edukacji unikatowych gatunk&#243;w ro&#347;lin</h1>
+            <h1 class="wip-hero-title">Platforma dedykowana sprzeda&#380;y i&nbsp;edukacji unikatowych gatunk&#243;w&nbsp;ro&#347;lin</h1>
           </div>
 
           <figure class="wip-hero-media subtropica-hero-media" data-reveal>
@@ -197,18 +176,16 @@
             <h2 class="wip-card-title">WPROWADZENIE</h2>
             <div class="subtropica-copy-stack">
               <p>
-                Mi&#322;o&#347;nik&#243;w ro&#347;lin mo&#380;emy podzieli&#263; na osoby, kt&#243;re posiadaj&#261; popularne ro&#347;liny doniczkowe i
-                maj&#261; podstawow&#261; wiedz&#281; dotycz&#261;c&#261; ich uprawy i piel&#281;gnacji, lub tych, kt&#243;rzy posiadaj&#261; ro&#347;liny,
+                Mi&#322;o&#347;nik&#243;w&nbsp;ro&#347;lin mo&#380;emy podzieli&#263; na osoby, kt&#243;re posiadaj&#261; popularne ro&#347;liny doniczkowe i&nbsp;maj&#261; podstawow&#261; wiedz&#281; dotycz&#261;c&#261; ich uprawy i&nbsp;piel&#281;gnacji, lub tych, kt&#243;rzy posiadaj&#261; ro&#347;liny,
                 ale nie maj&#261; wiedzy.
               </p>
               <p>
-                Mog&#261; to r&#243;wnie&#380; by&#263; osoby, kt&#243;re chc&#261; poszerzy&#263; swoj&#261; kolekcj&#281; ro&#347;lin o te bardziej
-                egzotyczne, rzadkie lub kolekcjonerskie, ale s&#261; te&#380; osoby, kt&#243;re chc&#261; zacz&#261;&#263; swoj&#261; przygod&#281; z
-                takimi ro&#347;linami, nie posiadaj&#261;c o nich &#380;adnej wiedzy.
+                Mog&#261; to r&#243;wnie&#380; by&#263; osoby, kt&#243;re chc&#261; poszerzy&#263; swoj&#261; kolekcj&#281; ro&#347;lin o&nbsp;te bardziej
+                egzotyczne, rzadkie lub kolekcjonerskie, ale s&#261; te&#380; osoby, kt&#243;re chc&#261; zacz&#261;&#263; swoj&#261; przygod&#281; z&nbsp;takimi ro&#347;linami, nie posiadaj&#261;c o&nbsp;nich &#380;adnej wiedzy.
               </p>
               <p>
-                Trzeci&#261; grup&#261; s&#261; ludzie, kt&#243;rzy pragn&#261; po prostu zaopatrzy&#263; si&#281; w egzotyczne ro&#347;liny do
-                przyozdobienia biura lub domu i z czasem dowiedzie&#263; si&#281;, czego potrzebuj&#261;.
+                Trzeci&#261; grup&#261; s&#261; ludzie, kt&#243;rzy pragn&#261; po prostu zaopatrzy&#263; si&#281; w&nbsp;egzotyczne ro&#347;liny do
+                przyozdobienia biura lub domu i&nbsp;z&nbsp;czasem dowiedzie&#263; si&#281;, czego potrzebuj&#261;.
               </p>
             </div>
           </article>
@@ -216,19 +193,19 @@
           <article class="wip-problem-card" data-reveal>
             <h2 class="wip-card-title">PROBLEM DO ROZWI&#260;ZANIA</h2>
             <ul class="subtropica-bullet-list">
-              <li>Trudno&#347;ci w znalezieniu ro&#347;liny zgodnej z preferencjami osoby kupuj&#261;cej.</li>
-              <li>Utworzenie bazy wiedzy zwi&#261;zanej z dan&#261; ro&#347;lin&#261; oraz og&#243;lnym obszarem ro&#347;lin egzotycznych.</li>
+              <li>Trudno&#347;ci w&nbsp;znalezieniu ro&#347;liny zgodnej z&nbsp;preferencjami osoby kupuj&#261;cej.</li>
+              <li>Utworzenie bazy wiedzy zwi&#261;zanej z&nbsp;dan&#261; ro&#347;lin&#261; oraz og&#243;lnym obszarem ro&#347;lin egzotycznych.</li>
             </ul>
           </article>
 
           <article class="wip-problem-card" data-reveal>
             <h2 class="wip-card-title">CEL</h2>
             <p>
-              Celem projektu by&#322;o stworzenie produktu dla mi&#322;o&#347;nik&#243;w ro&#347;lin egzotycznych. Pobocznym, ale
-              r&#243;wnie&#380; wa&#380;nym celem, by&#322;o zach&#281;cenie kupuj&#261;cych do edukacji na temat tych produkt&#243;w poprzez
-              dostarczanie im tematycznych tre&#347;ci oraz mo&#380;liwo&#347;ci &#322;atwego znalezienia ro&#347;liny, o kt&#243;rej chc&#261;
-              poczyta&#263;. Rozwi&#261;zaniem by&#322;a strona internetowa w formie sklepu online umo&#380;liwiaj&#261;cego zakup ro&#347;lin,
-              zawieraj&#261;ca r&oacute;wnie&#380; zbi&oacute;r artyku&#322;&#243;w opisuj&#261;cych ro&#347;liny, spos&oacute;b ich piel&#281;gnacji oraz
+              Celem projektu by&#322;o&nbsp;stworzenie produktu dla mi&#322;o&#347;nik&#243;w&nbsp;ro&#347;lin egzotycznych. Pobocznym, ale
+              r&#243;wnie&#380; wa&#380;nym celem, by&#322;o&nbsp;zach&#281;cenie kupuj&#261;cych do edukacji na temat tych produkt&#243;w&nbsp;poprzez
+              dostarczanie im tematycznych tre&#347;ci oraz mo&#380;liwo&#347;ci &#322;atwego znalezienia ro&#347;liny, o&nbsp;kt&#243;rej chc&#261;
+              poczyta&#263;. Rozwi&#261;zaniem by&#322;a&nbsp;strona internetowa w&nbsp;formie sklepu online umo&#380;liwiaj&#261;cego zakup ro&#347;lin,
+              zawieraj&#261;ca r&oacute;wnie&#380; zbi&oacute;r artyku&#322;&#243;w&nbsp;opisuj&#261;cych ro&#347;liny, spos&oacute;b ich piel&#281;gnacji oraz
               inne przydatne informacje.
             </p>
           </article>
@@ -241,8 +218,8 @@
             <h2 class="wip-card-title">USER RESEARCH</h2>
             <div class="subtropica-copy-stack">
               <p>
-                Celem tego badania by&#322;a potrzeba dowiedzenia si&#281; podstawowych informacji o potencjalnych u&#380;ytkownikach
-                strony. Znalezienie odpowiedzi na pytania m.in. odno&#347;nie tego jak bardzo s&#261; w temacie ro&#347;lin, sk&#261;d
+                Celem tego badania by&#322;a&nbsp;potrzeba dowiedzenia si&#281; podstawowych informacji o&nbsp;potencjalnych u&#380;ytkownikach
+                strony. Znalezienie odpowiedzi na pytania m.in. odno&#347;nie tego jak bardzo s&#261; w&nbsp;temacie ro&#347;lin, sk&#261;d
                 pozyskuj&#261; wiedz&#281; czy te&#380; jakie maj&#261; do&#347;wiadczenia przy zakupach ro&#347;lin przez internet.
               </p>
               <p class="subtropica-inline-label">U&#379;YTE METODOLOGIE</p>
@@ -314,19 +291,19 @@
             <h2 class="wip-card-title">USER STORIES</h2>
             <div class="subtropica-copy-stack">
               <p>
-                Drugim krokiem by&#322;o utworzenie historyjki, kt&#243;ra pomog&#322;a w przeanalizowaniu &#347;cie&#380;ki u&#380;ytkownika od
-                punktu A do punktu B. Przyczyni&#322;a si&#281; ona do znalezienia brak&#243;w w logice oraz do dope&#322;nienia
+                Drugim krokiem by&#322;o&nbsp;utworzenie historyjki, kt&#243;ra pomog&#322;a&nbsp;w&nbsp;przeanalizowaniu &#347;cie&#380;ki u&#380;ytkownika od
+                punktu A&nbsp;do punktu B. Przyczyni&#322;a&nbsp;si&#281; ona do znalezienia brak&#243;w&nbsp;w&nbsp;logice oraz do dope&#322;nienia
                 funkcjonalno&#347;ci na poszczeg&#243;lnych etapach.
               </p>
               <p class="subtropica-inline-label">WERSJA 1</p>
               <p>
-                Posiadaj&#261;c ju&#380; kilka ro&#347;lin, chcia&#322;abym znale&#378;&#263; o nich informacje w postaci strony, kt&#243;ra b&#281;dzie
+                Posiadaj&#261;c ju&#380; kilka ro&#347;lin, chcia&#322;abym znale&#378;&#263; o&nbsp;nich informacje w&nbsp;postaci strony, kt&#243;ra b&#281;dzie
                 tak&#380;e oferowa&#263; sprzeda&#380; rzadkich ro&#347;lin.
               </p>
               <p class="subtropica-inline-label subtropica-inline-label-separator">WERSJA 2</p>
               <p>
                 Jestem w&#322;a&#347;cicielk&#261; agencji projektowej, kt&#243;r&#261; chcia&#322;abym przyozdobi&#263; egzotycznymi ro&#347;linami.
-                Niestety nie mam o nich &#380;adnej wiedzy, a chcia&#322;abym, aby nie usch&#322;y za szybko.
+                Niestety nie mam o&nbsp;nich &#380;adnej wiedzy, a&nbsp;chcia&#322;abym, aby nie usch&#322;y za szybko.
               </p>
             </div>
           </article>
@@ -350,8 +327,7 @@
             <h2 class="wip-card-title">MOSCOW</h2>
             <div class="subtropica-copy-stack">
               <p>
-                Nast&#281;pnie u&#380;yta zosta&#322;a metoda MoSCoW dla upriorytezowania wymaga&#324; na etapie projektowym jak i
-                programistycznym.
+                Nast&#281;pnie u&#380;yta zosta&#322;a&nbsp;metoda MoSCoW dla upriorytezowania wymaga&#324; na etapie projektowym jak i&nbsp;programistycznym.
               </p>
             </div>
           </article>
@@ -375,8 +351,8 @@
             <h2 class="wip-card-title">VALUE PROPOSITION</h2>
             <div class="subtropica-copy-stack">
               <p>
-                Ostatni&#261; metod&#261; by&#322;a propozycja warto&#347;ci, kt&#243;ra wyklarowa&#322;a, jak produkt ten rozwi&#261;zuje konkretne
-                problemy klient&#243;w lub dostarcza okre&#347;lone korzy&#347;ci.
+                Ostatni&#261; metod&#261; by&#322;a&nbsp;propozycja warto&#347;ci, kt&#243;ra wyklarowa&#322;a, jak produkt ten rozwi&#261;zuje konkretne
+                problemy klient&#243;w&nbsp;lub dostarcza okre&#347;lone korzy&#347;ci.
               </p>
             </div>
           </article>
@@ -422,23 +398,23 @@
 
           <div class="subtropica-video-grid">
             <figure class="subtropica-video-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/videos/subtropica/subtropica-video-1.mp4" type="video/mp4" />
+              <video autoplay muted loop playsinline preload="none" poster="../assets/images/project_thumbnail_4.png">
+                <source data-src="../assets/videos/subtropica/subtropica-video-1.mp4" type="video/mp4" />
               </video>
             </figure>
             <figure class="subtropica-video-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/videos/subtropica/subtropica-video-2.mp4" type="video/mp4" />
+              <video autoplay muted loop playsinline preload="none" poster="../assets/images/project_thumbnail_4.png">
+                <source data-src="../assets/videos/subtropica/subtropica-video-2.mp4" type="video/mp4" />
               </video>
             </figure>
             <figure class="subtropica-video-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/videos/subtropica/subtropica-video-3.mp4" type="video/mp4" />
+              <video autoplay muted loop playsinline preload="none" poster="../assets/images/project_thumbnail_4.png">
+                <source data-src="../assets/videos/subtropica/subtropica-video-3.mp4" type="video/mp4" />
               </video>
             </figure>
             <figure class="subtropica-video-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/videos/subtropica/subtropica-video-4.mp4" type="video/mp4" />
+              <video autoplay muted loop playsinline preload="none" poster="../assets/images/project_thumbnail_4.png">
+                <source data-src="../assets/videos/subtropica/subtropica-video-4.mp4" type="video/mp4" />
               </video>
             </figure>
           </div>
@@ -451,12 +427,12 @@
             <div class="contact-copy" data-reveal>
               <p class="contact-title">Skontaktuj si&#281; ze mn&#261; <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
               <p class="contact-intro">
-                Wystarczy jedno klikni&#281;cie, aby pom&#243;c zmieni&#263; pomys&#322; w produkt. Wype&#322;nij formularz, aby
-                udost&#281;pni&#263; mi wi&#281;cej szczeg&#243;&#322;&#243;w na temat projektu.
+                Wystarczy jedno klikni&#281;cie, aby pom&#243;c zmieni&#263; pomys&#322; w&nbsp;produkt. Wype&#322;nij formularz, aby
+                udost&#281;pni&#263; mi wi&#281;cej szczeg&#243;&#322;&#243;w&nbsp;na temat projektu.
               </p>
             </div>
 
-            <form class="contact-form" novalidate data-static-form data-reveal>
+            <form class="contact-form" action="https://formspree.io/f/mqeypowo" method="POST" novalidate data-static-form data-reveal>
               <div class="field" data-field>
                 <div class="field-control">
                   <input
@@ -531,7 +507,7 @@
         <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
         <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
-        <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>
+        <a href="mailto:kontakt@woszkowski.pl">kontakt@woszkowski.pl</a>
         <a href="tel:+48508278715">+48 508 278 715</a>
         <a href="#" data-open-cookie-policy="true">Cookies</a>
       </div>
@@ -555,83 +531,5 @@
         />
       </svg>
     </button>
-    <script>
-      (function () {
-        const carousels = document.querySelectorAll("[data-subtropica-carousel]");
-        carousels.forEach((carousel, carouselIndex) => {
-          if (!(carousel instanceof HTMLElement) || carousel.dataset.carouselReady === "true") {
-            return;
-          }
-
-          const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]")).filter(
-            (slide) => slide instanceof HTMLElement
-          );
-          const track = carousel.querySelector("[data-carousel-track]");
-          const prevButton = carousel.querySelector("[data-carousel-prev]");
-          const nextButton = carousel.querySelector("[data-carousel-next]");
-          const pagination = carousel.querySelector("[data-carousel-pagination]");
-
-          if (
-            !(track instanceof HTMLElement) ||
-            !(prevButton instanceof HTMLButtonElement) ||
-            !(nextButton instanceof HTMLButtonElement) ||
-            !(pagination instanceof HTMLElement) ||
-            slides.length === 0
-          ) {
-            return;
-          }
-
-          let activeIndex = 0;
-          const trackId = "subtropica-survey-track-inline-" + String(carouselIndex + 1);
-          track.id = trackId;
-          pagination.innerHTML = "";
-
-          const dots = slides.map((slide, index) => {
-            const dot = document.createElement("button");
-            dot.type = "button";
-            dot.className = "subtropica-survey-dot";
-            dot.setAttribute("aria-label", "Przejdz do slajdu " + String(index + 1));
-            dot.setAttribute("aria-controls", trackId);
-            dot.addEventListener("click", () => setActiveSlide(index));
-            pagination.appendChild(dot);
-            return dot;
-          });
-
-          const setActiveSlide = (index) => {
-            activeIndex = (index + slides.length) % slides.length;
-            slides.forEach((slide, slideIndex) => {
-              const isActive = slideIndex === activeIndex;
-              slide.classList.toggle("is-active", isActive);
-              slide.hidden = !isActive;
-              slide.style.display = isActive ? "block" : "none";
-              slide.setAttribute("aria-hidden", isActive ? "false" : "true");
-            });
-
-            dots.forEach((dot, dotIndex) => {
-              const isActive = dotIndex === activeIndex;
-              dot.classList.toggle("is-active", isActive);
-              dot.setAttribute("aria-current", isActive ? "true" : "false");
-            });
-          };
-
-          prevButton.addEventListener("click", () => setActiveSlide(activeIndex - 1));
-          nextButton.addEventListener("click", () => setActiveSlide(activeIndex + 1));
-
-          carousel.addEventListener("keydown", (event) => {
-            if (event.key === "ArrowLeft") {
-              event.preventDefault();
-              setActiveSlide(activeIndex - 1);
-            }
-            if (event.key === "ArrowRight") {
-              event.preventDefault();
-              setActiveSlide(activeIndex + 1);
-            }
-          });
-
-          setActiveSlide(0);
-          carousel.dataset.carouselReady = "true";
-        });
-      })();
-    </script>
   </body>
 </html>

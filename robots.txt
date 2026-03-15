@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /live.html
+Disallow: /.tmp/
+Disallow: /test-results/
+
+Sitemap: https://woszkowski.pl/sitemap.xml

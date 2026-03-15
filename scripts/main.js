@@ -9,9 +9,24 @@ const staticFormFields = staticForm ? Array.from(staticForm.querySelectorAll("[d
 const staticFormSubmit = staticForm?.querySelector('button[type="submit"]');
 const projectCards = document.querySelectorAll(".project-card");
 const projectTitleLinks = document.querySelectorAll(".project-copy h3 a");
-const wordSlideTargets = document.querySelectorAll(
-  ".hero-copy h1, .section-head h2, .about-kicker, .contact-title, .wip-hero-title, .wip-card-title, .wip-section-title, .wip-process-kicker, .wip-section-kicker, .animation-showcase-title"
-);
+const wordSlideTargetSelector = [
+  ".hero-copy h1",
+  ".hero-copy .hero-lead",
+  ".section-head h2",
+  ".home-page .highlight-card h3",
+  ".home-page .project-copy h3 a",
+  ".home-page .experience-topline h3",
+  ".home-page .experience-role",
+  ".about-kicker",
+  ".contact-title",
+  ".wip-hero-title",
+  ".wip-card-title",
+  ".wip-section-title",
+  ".wip-process-kicker",
+  ".wip-section-kicker",
+  ".animation-showcase-title",
+].join(", ");
+const wordSlideTargets = document.querySelectorAll(wordSlideTargetSelector);
 const heroCopyBlocks = document.querySelectorAll(".hero-copy, .animation-showcase-copy");
 const scrollToTopButton = document.querySelector(".scroll-to-top");
 const riveCanvases = document.querySelectorAll("canvas[data-rive-src]");
@@ -46,6 +61,16 @@ const supportsDocumentPrefetch =
     const prefetchProbe = document.createElement("link");
     return Boolean(prefetchProbe.relList?.supports?.("prefetch"));
   })();
+const networkConnection =
+  typeof navigator !== "undefined"
+    ? navigator.connection ?? navigator.mozConnection ?? navigator.webkitConnection ?? null
+    : null;
+const shouldWarmupPagePrefetch =
+  supportsDocumentPrefetch &&
+  !networkConnection?.saveData &&
+  !["slow-2g", "2g", "3g"].includes(networkConnection?.effectiveType ?? "");
+const staticFormRecipientEmail = "kontakt@woszkowski.pl";
+const staticFormEndpoint = "https://formspree.io/f/mqeypowo";
 const prefetchedPageUrls = new Set();
 
 const syncHeaderStateClass = () => {
@@ -109,7 +134,7 @@ const initCookieConsentBar = () => {
           <h3>Administrator danych</h3>
           <p>
             Administratorem danych związanych z działaniem strony jest Marcel Woszkowski.
-            Kontakt: <a href="mailto:marcel.woszkowski@onet.pl">marcel.woszkowski@onet.pl</a>.
+            Kontakt: <a href="mailto:kontakt@woszkowski.pl">kontakt@woszkowski.pl</a>.
           </p>
         </section>
         <section class="cookie-policy-section">
@@ -566,13 +591,13 @@ const prefetchFromEventTarget = (target) => {
 };
 
 const warmupInternalPagePrefetch = () => {
-  if (!supportsDocumentPrefetch) {
+  if (!shouldWarmupPagePrefetch) {
     return;
   }
 
   const seenUrls = new Set();
   const links = document.querySelectorAll("a[href]");
-  let remaining = 10;
+  let remaining = 3;
 
   for (const link of links) {
     if (!(link instanceof HTMLAnchorElement)) {
@@ -703,10 +728,12 @@ if (supportsDocumentPrefetch) {
     { passive: true }
   );
 
-  if ("requestIdleCallback" in window) {
-    window.requestIdleCallback(warmupInternalPagePrefetch, { timeout: 1200 });
-  } else {
-    window.setTimeout(warmupInternalPagePrefetch, 700);
+  if (shouldWarmupPagePrefetch) {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(warmupInternalPagePrefetch, { timeout: 1200 });
+    } else {
+      window.setTimeout(warmupInternalPagePrefetch, 700);
+    }
   }
 }
 
@@ -774,6 +801,118 @@ const formatPolishPhoneNumber = (value) => {
   const groups = digits.match(/.{1,3}/g);
 
   return groups ? groups.join(" ") : "";
+};
+
+const getOrCreateStaticFormStatus = () => {
+  if (!staticForm) {
+    return null;
+  }
+
+  let status = staticForm.querySelector("[data-form-status]");
+  if (status instanceof HTMLElement) {
+    return status;
+  }
+
+  status = document.createElement("p");
+  status.className = "contact-form-status";
+  status.dataset.formStatus = "true";
+  status.hidden = true;
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+
+  if (staticFormSubmit?.parentElement === staticForm) {
+    staticForm.insertBefore(status, staticFormSubmit);
+  } else {
+    staticForm.appendChild(status);
+  }
+
+  return status;
+};
+
+const setStaticFormStatus = (message = "", state = "") => {
+  const status = getOrCreateStaticFormStatus();
+  if (!(status instanceof HTMLElement)) {
+    return;
+  }
+
+  status.dataset.state = state;
+  status.hidden = !message;
+
+  if (message) {
+    status.innerHTML = message;
+    return;
+  }
+
+  status.textContent = "";
+};
+
+const setStaticFormSubmittingState = (isSubmitting) => {
+  if (!staticFormSubmit) {
+    return;
+  }
+
+  if (!staticFormSubmit.dataset.defaultLabel) {
+    staticFormSubmit.dataset.defaultLabel = staticFormSubmit.textContent ?? "";
+  }
+
+  staticFormSubmit.disabled = isSubmitting;
+  staticFormSubmit.setAttribute("aria-disabled", String(isSubmitting));
+  staticFormSubmit.classList.toggle("is-loading", isSubmitting);
+  staticFormSubmit.textContent = isSubmitting
+    ? "Wysylam wiadomosc..."
+    : staticFormSubmit.dataset.defaultLabel;
+};
+
+const getStaticFormValues = () => {
+  const values = {};
+
+  staticFormFields.forEach((field) => {
+    const { control } = getFieldElements(field);
+
+    if (!(control instanceof HTMLInputElement || control instanceof HTMLTextAreaElement)) {
+      return;
+    }
+
+    values[control.name] = control.value.trim();
+  });
+
+  return values;
+};
+
+const buildStaticFormPayload = () => {
+  const values = getStaticFormValues();
+  const payload = {
+    ...values,
+    _subject: values.name ? `Zapytanie ze strony woszkowski.pl - ${values.name}` : "Zapytanie ze strony woszkowski.pl",
+  };
+
+  if (values.email) {
+    payload._replyto = values.email;
+  }
+
+  return payload;
+};
+
+const resetStaticForm = () => {
+  if (!staticForm) {
+    return;
+  }
+
+  staticForm.reset();
+
+  staticFormFields.forEach((field) => {
+    const { control } = getFieldElements(field);
+
+    if (!(control instanceof HTMLInputElement || control instanceof HTMLTextAreaElement)) {
+      return;
+    }
+
+    delete control.dataset.touched;
+    setFieldVisualState(field, control);
+    renderFieldError(field, control);
+  });
+
+  updateSubmitState();
 };
 
 const getFieldElements = (field) => {
@@ -858,11 +997,12 @@ staticFormFields.forEach((field) => {
 
     setFieldVisualState(field, control);
     renderFieldError(field, control);
+    setStaticFormStatus("", "");
     updateSubmitState();
   });
 });
 
-staticForm?.addEventListener("submit", (event) => {
+staticForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const invalidControls = [];
 
@@ -884,12 +1024,135 @@ staticForm?.addEventListener("submit", (event) => {
   updateSubmitState();
 
   if (invalidControls.length > 0) {
-    event.preventDefault();
     invalidControls[0].focus();
+    setStaticFormStatus("Sprawdz formularz i popraw zaznaczone pola.", "error");
+    return;
+  }
+
+  setStaticFormSubmittingState(true);
+  setStaticFormStatus("Wysylam wiadomosc...", "");
+
+  try {
+    const response = await window.fetch(staticForm.action || staticFormEndpoint, {
+      method: staticForm.method || "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(buildStaticFormPayload()),
+    });
+
+    let result = null;
+    try {
+      result = await response.json();
+    } catch {}
+
+    if (!response.ok) {
+      const apiError = Array.isArray(result?.errors)
+        ? result.errors
+            .map((entry) => entry?.message)
+            .filter(Boolean)
+            .join(" ")
+        : "";
+
+      throw new Error(apiError || "Nie udalo sie wyslac wiadomosci.");
+    }
+
+    resetStaticForm();
+    setStaticFormStatus("Wiadomosc zostala wyslana. Odpowiem tak szybko, jak to mozliwe.", "success");
+  } catch (error) {
+    const fallbackMessage =
+      error instanceof Error && error.message
+        ? error.message
+        : "Nie udalo sie wyslac wiadomosci. Sproboj ponownie za chwile.";
+
+    setStaticFormStatus(
+      `${fallbackMessage} Jesli problem bedzie sie powtarzal, napisz na <a href="mailto:${staticFormRecipientEmail}">${staticFormRecipientEmail}</a>.`,
+      "error"
+    );
+  } finally {
+    setStaticFormSubmittingState(false);
+    updateSubmitState();
   }
 });
 
 updateSubmitState();
+
+const autoplayViewportVideos = document.querySelectorAll("video[autoplay][muted][loop]");
+
+const loadDeferredVideoSources = (video) => {
+  if (!(video instanceof HTMLVideoElement) || video.dataset.deferredLoaded === "true") {
+    return;
+  }
+
+  const sources = video.querySelectorAll("source[data-src]");
+  if (!sources.length) {
+    video.dataset.deferredLoaded = "true";
+    return;
+  }
+
+  sources.forEach((source) => {
+    if (!(source instanceof HTMLSourceElement) || !source.dataset.src) {
+      return;
+    }
+
+    source.src = source.dataset.src;
+    delete source.dataset.src;
+  });
+
+  video.dataset.deferredLoaded = "true";
+  video.load();
+};
+
+const initAutoplayViewportVideos = () => {
+  if (!autoplayViewportVideos.length) {
+    return;
+  }
+
+  const playVideo = (video) => {
+    if (!(video instanceof HTMLVideoElement)) {
+      return;
+    }
+
+    loadDeferredVideoSources(video);
+    void video.play().catch(() => {});
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    autoplayViewportVideos.forEach((video) => {
+      playVideo(video);
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (!(video instanceof HTMLVideoElement)) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          playVideo(video);
+          return;
+        }
+
+        video.pause();
+      });
+    },
+    {
+      rootMargin: "160px 0px",
+      threshold: 0.2,
+    }
+  );
+
+  autoplayViewportVideos.forEach((video) => {
+    observer.observe(video);
+  });
+};
+
+initAutoplayViewportVideos();
 
 const createProjectMediaLinks = () => {
   projectCards.forEach((card) => {
@@ -1541,6 +1804,30 @@ const splitProjectTitleLines = (link) => {
     return;
   }
 
+  const forcedLines = (link.dataset.projectTitleLines ?? "")
+    .split("|")
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (forcedLines.length) {
+    link.dataset.originalText = forcedLines.join(" ");
+    link.textContent = "";
+
+    forcedLines.forEach((lineText, index) => {
+      const line = document.createElement("span");
+      line.className = "project-title-line";
+      line.style.setProperty("--line-index", `${index}`);
+      line.textContent = index === 0 ? lineText : ` ${lineText}`;
+      link.appendChild(line);
+
+      if (index < forcedLines.length - 1) {
+        link.appendChild(document.createElement("br"));
+      }
+    });
+
+    return;
+  }
+
   const originalText = (link.dataset.originalText ?? link.textContent ?? "").trim().replace(/\s+/g, " ");
 
   if (!originalText) {
@@ -1550,7 +1837,23 @@ const splitProjectTitleLines = (link) => {
   link.dataset.originalText = originalText;
   link.textContent = "";
 
-  const words = originalText.split(" ");
+  const shortWordsToBind = new Set(["a", "i", "o", "u", "w", "z", "A", "I", "O", "U", "W", "Z"]);
+  const rawWords = originalText.split(" ");
+  const words = [];
+
+  for (let index = 0; index < rawWords.length; index += 1) {
+    const word = rawWords[index];
+    const nextWord = rawWords[index + 1];
+
+    if (shortWordsToBind.has(word) && nextWord) {
+      words.push(`${word}\u00A0${nextWord}`);
+      index += 1;
+      continue;
+    }
+
+    words.push(word);
+  }
+
   const fragments = [];
 
   words.forEach((word, index) => {
@@ -1609,12 +1912,16 @@ const rebuildProjectTitleLines = () => {
 };
 
 rebuildProjectTitleLines();
-window.addEventListener("resize", rebuildProjectTitleLines);
 
 const wordSlideMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 const wordSlideStagger = 0.1;
 const wordSlideDuration = 0.5;
 const heroSequenceStepDelay = 0.15;
+const heroLeadWordSlideDelay = 0.75;
+const heroLeadWordSlideStagger = 0.04;
+const heroLeadWordSlideDuration = 0.28;
+const heroButtonsExtraDelay = 0.125;
+const heroButtonsStepDelay = 0.1;
 
 const splitWordSlideText = (node) => {
   if (node.nodeType === Node.TEXT_NODE) {
@@ -1645,6 +1952,17 @@ const splitWordSlideText = (node) => {
   return `<${tagName}${attributes}>${children}</${tagName}>`;
 };
 
+const resetWordSlide = (element) => {
+  if (!(element instanceof HTMLElement)) {
+    return;
+  }
+
+  element.classList.remove("word-slide-target", "word-slide-visible");
+  delete element.dataset.wordSlideDuration;
+  delete element.dataset.wordSlideOriginal;
+  delete element.dataset.wordSlideReady;
+};
+
 const prepareWordSlide = (element) => {
   if (element.dataset.wordSlideReady === "true") {
     return;
@@ -1658,17 +1976,74 @@ const prepareWordSlide = (element) => {
     .join("");
 
   const words = element.querySelectorAll(".word-slide-word > span");
+  const isHeroLead = element.matches(".hero-copy .hero-lead");
+  const extraDelay = isHeroLead ? heroLeadWordSlideDelay : 0;
+  const stagger = isHeroLead ? heroLeadWordSlideStagger : wordSlideStagger;
+  const duration = isHeroLead ? heroLeadWordSlideDuration : wordSlideDuration;
 
   words.forEach((word, index) => {
-    word.style.transitionDelay = `${index * wordSlideStagger}s`;
+    word.style.transitionDelay = `${extraDelay + index * stagger}s`;
+
+    if (isHeroLead) {
+      word.style.transitionDuration = `${duration}s`;
+    }
   });
 
-  element.dataset.wordSlideDuration = `${Math.max(words.length - 1, 0) * wordSlideStagger + wordSlideDuration}`;
+  element.dataset.wordSlideDuration = `${extraDelay + Math.max(words.length - 1, 0) * stagger + duration}`;
   element.dataset.wordSlideReady = "true";
 };
 
 const revealWordSlide = (element) => {
   element.classList.add("word-slide-visible");
+};
+
+const prepareScrollReveal = (element) => {
+  if (!(element instanceof HTMLElement) || element.dataset.scrollRevealReady === "true") {
+    return;
+  }
+
+  element.classList.add("scroll-reveal-target");
+  element.dataset.scrollRevealReady = "true";
+};
+
+const revealScrollReveal = (element) => {
+  if (!(element instanceof HTMLElement)) {
+    return;
+  }
+
+  element.classList.add("scroll-reveal-visible");
+};
+
+const isHeroActionButton = (element) =>
+  element instanceof HTMLElement && element.matches(".hero-actions .button");
+
+const getSynchronizedScrollRevealTargets = (element) => {
+  if (!(element instanceof HTMLElement)) {
+    return [];
+  }
+
+  const highlightCard = element.closest(".home-page .highlight-card");
+  if (!(highlightCard instanceof HTMLElement)) {
+    return [];
+  }
+
+  const icon = highlightCard.querySelector(".highlight-icon");
+  return icon instanceof HTMLElement ? [icon] : [];
+};
+
+const syncProjectTitleWordSlide = (link) => {
+  if (!(link instanceof HTMLAnchorElement) || !link.matches(".home-page .project-copy h3 a")) {
+    return;
+  }
+
+  const wasVisible = link.classList.contains("word-slide-visible");
+
+  resetWordSlide(link);
+  prepareWordSlide(link);
+
+  if (wasVisible) {
+    revealWordSlide(link);
+  }
 };
 
 const getAnimatedCopyBlock = (element) => element?.closest(".hero-copy, .animation-showcase-copy") ?? null;
@@ -1677,7 +2052,6 @@ const getHeroSequenceItems = (heroCopy) => {
   const items = [];
   const eyebrow = heroCopy.querySelector(".eyebrow");
   const showcaseKicker = heroCopy.querySelector(".animation-showcase-kicker");
-  const lead = heroCopy.querySelector(".hero-lead");
   const values = heroCopy.querySelector(".hero-values");
   const buttons = heroCopy.querySelectorAll(".hero-actions .button");
 
@@ -1687,10 +2061,6 @@ const getHeroSequenceItems = (heroCopy) => {
 
   if (showcaseKicker) {
     items.push(showcaseKicker);
-  }
-
-  if (lead) {
-    items.push(lead);
   }
 
   if (values) {
@@ -1705,24 +2075,40 @@ const getHeroSequenceItems = (heroCopy) => {
 };
 
 const prepareHeroSequence = (heroCopy, headingDuration = 0.4) => {
-  if (heroCopy.dataset.heroSequenceReady === "true") {
+  const currentDuration = Number.parseFloat(heroCopy.dataset.heroSequenceDuration ?? "0");
+  if (heroCopy.dataset.heroSequenceReady === "true" && currentDuration >= headingDuration) {
     return;
   }
 
   const items = getHeroSequenceItems(heroCopy);
   const sequenceStartDelay = Math.max(0.15, headingDuration - 0.175);
+  let heroButtonIndex = 0;
 
   items.forEach((item, index) => {
-    item.classList.add("hero-sequence-item");
+    const isHeroButton = isHeroActionButton(item);
+
+    if (isHeroButton) {
+      prepareScrollReveal(item);
+    } else {
+      item.classList.add("hero-sequence-item");
+    }
 
     if (index === 0) {
       item.style.transitionDelay = "0.075s";
       return;
     }
 
-    item.style.transitionDelay = `${sequenceStartDelay + (index - 1) * heroSequenceStepDelay}s`;
+    const itemDelay = isHeroButton
+      ? sequenceStartDelay + heroButtonsExtraDelay + heroButtonIndex * heroButtonsStepDelay
+      : sequenceStartDelay + (index - 1) * heroSequenceStepDelay;
+    item.style.transitionDelay = `${itemDelay}s`;
+
+    if (isHeroButton) {
+      heroButtonIndex += 1;
+    }
   });
 
+  heroCopy.dataset.heroSequenceDuration = `${headingDuration}`;
   heroCopy.dataset.heroSequenceReady = "true";
 };
 
@@ -1732,7 +2118,11 @@ const revealHeroSequence = (heroCopy) => {
   }
 
   getHeroSequenceItems(heroCopy).forEach((item) => {
-    item.classList.add("hero-sequence-visible");
+    if (isHeroActionButton(item)) {
+      revealScrollReveal(item);
+    } else {
+      item.classList.add("hero-sequence-visible");
+    }
   });
 
   heroCopy.dataset.heroSequenceVisible = "true";
@@ -1745,6 +2135,9 @@ const initWordSlides = () => {
 
   wordSlideTargets.forEach((element) => {
     prepareWordSlide(element);
+    getSynchronizedScrollRevealTargets(element).forEach((target) => {
+      prepareScrollReveal(target);
+    });
 
     const heroCopy = getAnimatedCopyBlock(element);
     if (heroCopy) {
@@ -1755,6 +2148,9 @@ const initWordSlides = () => {
   if (wordSlideMediaQuery.matches) {
     wordSlideTargets.forEach((element) => {
       revealWordSlide(element);
+      getSynchronizedScrollRevealTargets(element).forEach((target) => {
+        revealScrollReveal(target);
+      });
 
       const heroCopy = getAnimatedCopyBlock(element);
       if (heroCopy) {
@@ -1769,6 +2165,9 @@ const initWordSlides = () => {
       requestAnimationFrame(() => {
         wordSlideTargets.forEach((element) => {
           revealWordSlide(element);
+          getSynchronizedScrollRevealTargets(element).forEach((target) => {
+            revealScrollReveal(target);
+          });
 
           const heroCopy = getAnimatedCopyBlock(element);
           if (heroCopy) {
@@ -1788,6 +2187,9 @@ const initWordSlides = () => {
         }
 
         revealWordSlide(entry.target);
+        getSynchronizedScrollRevealTargets(entry.target).forEach((target) => {
+          revealScrollReveal(target);
+        });
 
         const heroCopy = getAnimatedCopyBlock(entry.target);
         if (heroCopy) {
@@ -1817,6 +2219,104 @@ if (wordSlideTargets.length || heroCopyBlocks.length) {
   }
 }
 
+window.addEventListener("resize", () => {
+  rebuildProjectTitleLines();
+  projectTitleLinks.forEach((link) => {
+    syncProjectTitleWordSlide(link);
+  });
+});
+
+const parseRiveDataList = (value) => {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const items = value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  if (!items.length) {
+    return null;
+  }
+
+  return items.length === 1 ? items[0] : items;
+};
+
+const getRivePlaybackTargets = (canvas) => {
+  if (!(canvas instanceof HTMLCanvasElement)) {
+    return null;
+  }
+
+  const animations = parseRiveDataList(canvas.dataset.riveAnimation);
+  if (animations) {
+    return animations;
+  }
+
+  const stateMachines = parseRiveDataList(canvas.dataset.riveStateMachines);
+  if (stateMachines) {
+    return stateMachines;
+  }
+
+  return null;
+};
+
+const replayRiveCanvas = (canvas) => {
+  if (!(canvas instanceof HTMLCanvasElement)) {
+    return;
+  }
+
+  const riveInstance = riveCanvasInstances.get(canvas);
+  if (!riveInstance) {
+    return;
+  }
+
+  const playbackTargets = getRivePlaybackTargets(canvas);
+
+  try {
+    if (typeof riveInstance.stop === "function") {
+      if (playbackTargets) {
+        riveInstance.stop(playbackTargets);
+      } else {
+        riveInstance.stop();
+      }
+    }
+  } catch (error) {
+    return;
+  }
+
+  try {
+    if (typeof riveInstance.play === "function") {
+      if (playbackTargets) {
+        riveInstance.play(playbackTargets);
+      } else {
+        riveInstance.play();
+      }
+    }
+  } catch (error) {
+    return;
+  }
+};
+
+const replayRiveCanvasWhenReady = (canvas, attempt = 0) => {
+  if (!(canvas instanceof HTMLCanvasElement)) {
+    return;
+  }
+
+  if (canvas.dataset.riveReady === "true" && riveCanvasInstances.get(canvas)) {
+    replayRiveCanvas(canvas);
+    return;
+  }
+
+  if (attempt >= 25) {
+    return;
+  }
+
+  window.setTimeout(() => {
+    replayRiveCanvasWhenReady(canvas, attempt + 1);
+  }, 120);
+};
+
 const initRiveCanvases = () => {
   if (!riveCanvases.length || !window.rive || typeof window.rive.Rive !== "function") {
     return;
@@ -1827,7 +2327,7 @@ const initRiveCanvases = () => {
       return;
     }
 
-    const { riveSrc, riveArtboard, riveAutoplay } = canvas.dataset;
+    const { riveSrc, riveArtboard, riveAutoplay, riveAnimation, riveStateMachines } = canvas.dataset;
     if (!riveSrc) {
       return;
     }
@@ -1851,6 +2351,17 @@ const initRiveCanvases = () => {
       options.artboard = riveArtboard;
     }
 
+    const animations = parseRiveDataList(riveAnimation);
+    const stateMachines = parseRiveDataList(riveStateMachines);
+
+    if (animations) {
+      options.animations = animations;
+    }
+
+    if (stateMachines) {
+      options.stateMachines = stateMachines;
+    }
+
     riveInstance = new window.rive.Rive(options);
     riveCanvasInstances.set(canvas, riveInstance);
   });
@@ -1864,6 +2375,102 @@ const resizeRiveCanvas = (canvas) => {
   }
 
   riveCanvasInstances.get(canvas)?.resizeDrawingSurfaceToCanvas?.();
+};
+
+const initHomepageHighlightsRive = () => {
+  const section = document.querySelector(".highlights[data-homepage-rive='true']");
+  if (!(section instanceof HTMLElement)) {
+    return;
+  }
+
+  const cards = Array.from(section.querySelectorAll(".highlight-card[data-highlight-rive-hover='true']")).filter(
+    (card) => card instanceof HTMLElement
+  );
+  if (!cards.length) {
+    return;
+  }
+
+  const getCardCanvas = (card) => {
+    if (!(card instanceof HTMLElement)) {
+      return null;
+    }
+
+    const canvas = card.querySelector(".highlight-icon canvas[data-rive-src]");
+    return canvas instanceof HTMLCanvasElement ? canvas : null;
+  };
+
+  cards.forEach((card) => {
+    if (card.dataset.highlightRiveHoverReady === "true") {
+      return;
+    }
+
+    const canvas = getCardCanvas(card);
+    if (!canvas) {
+      return;
+    }
+
+    const replay = () => {
+      replayRiveCanvasWhenReady(canvas);
+    };
+
+    card.addEventListener("pointerenter", replay);
+    card.addEventListener("focusin", replay);
+    card.dataset.highlightRiveHoverReady = "true";
+  });
+
+  if (section.dataset.highlightRiveSequenceReady === "true") {
+    return;
+  }
+
+  const sequenceCanvases = cards
+    .map((card) => getCardCanvas(card))
+    .filter((canvas) => canvas instanceof HTMLCanvasElement)
+    .sort((left, right) => {
+      const leftOrder = Number.parseInt(left.dataset.riveSequenceOrder ?? "0", 10);
+      const rightOrder = Number.parseInt(right.dataset.riveSequenceOrder ?? "0", 10);
+      return leftOrder - rightOrder;
+    });
+
+  if (!sequenceCanvases.length) {
+    return;
+  }
+
+  const playInitialSequence = () => {
+    if (section.dataset.highlightRiveSequencePlayed === "true") {
+      return;
+    }
+
+    section.dataset.highlightRiveSequencePlayed = "true";
+
+    sequenceCanvases.forEach((canvas, index) => {
+      window.setTimeout(() => {
+        replayRiveCanvasWhenReady(canvas);
+      }, index * 220);
+    });
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    playInitialSequence();
+    section.dataset.highlightRiveSequenceReady = "true";
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) {
+        return;
+      }
+
+      playInitialSequence();
+      observer.disconnect();
+    },
+    {
+      threshold: 0.35,
+    }
+  );
+
+  observer.observe(section);
+  section.dataset.highlightRiveSequenceReady = "true";
 };
 
 const initRiveCanvasLightbox = () => {
@@ -2147,6 +2754,7 @@ const initRiveCanvasLightbox = () => {
 };
 
 initRiveCanvasLightbox();
+initHomepageHighlightsRive();
 initHoverCursorTargets(".rive-zoom-target");
 
 const initSubtropicaSurveyCarousels = () => {
