@@ -38,8 +38,11 @@
     <link rel="preload" href="./assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="./assets/images/bgimage-home-original.png" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="./styles/main.css?v=20260315-01" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260320-hero-demo4" />
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
+    <script defer src="./scripts/vendor/three.min.js"></script>
+    <script defer src="./scripts/vendor/TweenMax.min.js"></script>
+    <script defer src="./scripts/vendor/perlin.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -133,15 +136,15 @@
         ]
       }
     </script>
-    <script defer src="./scripts/main.js?v=20260314-03"></script>
+    <script defer src="./scripts/main.js?v=20260320-hero-demo4"></script>
   </head>
   <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <div class="container header-shell">
-        <a class="brand" href="./" aria-label="Marcel Woszkowski - strona glowna">
-          <span class="brand-text">Marcel Woszkowski</span>
+        <a class="brand" href="./" aria-label="Woszkowski - strona glowna">
+          <span class="brand-text">Woszkowski.</span>
         </a>
 
         <nav class="desktop-nav" aria-label="Główna nawigacja">
@@ -194,8 +197,9 @@
           <div class="hero-copy is-visible" data-reveal>
             <p class="eyebrow">Marcel Woszkowski</p>
             <h1>
-              <span class="hero-copy-line">Projektowanie aplikacji</span>
-              <span class="hero-copy-line">dla firm i&nbsp;startupów</span>
+              <span class="hero-copy-line">Projektuję tak,</span>
+              <span class="hero-copy-line">by złożone problemy stały</span>
+              <span class="hero-copy-line">się <span class="hero-copy-accent">prostymi rozwiązaniami</span></span>
             </h1>
             <p class="hero-lead">
               <span class="hero-copy-line">Moją misją jest pomoc w&nbsp;budowaniu rozwiązań będących przyjaznym</span>
@@ -208,14 +212,24 @@
             </div>
           </div>
 
-          <div class="hero-visual" aria-hidden="true" data-reveal></div>
+          <div class="hero-visual" data-reveal data-disable-rive-zoom="true">
+            <canvas
+              aria-label="Zapętlona animacja hero"
+              data-rive-src="./assets/rive/hero_anim.riv"
+              data-rive-artboard="Final anim"
+              data-rive-animation="Timeline 1"
+              data-rive-autoplay="true"
+              data-rive-load-delay="1500"
+            ></canvas>
+          </div>
         </div>
-        <a class="scroll-marker" href="#projects" data-scroll-target="#projects" aria-label="Przewiń do portfolio">
+        <a class="scroll-marker" href="#highlights" data-scroll-target="#highlights" aria-label="Przewiń do sekcji To, co robię najlepiej">
           <img src="./assets/gifs/scroll-down2.gif" alt="" width="150" height="153" loading="eager" decoding="async" />
         </a>
       </section>
 
       <section
+        id="highlights"
         class="highlights section-frame"
         aria-labelledby="highlights-title"
         data-homepage-rive="true"

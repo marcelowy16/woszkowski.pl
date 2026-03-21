@@ -1,5 +1,8 @@
 const body = document.body;
 const siteHeader = document.querySelector(".site-header");
+const headerShell = document.querySelector(".header-shell");
+const heroSection = document.querySelector(".hero");
+const desktopNavIntroItems = Array.from(document.querySelectorAll(".desktop-nav .nav-link"));
 const menu = document.getElementById("mobile-menu");
 const menuToggle = document.querySelector(".menu-toggle");
 const menuToggleLabel = document.querySelector(".menu-toggle-label");
@@ -55,6 +58,10 @@ const cookiePolicyModalCloseDelay = 220;
 const pageScrollStorageKeyPrefix = "mw-scroll-pos-v1:";
 const homeScrollRestoreIntentStorageKey = "mw-home-scroll-restore-intent-v1";
 const homeScrollRestoreIntentTtlMs = 20000;
+const homeHeaderWideBreakpoint = 1200;
+const homeHeaderWideMaxWidth = 1640;
+const homeHeaderNarrowMaxWidth = 1210;
+const homeHeaderWideViewportOffset = 64;
 const supportsDocumentPrefetch =
   typeof document !== "undefined" &&
   (() => {
@@ -79,6 +86,519 @@ const syncHeaderStateClass = () => {
   }
 
   body.classList.toggle(headerHiddenBodyClass, siteHeader.classList.contains("site-header-hidden"));
+};
+
+const initHeaderNavIntro = () => {
+  if (!(siteHeader instanceof HTMLElement) || !desktopNavIntroItems.length) {
+    return;
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  siteHeader.classList.add("nav-intro-ready");
+
+  desktopNavIntroItems.forEach((item, index) => {
+    item.style.setProperty("--nav-intro-delay", `${index * 90}ms`);
+  });
+};
+
+const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const syncHomeHeaderWidth = () => {
+  if (!(headerShell instanceof HTMLElement) || !body.classList.contains("home-page")) {
+    return;
+  }
+
+  const highlightsSection = document.getElementById("highlights");
+  if (!(highlightsSection instanceof HTMLElement)) {
+    headerShell.style.removeProperty("width");
+    headerShell.style.removeProperty("max-width");
+    return;
+  }
+
+  const viewportWidth = window.innerWidth;
+  if (viewportWidth < homeHeaderWideBreakpoint) {
+    headerShell.style.removeProperty("width");
+    headerShell.style.removeProperty("max-width");
+    return;
+  }
+
+  const wideWidth = Math.min(viewportWidth - homeHeaderWideViewportOffset, homeHeaderWideMaxWidth);
+  const narrowWidth = Math.min(viewportWidth * 0.9, homeHeaderNarrowMaxWidth);
+  const highlightsTop = highlightsSection.getBoundingClientRect().top;
+  const transitionStart = window.innerHeight;
+  const transitionEnd = window.innerHeight * 0.5;
+  const progress = clamp((transitionStart - highlightsTop) / (transitionStart - transitionEnd), 0, 1);
+  const headerWidth = wideWidth + (narrowWidth - wideWidth) * progress;
+
+  headerShell.style.width = `${headerWidth}px`;
+  headerShell.style.maxWidth = "none";
+};
+
+const getHeroBackgroundMeshQualityProfile = () => {
+  const viewportWidth = window.innerWidth;
+  const deviceMemory = typeof navigator !== "undefined" ? navigator.deviceMemory ?? 8 : 8;
+  const hardwareConcurrency = typeof navigator !== "undefined" ? navigator.hardwareConcurrency ?? 8 : 8;
+  const lowPowerDevice =
+    Boolean(networkConnection?.saveData) ||
+    deviceMemory <= 4 ||
+    hardwareConcurrency <= 4 ||
+    ["slow-2g", "2g", "3g"].includes(networkConnection?.effectiveType ?? "");
+  const isMobile = viewportWidth < 768;
+  const isTablet = viewportWidth < 1200;
+
+  return {
+    antialias: !lowPowerDevice && !isMobile,
+    pixelRatio: lowPowerDevice ? 1 : isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5),
+    linesAmount: lowPowerDevice ? (isMobile ? 10 : 12) : isMobile ? 12 : isTablet ? 14 : 18,
+    verticesAmount: lowPowerDevice ? 28 : isMobile ? 32 : isTablet ? 40 : 50,
+    frameIntervalMs: lowPowerDevice ? 1000 / 20 : isMobile ? 1000 / 24 : 1000 / 30,
+  };
+};
+
+const runWhenBrowserIsIdle = (callback) => {
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(callback, { timeout: 1200 });
+    return;
+  }
+
+  window.setTimeout(callback, 260);
+};
+
+const initHeroBackgroundMesh = () => {
+  if (!(heroSection instanceof HTMLElement)) {
+    return;
+  }
+
+  const heroBackground = heroSection.querySelector(".hero-background");
+  if (
+    !(heroBackground instanceof HTMLElement) ||
+    heroBackground.dataset.heroMeshReady === "true" ||
+    heroBackground.dataset.heroMeshInitializing === "true"
+  ) {
+    return;
+  }
+
+  if (!window.THREE || !window.noise || !window.TweenMax) {
+    return;
+  }
+
+  heroBackground.dataset.heroMeshInitializing = "true";
+
+  const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const scrollMarker = heroSection.querySelector(".scroll-marker");
+  const canvas = document.createElement("canvas");
+  canvas.className = "hero-background-canvas";
+  canvas.setAttribute("aria-hidden", "true");
+  heroBackground.appendChild(canvas);
+
+  let qualityProfile = getHeroBackgroundMeshQualityProfile();
+  let renderer;
+
+  try {
+    renderer = new window.THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: qualityProfile.antialias,
+      powerPreference: "low-power",
+    });
+  } catch (error) {
+    canvas.remove();
+    delete heroBackground.dataset.heroMeshInitializing;
+    heroBackground.dataset.heroMeshReady = "false";
+    return;
+  }
+
+  heroBackground.dataset.heroMeshReady = "true";
+  delete heroBackground.dataset.heroMeshInitializing;
+
+  let width = Math.max(heroBackground.clientWidth, 1);
+  let height = Math.max(heroBackground.clientHeight, 1);
+  renderer.setPixelRatio(qualityProfile.pixelRatio);
+  renderer.setSize(width, height, false);
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new window.THREE.Scene();
+  const camera = new window.THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+  camera.position.set(0, 0, 350);
+
+  const sphere = new window.THREE.Group();
+  sphere.scale.setScalar(6);
+  scene.add(sphere);
+
+  const baseLineColor = new window.THREE.Color(0x171717);
+  const highlightLineColor = new window.THREE.Color(0x787878);
+  const material = new window.THREE.LineBasicMaterial({
+    color: 0xffffff,
+    vertexColors: window.THREE.VertexColors,
+  });
+  const projectedVertex = new window.THREE.Vector3();
+  const interactionState = {
+    pointerActive: false,
+    pointerX: window.innerWidth * 0.5,
+    pointerY: window.innerHeight * 0.5,
+    highlightFocus: 0,
+    colorsHighlighted: false,
+  };
+  const layoutState = {
+    markerMetricsDirty: true,
+    canvasLeft: 0,
+    canvasTop: 0,
+    canvasWidth: 0,
+    canvasHeight: 0,
+    markerCenterX: 0,
+    markerCenterY: 0,
+    markerInfluenceRadius: 220,
+    vertexInfluenceRadius: 220,
+    markerMetricsValid: false,
+  };
+
+  const { linesAmount, verticesAmount } = qualityProfile;
+  const radius = 100;
+
+  for (let lineIndex = 0; lineIndex < linesAmount; lineIndex += 1) {
+    const geometry = new window.THREE.Geometry();
+    geometry.y = (lineIndex / linesAmount) * radius * 2;
+
+    for (let vertexIndex = 0; vertexIndex <= verticesAmount; vertexIndex += 1) {
+      const vector = new window.THREE.Vector3();
+      vector.x = Math.cos((vertexIndex / verticesAmount) * Math.PI * 2);
+      vector.z = Math.sin((vertexIndex / verticesAmount) * Math.PI * 2);
+      vector._o = vector.clone();
+      geometry.vertices.push(vector);
+      geometry.colors.push(baseLineColor.clone());
+    }
+
+    const line = new window.THREE.Line(geometry, material);
+    sphere.add(line);
+  }
+
+  const resetLineColors = () => {
+    if (!interactionState.colorsHighlighted) {
+      return;
+    }
+
+    for (let lineIndex = 0; lineIndex < sphere.children.length; lineIndex += 1) {
+      const line = sphere.children[lineIndex];
+
+      for (let vertexIndex = 0; vertexIndex <= verticesAmount; vertexIndex += 1) {
+        line.geometry.colors[vertexIndex].copy(baseLineColor);
+      }
+
+      line.geometry.colorsNeedUpdate = true;
+    }
+
+    interactionState.colorsHighlighted = false;
+  };
+
+  const syncMarkerMetrics = () => {
+    if (!layoutState.markerMetricsDirty) {
+      return layoutState.markerMetricsValid;
+    }
+
+    layoutState.markerMetricsDirty = false;
+
+    if (!(scrollMarker instanceof HTMLElement)) {
+      layoutState.markerMetricsValid = false;
+      return false;
+    }
+
+    const markerRect = scrollMarker.getBoundingClientRect();
+    const canvasRect = canvas.getBoundingClientRect();
+
+    if (markerRect.width <= 0 || markerRect.height <= 0 || canvasRect.width <= 0 || canvasRect.height <= 0) {
+      layoutState.markerMetricsValid = false;
+      return false;
+    }
+
+    layoutState.canvasLeft = canvasRect.left;
+    layoutState.canvasTop = canvasRect.top;
+    layoutState.canvasWidth = canvasRect.width;
+    layoutState.canvasHeight = canvasRect.height;
+    layoutState.markerCenterX = markerRect.left + markerRect.width / 2;
+    layoutState.markerCenterY = markerRect.top + markerRect.height / 2;
+    layoutState.markerInfluenceRadius = Math.max(markerRect.width * 3.75, 220);
+    layoutState.vertexInfluenceRadius = Math.max(markerRect.width * 3.2, 220);
+    layoutState.markerMetricsValid = true;
+    return true;
+  };
+
+  const markMarkerMetricsDirty = () => {
+    layoutState.markerMetricsDirty = true;
+  };
+
+  const updateVertices = (time) => {
+    for (let lineIndex = 0; lineIndex < sphere.children.length; lineIndex += 1) {
+      const line = sphere.children[lineIndex];
+      line.geometry.y += 0.15;
+
+      if (line.geometry.y > radius * 2) {
+        line.geometry.y = 0;
+      }
+
+      const radiusHeight = Math.sqrt(line.geometry.y * (2 * radius - line.geometry.y));
+
+      for (let vertexIndex = 0; vertexIndex <= verticesAmount; vertexIndex += 1) {
+        const vector = line.geometry.vertices[vertexIndex];
+        const ratio =
+          window.noise.simplex3(vector.x * 0.009, vector.z * 0.009 + time * 0.0003, line.geometry.y * 0.009) * 15;
+
+        vector.copy(vector._o);
+        vector.multiplyScalar(radiusHeight + ratio);
+        vector.y = line.geometry.y - radius;
+      }
+
+      line.geometry.verticesNeedUpdate = true;
+    }
+  };
+
+  const updateLineColors = () => {
+    if (!syncMarkerMetrics()) {
+      resetLineColors();
+      return;
+    }
+
+    const targetFocus = interactionState.pointerActive
+      ? clamp(
+          1 -
+            Math.hypot(
+              interactionState.pointerX - layoutState.markerCenterX,
+              interactionState.pointerY - layoutState.markerCenterY
+            ) /
+              layoutState.markerInfluenceRadius,
+          0,
+          1
+        )
+      : 0;
+
+    interactionState.highlightFocus += (targetFocus - interactionState.highlightFocus) * 0.14;
+
+    if (interactionState.highlightFocus < 0.015) {
+      resetLineColors();
+      return;
+    }
+
+    scene.updateMatrixWorld(true);
+    interactionState.colorsHighlighted = true;
+
+    for (let lineIndex = 0; lineIndex < sphere.children.length; lineIndex += 1) {
+      const line = sphere.children[lineIndex];
+
+      for (let vertexIndex = 0; vertexIndex <= verticesAmount; vertexIndex += 1) {
+        const vector = line.geometry.vertices[vertexIndex];
+        projectedVertex.copy(vector);
+        projectedVertex.applyMatrix4(line.matrixWorld);
+        projectedVertex.project(camera);
+
+        const screenX = layoutState.canvasLeft + (projectedVertex.x * 0.5 + 0.5) * layoutState.canvasWidth;
+        const screenY = layoutState.canvasTop + (-projectedVertex.y * 0.5 + 0.5) * layoutState.canvasHeight;
+        const pointerDistance = Math.hypot(screenX - interactionState.pointerX, screenY - interactionState.pointerY);
+        const localFocus = clamp(1 - pointerDistance / layoutState.vertexInfluenceRadius, 0, 1);
+        const intensity = clamp(interactionState.highlightFocus * Math.pow(localFocus, 0.72), 0, 1);
+
+        line.geometry.colors[vertexIndex].copy(baseLineColor).lerp(highlightLineColor, intensity);
+      }
+
+      line.geometry.colorsNeedUpdate = true;
+    }
+  };
+
+  let heroInView = true;
+  let frameId = 0;
+  let lastFrameTime = 0;
+  let resizeTimeoutId = 0;
+
+  const drawFrame = (time = 0) => {
+    updateVertices(time);
+    updateLineColors();
+    renderer.render(scene, camera);
+  };
+
+  const shouldAnimate = () => !reducedMotionQuery.matches && heroInView && !document.hidden;
+
+  const render = (time) => {
+    frameId = 0;
+
+    if (!shouldAnimate()) {
+      return;
+    }
+
+    if (time - lastFrameTime >= qualityProfile.frameIntervalMs) {
+      lastFrameTime = time;
+      drawFrame(time);
+    }
+
+    frameId = window.requestAnimationFrame(render);
+  };
+
+  const startRendering = () => {
+    if (reducedMotionQuery.matches) {
+      drawFrame(0);
+      return;
+    }
+
+    if (!shouldAnimate() || frameId) {
+      return;
+    }
+
+    lastFrameTime = 0;
+    frameId = window.requestAnimationFrame(render);
+  };
+
+  const stopRendering = () => {
+    if (!frameId) {
+      return;
+    }
+
+    window.cancelAnimationFrame(frameId);
+    frameId = 0;
+  };
+
+  const applyRendererSize = () => {
+    qualityProfile = getHeroBackgroundMeshQualityProfile();
+    width = Math.max(heroBackground.clientWidth, 1);
+    height = Math.max(heroBackground.clientHeight, 1);
+    renderer.setPixelRatio(qualityProfile.pixelRatio);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height, false);
+    markMarkerMetricsDirty();
+
+    if (reducedMotionQuery.matches) {
+      drawFrame(0);
+    }
+  };
+
+  const queueResizeSync = () => {
+    window.clearTimeout(resizeTimeoutId);
+    resizeTimeoutId = window.setTimeout(applyRendererSize, 140);
+  };
+
+  const onPointerMove = (event) => {
+    if (reducedMotionQuery.matches || event.pointerType === "touch") {
+      return;
+    }
+
+    interactionState.pointerActive = true;
+    interactionState.pointerX = event.clientX;
+    interactionState.pointerY = event.clientY;
+    window.TweenMax.to(sphere.rotation, 1.6, {
+      x: event.clientY / window.innerHeight,
+      ease: window.Power1.easeOut,
+      overwrite: "auto",
+    });
+  };
+
+  const onPointerLeave = () => {
+    interactionState.pointerActive = false;
+  };
+
+  const syncMotionPreference = () => {
+    stopRendering();
+    startRendering();
+  };
+
+  heroSection.addEventListener("pointermove", onPointerMove, { passive: true });
+  heroSection.addEventListener("pointerleave", onPointerLeave);
+  window.addEventListener("resize", queueResizeSync);
+  window.addEventListener("scroll", markMarkerMetricsDirty, { passive: true });
+  document.addEventListener("visibilitychange", syncMotionPreference);
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        heroInView = entries.some((entry) => entry.isIntersecting);
+
+        if (heroInView) {
+          startRendering();
+          return;
+        }
+
+        stopRendering();
+      },
+      {
+        threshold: 0.08,
+      }
+    );
+
+    observer.observe(heroSection);
+  }
+
+  if (typeof reducedMotionQuery.addEventListener === "function") {
+    reducedMotionQuery.addEventListener("change", syncMotionPreference);
+  } else if (typeof reducedMotionQuery.addListener === "function") {
+    reducedMotionQuery.addListener(syncMotionPreference);
+  }
+
+  startRendering();
+};
+
+const scheduleHeroBackgroundMeshInit = () => {
+  if (!(heroSection instanceof HTMLElement) || heroSection.dataset.heroMeshScheduled === "true") {
+    return;
+  }
+
+  heroSection.dataset.heroMeshScheduled = "true";
+
+  let pageLoaded = document.readyState === "complete";
+  let heroRelevant = !("IntersectionObserver" in window);
+  let initializationQueued = false;
+
+  const maybeQueueInitialization = () => {
+    if (initializationQueued || !pageLoaded || !heroRelevant) {
+      return;
+    }
+
+    initializationQueued = true;
+    runWhenBrowserIsIdle(() => {
+      window.requestAnimationFrame(() => {
+        initHeroBackgroundMesh();
+      });
+    });
+  };
+
+  if (!pageLoaded) {
+    window.addEventListener(
+      "load",
+      () => {
+        pageLoaded = true;
+        maybeQueueInitialization();
+      },
+      { once: true }
+    );
+  }
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) {
+          return;
+        }
+
+        heroRelevant = true;
+        observer.disconnect();
+        maybeQueueInitialization();
+      },
+      {
+        threshold: 0.01,
+      }
+    );
+
+    observer.observe(heroSection);
+  }
+
+  heroSection.addEventListener(
+    "pointerenter",
+    () => {
+      heroRelevant = true;
+      maybeQueueInitialization();
+    },
+    { once: true, passive: true }
+  );
+
+  maybeQueueInitialization();
 };
 
 const getCookieConsentValue = () => {
@@ -356,14 +876,20 @@ const syncHeaderVisibility = () => {
   const scrollDelta = currentScrollY - lastScrollY;
   const nearTop = currentScrollY <= headerRevealOffset;
   const menuOpen = body.classList.contains("menu-open");
+  const heroBottom =
+    body.classList.contains("home-page") && heroSection instanceof HTMLElement
+      ? heroSection.offsetTop + heroSection.offsetHeight
+      : 0;
+  const isWithinHero = body.classList.contains("home-page") && currentScrollY < heroBottom - headerRevealOffset;
 
-  if (nearTop || menuOpen) {
+  if (nearTop || menuOpen || isWithinHero) {
     siteHeader.classList.remove("site-header-hidden");
   } else if (Math.abs(scrollDelta) >= headerScrollTolerance) {
     siteHeader.classList.toggle("site-header-hidden", scrollDelta > 0);
   }
 
   syncHeaderStateClass();
+  syncHomeHeaderWidth();
   lastScrollY = currentScrollY;
   headerTicking = false;
 };
@@ -434,6 +960,8 @@ document.addEventListener("keydown", (event) => {
 window.addEventListener("scroll", requestHeaderSync, { passive: true });
 window.addEventListener("scroll", syncScrollToTopButton, { passive: true });
 window.addEventListener("resize", requestHeaderSync);
+initHeaderNavIntro();
+scheduleHeroBackgroundMeshInit();
 syncHeaderVisibility();
 syncScrollToTopButton();
 initCookieConsentBar();
@@ -2333,6 +2861,7 @@ const initRiveCanvases = () => {
     }
 
     canvas.dataset.riveInitialized = "true";
+    canvas.dataset.riveReady = "false";
 
     let riveInstance;
     const markReady = () => {
@@ -2362,8 +2891,19 @@ const initRiveCanvases = () => {
       options.stateMachines = stateMachines;
     }
 
-    riveInstance = new window.rive.Rive(options);
-    riveCanvasInstances.set(canvas, riveInstance);
+    const initializeRiveCanvas = () => {
+      riveInstance = new window.rive.Rive(options);
+      riveCanvasInstances.set(canvas, riveInstance);
+    };
+
+    const loadDelay = Number.parseInt(canvas.dataset.riveLoadDelay ?? "0", 10);
+
+    if (Number.isFinite(loadDelay) && loadDelay > 0) {
+      window.setTimeout(initializeRiveCanvas, loadDelay);
+      return;
+    }
+
+    initializeRiveCanvas();
   });
 };
 
