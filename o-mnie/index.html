@@ -20,7 +20,7 @@
     />
     <meta property="og:url" content="https://woszkowski.pl/o-mnie/" />
     <meta property="og:site_name" content="Marcel Woszkowski" />
-    <meta property="og:image" content="https://woszkowski.pl/assets/images/about-photo.jpg" />
+    <meta property="og:image" content="https://woszkowski.pl/assets/images/DSC06787.jpg" />
     <meta property="og:image:alt" content="Marcel Woszkowski - projektant UI/UX" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="O mnie | Marcel Woszkowski, projektant UI/UX" />
@@ -28,7 +28,7 @@
       name="twitter:description"
       content="Poznaj doswiadczenie Marcela Woszkowskiego, projektanta UI/UX i product designera tworzacego aplikacje webowe, mobilne oraz design systemy."
     />
-    <meta name="twitter:image" content="https://woszkowski.pl/assets/images/about-photo.jpg" />
+    <meta name="twitter:image" content="https://woszkowski.pl/assets/images/DSC06787.jpg" />
     <meta name="twitter:image:alt" content="Marcel Woszkowski - projektant UI/UX" />
     <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
     <link rel="icon" href="../assets/images/favicon.png" type="image/png" />
@@ -38,7 +38,7 @@
     <link rel="preload" href="../assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="../assets/images/about-photo.jpg" as="image" type="image/jpeg" fetchpriority="high" />
+    <link rel="preload" href="../assets/images/DSC06787.jpg" as="image" type="image/jpeg" fetchpriority="high" />
     <link rel="stylesheet" href="../styles/main.css?v=20260315-01" />
     <script type="application/ld+json">
       {
@@ -57,7 +57,7 @@
             "@id": "https://woszkowski.pl/#person",
             "name": "Marcel Woszkowski",
             "url": "https://woszkowski.pl/",
-            "image": "https://woszkowski.pl/assets/images/about-photo.jpg",
+            "image": "https://woszkowski.pl/assets/images/DSC06787.jpg",
             "jobTitle": "Projektant UI/UX i Product Designer",
             "description": "Projektant UI/UX z doswiadczeniem w projektowaniu aplikacji webowych, mobilnych i design systemow.",
             "email": "mailto:kontakt@woszkowski.pl",
@@ -89,14 +89,14 @@
 
     <header class="site-header">
       <div class="container header-shell">
-        <a class="brand" href="../" aria-label="Marcel Woszkowski - strona glowna">
-          <span class="brand-text">Marcel Woszkowski</span>
+        <a class="brand" href="../" aria-label="Woszkowski - strona glowna">
+          <span class="brand-text">Woszkowski.</span>
         </a>
 
         <nav class="desktop-nav" aria-label="Główna nawigacja">
           <a class="nav-link" href="../">Home</a>
-          <a class="nav-link is-active" href="./" aria-current="page">O&nbsp;mnie</a>
-          <a class="nav-link" href="../#projects">Portfolio</a>
+          <a class="nav-link is-active" href="../o-mnie/" aria-current="page">O&nbsp;mnie</a>
+          <a class="nav-link" href="../#projects" data-scroll-target="#projects">Portfolio</a>
           <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9" />
@@ -110,10 +110,16 @@
             </svg>
             Dribbble
           </a>
-          <a class="nav-link nav-cta" href="#form" data-scroll-target="#form"><span class="nav-cta-label">Kontakt</span></a>
+          <a class="nav-link nav-cta" href="../#form" data-scroll-target="#form"><span class="nav-cta-label">Kontakt</span></a>
         </nav>
 
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otwórz menu">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Otwórz menu"
+        >
           <span class="menu-toggle-label" data-open-label="Menu" data-close-label="Zamknij">Menu</span>
         </button>
       </div>
@@ -123,22 +129,21 @@
       <div class="mobile-menu-backdrop" data-close-menu="true"></div>
       <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
         <a class="mobile-link" href="../">Home</a>
-        <a class="mobile-link is-active" href="./" aria-current="page">O&nbsp;mnie</a>
-        <a class="mobile-link" href="../#projects">Portfolio</a>
+        <a class="mobile-link is-active" href="../o-mnie/" aria-current="page">O&nbsp;mnie</a>
+        <a class="mobile-link" href="../#projects" data-scroll-target="#projects">Portfolio</a>
         <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
-        <a class="mobile-link" href="#form" data-scroll-target="#form">Kontakt</a>
+        <a class="mobile-link" href="../#form" data-scroll-target="#form">Kontakt</a>
       </nav>
     </div>
-
     <main id="main">
       <section class="about-hero">
         <div class="container about-hero-grid">
           <div class="about-hero-media" data-reveal>
             <img
-              src="../assets/images/about-photo.jpg"
+              src="../assets/images/DSC06787.jpg"
               alt="Marcel Woszkowski - projektant UI/UX"
-              width="1024"
-              height="1536"
+              width="3756"
+              height="5634"
               loading="eager"
               decoding="async"
             />
@@ -158,9 +163,8 @@
 
             <blockquote class="about-quote">
               <p>
-                Na przestrzeni ostatnich lat miałem okazję współpracować z&nbsp;klientami z&nbsp;branż takich jak:
-                <strong>produkcja i&nbsp;utrzymanie ruchu, sport, social networking, usługi, reward systemy, turystyka, transport,
-                gastronomia i&nbsp;taniec.</strong>
+                Na przestrzeni ostatnich lat miałem okazję współpracować z&nbsp;klientami z&nbsp;branż
+                <strong>przemysłu, sportu, social networkingu, usług, reward systemów, transportu, gastronomi i&nbsp;tańca.</strong>
               </p>
             </blockquote>
 

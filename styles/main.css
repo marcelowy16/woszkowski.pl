@@ -762,6 +762,7 @@ body.menu-open .site-header {
 .about-hero-media {
   width: 100%;
   max-width: 398px;
+  aspect-ratio: 2 / 3;
   margin-top: 112px;
   margin-left: 28px;
   overflow: hidden;
@@ -770,7 +771,12 @@ body.menu-open .site-header {
 
 .about-hero-media img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 60% 34%;
+  transform: scale(1.4);
+  transform-origin: 60% 34%;
 }
 
 .about-hero-copy {
