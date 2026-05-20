@@ -4040,6 +4040,32 @@ body.cookie-consent-visible .scroll-to-top {
   margin-top: 0;
 }
 
+.assistant-copy-section .wip-problem-card,
+.assistant-story-section .assistant-problem-card {
+  grid-template-columns: minmax(0, 820px);
+  justify-content: center;
+}
+
+.assistant-copy-item {
+  grid-column: 1;
+}
+
+.assistant-copy-item p,
+.assistant-problem-copy p {
+  text-wrap: pretty;
+}
+
+.assistant-copy-item .wip-card-title,
+.assistant-problem-card .wip-card-title {
+  margin-bottom: 16px;
+  padding-top: 0;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
 .assistant-story-section {
   padding: 50px 0 0;
 }
@@ -4055,6 +4081,10 @@ body.cookie-consent-visible .scroll-to-top {
 
 .assistant-problem-card {
   max-width: none;
+}
+
+.assistant-problem-copy {
+  grid-column: 1;
 }
 
 .assistant-problem-copy p + p {
@@ -5382,6 +5412,425 @@ body.cookie-consent-visible .scroll-to-top {
 
   .subtropica-video-card {
     border-radius: 12px;
+  }
+}
+
+.project-page-kindergarten .kindergarten-hero-shell {
+  gap: 88px;
+}
+
+.kindergarten-hero-showcase {
+  display: grid;
+  gap: 24px;
+}
+
+.project-page-kindergarten .kindergarten-hero-media {
+  padding-top: 0;
+}
+
+.kindergarten-summary-box {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px 32px;
+  padding: 34px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--accent);
+}
+
+.kindergarten-summary-box ::selection {
+  background: #10131b;
+  color: #ffffff;
+}
+
+.kindergarten-summary-intro,
+.kindergarten-summary-facts {
+  grid-column: 1 / -1;
+}
+
+.kindergarten-summary-intro {
+  display: grid;
+  gap: 14px;
+  max-width: 900px;
+  margin-bottom: 8px;
+}
+
+.kindergarten-summary-fact-label {
+  margin: 0;
+  color: rgba(16, 19, 27, 0.62);
+  font-family: "gordita-medium", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.kindergarten-summary-kicker {
+  margin: 0;
+  color: #10131b;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.kindergarten-summary-statement {
+  margin: 0;
+  color: #10131b;
+  font-family: var(--font-heading);
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.kindergarten-summary-item {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.kindergarten-summary-title {
+  margin: 0;
+  color: #10131b;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.kindergarten-summary-text,
+.kindergarten-summary-fact-value {
+  margin: 0;
+  color: #10131b;
+  font-family: "gordita-regular", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.kindergarten-summary-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  padding-top: 34px;
+  border-top: 1px solid rgba(16, 19, 27, 0.16);
+}
+
+.kindergarten-summary-fact {
+  display: grid;
+  gap: 8px;
+}
+
+.kindergarten-summary-fact-value {
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.kindergarten-copy-section,
+.kindergarten-story-section,
+.kindergarten-feature-carousel-section,
+.kindergarten-process-images {
+  background: #ffffff;
+}
+
+.kindergarten-copy-section {
+  padding: 104px 0 0;
+}
+
+.kindergarten-process-images {
+  padding: 40px 0 0;
+}
+
+.kindergarten-process-images-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.project-page-kindergarten .kindergarten-problem-grid {
+  margin-top: 0;
+}
+
+.kindergarten-copy-section .wip-problem-card,
+.kindergarten-story-section .kindergarten-story-card {
+  grid-template-columns: minmax(0, 820px);
+  justify-content: center;
+}
+
+.kindergarten-copy-item,
+.kindergarten-story-copy {
+  grid-column: 1;
+}
+
+.kindergarten-copy-item p,
+.kindergarten-story-copy p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.kindergarten-copy-item p + p,
+.kindergarten-story-copy p + p {
+  margin-top: 20px;
+}
+
+.kindergarten-feature-carousel-section {
+  padding: 32px 0 20px;
+  background: #ffffff;
+}
+
+.kindergarten-feature-carousel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.kindergarten-feature-media-card {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.kindergarten-feature-media-track,
+.kindergarten-feature-copy-track {
+  display: grid;
+  grid-auto-rows: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.kindergarten-feature-media-track::-webkit-scrollbar,
+.kindergarten-feature-copy-track::-webkit-scrollbar {
+  display: none;
+}
+
+.kindergarten-feature-media,
+.kindergarten-feature-copy-item {
+  min-height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.kindergarten-feature-media {
+  margin: 0;
+  aspect-ratio: 1;
+}
+
+.kindergarten-feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.kindergarten-feature-box {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 24px;
+  aspect-ratio: 1;
+  min-height: 0;
+  padding: 34px;
+  border-radius: 24px;
+  background: var(--accent);
+}
+
+.kindergarten-feature-box ::selection {
+  background: #10131b;
+  color: #ffffff;
+}
+
+.kindergarten-feature-box-head {
+  display: grid;
+  gap: 18px;
+}
+
+.kindergarten-feature-count {
+  margin: 0;
+  color: rgba(16, 19, 27, 0.62);
+  font-family: "gordita-medium", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.kindergarten-feature-copy-track {
+  min-height: 0;
+  padding-right: 4px;
+}
+
+.kindergarten-feature-copy-item {
+  display: grid;
+  align-content: center;
+  gap: 14px;
+  padding-bottom: 24px;
+}
+
+.kindergarten-feature-title {
+  margin: 0;
+  color: #10131b;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.kindergarten-feature-copy {
+  margin: 0;
+  color: #10131b;
+  font-family: "gordita-regular", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 38.4px;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+.kindergarten-copy-item .wip-card-title,
+.kindergarten-story-card .wip-card-title {
+  margin-bottom: 16px;
+  padding-top: 0;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.kindergarten-story-section {
+  padding: 50px 0 0;
+}
+
+.kindergarten-story-section-followup {
+  padding-top: 20px;
+}
+
+.kindergarten-story-section-tight {
+  padding-top: 100px;
+}
+
+.kindergarten-story-section-final {
+  padding-top: 100px;
+}
+
+.kindergarten-story-section-result {
+  padding-top: 100px;
+  padding-bottom: 16px;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .kindergarten-summary-box {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kindergarten-summary-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .project-page-kindergarten .kindergarten-hero-shell {
+    gap: 28px;
+  }
+
+  .kindergarten-hero-showcase {
+    gap: 18px;
+  }
+
+  .kindergarten-summary-box {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .kindergarten-summary-intro {
+    margin-bottom: 22px;
+  }
+
+  .kindergarten-summary-statement {
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .kindergarten-summary-title {
+    font-size: 30px;
+    line-height: 1.16;
+  }
+
+  .kindergarten-summary-text,
+  .kindergarten-summary-fact-value {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .kindergarten-summary-facts {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .kindergarten-copy-section {
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+
+  .kindergarten-process-images {
+    padding-top: 32px;
+  }
+
+  .kindergarten-process-images-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kindergarten-feature-carousel-section {
+    padding: 28px 0 20px;
+  }
+
+  .kindergarten-feature-carousel {
+    grid-template-columns: 1fr;
+  }
+
+  .kindergarten-feature-media-card {
+    aspect-ratio: 1;
+  }
+
+  .kindergarten-feature-box {
+    aspect-ratio: auto;
+    min-height: 480px;
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .kindergarten-feature-title {
+    font-size: 30px;
+    line-height: 1.16;
+  }
+
+  .kindergarten-feature-copy {
+    font-size: 24px;
+    line-height: 38.4px;
+  }
+
+  .kindergarten-story-section,
+  .kindergarten-story-section-final,
+  .kindergarten-story-section-result {
+    padding-top: 56px;
+    padding-bottom: 16px;
+  }
+
+  .kindergarten-story-section-tight {
+    padding-top: 56px;
   }
 }
 

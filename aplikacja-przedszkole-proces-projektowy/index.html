@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aplikacja dla przedszkola - case study UI/UX | Marcel Woszkowski</title>
+    <meta
+      name="description"
+      content="Case study UI/UX aplikacji mobilnej ulatwiajacej codzienna komunikacje rodzicow z przedszkolem: analiza potrzeb, architektura informacji, interfejs i prototyp."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Marcel Woszkowski" />
+    <link rel="canonical" href="https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/" />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Aplikacja dla przedszkola - case study UI/UX | Marcel Woszkowski" />
+    <meta
+      property="og:description"
+      content="Case study UI/UX aplikacji mobilnej ulatwiajacej codzienna komunikacje rodzicow z przedszkolem: analiza potrzeb, architektura informacji, interfejs i prototyp."
+    />
+    <meta property="og:url" content="https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/" />
+    <meta property="og:site_name" content="Marcel Woszkowski" />
+    <meta property="og:image" content="https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/hero.png" />
+    <meta property="og:image:alt" content="Aplikacja dla przedszkola - case study UI/UX" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Aplikacja dla przedszkola - case study UI/UX | Marcel Woszkowski" />
+    <meta
+      name="twitter:description"
+      content="Case study UI/UX aplikacji mobilnej ulatwiajacej codzienna komunikacje rodzicow z przedszkolem: analiza potrzeb, architektura informacji, interfejs i prototyp."
+    />
+    <meta name="twitter:image" content="https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/hero.png" />
+    <meta name="twitter:image:alt" content="Aplikacja dla przedszkola - case study UI/UX" />
+    <link rel="icon" href="../assets/images/favicon.ico" sizes="any" />
+    <link rel="icon" href="../assets/images/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+    <link rel="preload" href="../assets/fonts/Gordita-Light.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskBold.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles/main.css?v=20260517-36" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://woszkowski.pl/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Aplikacja dla przedszkola - case study UI/UX",
+                "item": "https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/"
+              }
+            ]
+          },
+          {
+            "@type": "CreativeWork",
+            "@id": "https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/#creativework",
+            "url": "https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/",
+            "name": "Aplikacja dla przedszkola - case study UI/UX",
+            "headline": "Aplikacja ulatwiajaca codzienna komunikacje rodzicow z przedszkolem",
+            "description": "Case study UI/UX aplikacji mobilnej ulatwiajacej codzienna komunikacje rodzicow z przedszkolem: analiza potrzeb, architektura informacji, interfejs i prototyp.",
+            "inLanguage": "pl-PL",
+            "image": "https://woszkowski.pl/aplikacja-przedszkole-proces-projektowy/hero.png",
+            "author": {
+              "@type": "Person",
+              "name": "Marcel Woszkowski",
+              "url": "https://woszkowski.pl/",
+              "jobTitle": "Projektant UI/UX i Product Designer"
+            }
+          }
+        ]
+      }
+    </script>
+    <script defer src="../scripts/main.js?v=20260304-13"></script>
+  </head>
+  <body class="project-page project-page-wip project-page-kindergarten">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="../" aria-label="Woszkowski - strona glowna">
+          <span class="brand-text">Woszkowski.</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Glowna nawigacja">
+          <a class="nav-link" href="../">Home</a>
+          <a class="nav-link" href="../o-mnie/">O&nbsp;mnie</a>
+          <a class="nav-link is-active" href="../#projects" data-scroll-target="#projects" aria-current="page">Portfolio</a>
+          <a class="nav-link nav-link-icon" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9" />
+              <path
+                d="M8.2 6.8c2.8 2.9 4.9 6.2 6.1 10.4M5.7 10.2c4.5-.3 8.6.2 12.3 1.5M10.3 18.4c1.6-3.1 3.9-5.4 7-6.8"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+              />
+            </svg>
+            Dribbble
+          </a>
+          <a class="nav-link nav-cta" href="../#form" data-scroll-target="#form"><span class="nav-cta-label">Kontakt</span></a>
+        </nav>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Otworz menu"
+        >
+          <span class="menu-toggle-label" data-open-label="Menu" data-close-label="Zamknij">Menu</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <div class="mobile-menu-backdrop" data-close-menu="true"></div>
+      <nav class="mobile-menu-panel" aria-label="Mobilna nawigacja">
+        <a class="mobile-link" href="../">Home</a>
+        <a class="mobile-link" href="../o-mnie/">O&nbsp;mnie</a>
+        <a class="mobile-link is-active" href="../#projects" data-scroll-target="#projects" aria-current="page">Portfolio</a>
+        <a class="mobile-link" href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a class="mobile-link" href="../#form" data-scroll-target="#form">Kontakt</a>
+      </nav>
+    </div>
+
+    <main id="main">
+      <section class="wip-hero">
+        <div class="container wip-hero-shell kindergarten-hero-shell">
+          <div class="wip-hero-copy is-visible" data-reveal>
+            <p class="wip-section-kicker">APLIKACJA MOBILNA</p>
+            <h1 class="wip-hero-title">Aplikacja u&#322;atwiaj&#261;ca codzienn&#261; komunikacj&#281; rodzic&#243;w z&nbsp;przedszkolem</h1>
+          </div>
+
+          <div class="kindergarten-hero-showcase">
+            <figure class="wip-hero-media kindergarten-hero-media" data-reveal>
+              <img
+                src="./hero.png"
+                alt="Aplikacja ulatwiajaca codzienna komunikacje rodzicow z przedszkolem"
+                width="1202"
+                height="776"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+
+            <aside class="kindergarten-summary-box" aria-label="Podsumowanie projektu" data-reveal>
+              <div class="kindergarten-summary-intro">
+                <p class="kindergarten-summary-kicker">Project summary</p>
+                <p class="kindergarten-summary-statement">Rozproszone informacje zamienione w&nbsp;jeden mobilny punkt kontaktu.</p>
+              </div>
+
+              <div class="kindergarten-summary-item">
+                <h2 class="kindergarten-summary-title">Problem</h2>
+                <p class="kindergarten-summary-text">
+                  Informacje dla rodzic&#243;w by&#322;y rozproszone mi&#281;dzy rozmowami, wiadomo&#347;ciami, telefonami i&nbsp;og&#322;oszeniami.
+                </p>
+              </div>
+
+              <div class="kindergarten-summary-item">
+                <h2 class="kindergarten-summary-title">Solution</h2>
+                <p class="kindergarten-summary-text">
+                  Zaprojektowanie aplikacji mobilnej zbieraj&#261;cej plan dnia, jad&#322;ospis, komunikaty i&nbsp;kontakt z&nbsp;plac&#243;wk&#261; w&nbsp;jednym miejscu.
+                </p>
+              </div>
+
+              <div class="kindergarten-summary-item">
+                <h2 class="kindergarten-summary-title">Impact</h2>
+                <p class="kindergarten-summary-text">
+                  Szybszy dost&#281;p rodzica do najwa&#380;niejszych informacji oraz bardziej uporz&#261;dkowany kana&#322; komunikacji dla przedszkola.
+                </p>
+              </div>
+
+              <div class="kindergarten-summary-facts">
+                <div class="kindergarten-summary-fact">
+                  <p class="kindergarten-summary-fact-label">Bran&#380;a</p>
+                  <p class="kindergarten-summary-fact-value">Edukacja / opieka nad dzie&#263;mi</p>
+                </div>
+
+                <div class="kindergarten-summary-fact">
+                  <p class="kindergarten-summary-fact-label">Narz&#281;dzia</p>
+                  <p class="kindergarten-summary-fact-value">Figma</p>
+                </div>
+
+                <div class="kindergarten-summary-fact">
+                  <p class="kindergarten-summary-fact-label">Kluczowe czynno&#347;ci</p>
+                  <p class="kindergarten-summary-fact-value">Analiza potrzeb, architektura informacji, UI/UX, prototypowanie</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="wip-copy-section kindergarten-copy-section">
+        <div class="container">
+          <div class="wip-problem-grid kindergarten-problem-grid">
+            <article class="wip-problem-card" data-reveal>
+              <div class="kindergarten-copy-item">
+                <h2 class="wip-card-title">Wprowadzenie</h2>
+                <p>
+                  Przedszkole potrzebowa&#322;o prostszego sposobu komunikacji z&nbsp;rodzicami. Informacje by&#322;y rozproszone
+                  mi&#281;dzy rozmowami, wiadomo&#347;ciami, telefonami i&nbsp;og&#322;oszeniami, dlatego zaprojektowa&#322;em aplikacj&#281;, kt&#243;ra
+                  zbiera je w&nbsp;jednym miejscu.
+                </p>
+                <p>
+                  Aplikacja mia&#322;a by&#263; szybka i&nbsp;lekka, bo rodzic cz&#281;sto korzysta z&nbsp;niej w&nbsp;biegu, mi&#281;dzy codziennymi
+                  obowi&#261;zkami.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-problem-card" data-reveal>
+              <div class="kindergarten-copy-item">
+                <h2 class="wip-card-title">Cel</h2>
+                <p>
+                  Celem by&#322;o stworzenie interfejsu, kt&#243;ry szybko pokazuje dzie&#324; dziecka i&nbsp;u&#322;atwia kontakt z&nbsp;plac&#243;wk&#261;.
+                </p>
+                <p>
+                  Najwa&#380;niejsze by&#322;y: obecno&#347;&#263;, plan dnia, jad&#322;ospis, komunikaty, kontakt z&nbsp;personelem oraz ustawienia
+                  zwi&#261;zane z&nbsp;profilem dziecka i&nbsp;odbiorem.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-problem-card" data-reveal>
+              <div class="kindergarten-copy-item">
+                <h2 class="wip-card-title">Wyzwanie</h2>
+                <p>
+                  Najwi&#281;kszym wyzwaniem by&#322;o u&#322;o&#380;enie wielu funkcji w&nbsp;czyteln&#261; hierarchi&#281;. Aplikacja mia&#322;a obs&#322;u&#380;y&#263;
+                  plan dnia, obecno&#347;&#263;, komunikaty, jad&#322;ospis, kontakt, upowa&#380;nienia i&nbsp;ustawienia, ale bez przeci&#261;&#380;ania
+                  g&#322;&#243;wnych widok&#243;w.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="kindergarten-story-section kindergarten-story-section-tight">
+        <div class="container">
+          <article class="wip-problem-card kindergarten-story-card" data-reveal>
+            <div class="kindergarten-story-copy">
+              <h2 class="wip-card-title">Proces projektowy</h2>
+              <p>
+                Prace rozpocz&#281;&#322;y si&#281; od najcz&#281;stszych scenariuszy rodzica. Na tej podstawie produkt zosta&#322; podzielony na pi&#281;&#263; obszar&#243;w:
+                ekran g&#322;&#243;wny, plan dnia, jad&#322;ospis, powiadomienia i&nbsp;konto.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="kindergarten-feature-carousel-section" aria-label="Kluczowe ekrany aplikacji">
+        <div class="container kindergarten-feature-carousel">
+          <div class="kindergarten-feature-media-card" data-reveal>
+            <div class="kindergarten-feature-media-track" aria-label="Ekrany aplikacji">
+              <figure class="wip-image-card kindergarten-feature-media" id="kindergarten-screen-home">
+                <img
+                  src="./img3.png"
+                  alt="Ekran glowny aplikacji dla rodzicow dzieci przedszkolnych"
+                  width="1000"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+
+              <figure class="wip-image-card kindergarten-feature-media" id="kindergarten-screen-plan">
+                <img
+                  src="./img4.png"
+                  alt="Widok planu dnia w aplikacji dla rodzicow"
+                  width="1000"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+
+              <figure class="wip-image-card kindergarten-feature-media" id="kindergarten-screen-menu">
+                <img
+                  src="./img5.png"
+                  alt="Widok jadlospisu w aplikacji dla rodzicow"
+                  width="1000"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+
+              <figure class="wip-image-card kindergarten-feature-media" id="kindergarten-screen-notifications">
+                <img
+                  src="./img6.png"
+                  alt="Widok powiadomien w aplikacji dla rodzicow"
+                  width="1000"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </div>
+
+          <div class="kindergarten-feature-box" data-reveal>
+            <div class="kindergarten-feature-box-head">
+              <p class="kindergarten-feature-count">01-04</p>
+            </div>
+
+            <div class="kindergarten-feature-copy-track" tabindex="0">
+              <article class="kindergarten-feature-copy-item" id="kindergarten-feature-copy-home">
+                <h3 class="kindergarten-feature-title">Ekran g&#322;&#243;wny jako skr&#243;t dnia</h3>
+                <p class="kindergarten-feature-copy">
+                  Obecno&#347;&#263;, aktualny etap dnia, kolejne aktywno&#347;ci i&nbsp;podgl&#261;d jad&#322;ospisu zosta&#322;y zebrane w&nbsp;jednym widoku.
+                  Szczeg&#243;&#322;y trafi&#322;y na osobne ekrany, dzi&#281;ki czemu ekran g&#322;&#243;wny pozosta&#322; prosty.
+                </p>
+              </article>
+
+              <article class="kindergarten-feature-copy-item" id="kindergarten-feature-copy-plan">
+                <h3 class="kindergarten-feature-title">Plan dnia oparty na osi czasu</h3>
+                <p class="kindergarten-feature-copy">
+                  Harmonogram zosta&#322; pokazany jako sekwencja wydarze&#324; w&nbsp;czasie. Rodzic szybciej widzi, co dzieje si&#281; teraz,
+                  co ju&#380; min&#281;&#322;o i&nbsp;co pojawi si&#281; w&nbsp;kolejnych godzinach.
+                </p>
+              </article>
+
+              <article class="kindergarten-feature-copy-item" id="kindergarten-feature-copy-menu">
+                <h3 class="kindergarten-feature-title">Jad&#322;ospis z decyzjami rodzica</h3>
+                <p class="kindergarten-feature-copy">
+                  Posi&#322;ki zosta&#322;y zebrane w&nbsp;czytelnych kartach z&nbsp;godzin&#261;, opisem i&nbsp;oznaczeniem alergen&#243;w.
+                  Warianty posi&#322;k&#243;w s&#261; widoczne przy konkretnym daniu, bez przenoszenia decyzji do osobnego procesu.
+                </p>
+              </article>
+
+              <article class="kindergarten-feature-copy-item" id="kindergarten-feature-copy-notifications">
+                <h3 class="kindergarten-feature-title">Powiadomienia oddzielone od planu dnia</h3>
+                <p class="kindergarten-feature-copy">
+                  Komunikaty otrzyma&#322;y osobny widok, aby wa&#380;ne informacje nie miesza&#322;y si&#281; z&nbsp;codziennym harmonogramem.
+                  Lista pokazuje typ wiadomo&#347;ci, tytu&#322; i&nbsp;dat&#281;, co u&#322;atwia szybkie wy&#322;apanie nowych spraw.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="kindergarten-story-section kindergarten-story-section-followup">
+        <div class="container">
+          <article class="wip-problem-card kindergarten-story-card" data-reveal>
+            <div class="kindergarten-story-copy">
+              <p>
+                Dodatkowe akcje, takie jak zmiana dziecka, wyb&#243;r dnia, szczeg&#243;&#322;y powiadomienia czy wys&#322;anie uwagi,
+                zosta&#322;y umieszczone w&nbsp;ekranach pomocniczych i&nbsp;nak&#322;adkach.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="kindergarten-story-section">
+        <div class="container">
+          <article class="wip-problem-card kindergarten-story-card" data-reveal>
+            <div class="kindergarten-story-copy">
+              <h2 class="wip-card-title">Za&#322;o&#380;enia</h2>
+              <p>
+                Najwa&#380;niejsze informacje mia&#322;y by&#263; widoczne od razu, a&nbsp;g&#322;&#243;wne akcje wygodne na telefonie. Interfejs
+                musia&#322; wspiera&#263; szybkie decyzje rodzica, kontakt z&nbsp;plac&#243;wk&#261;, obs&#322;ug&#281; wi&#281;cej ni&#380; jednego dziecka oraz
+                r&#243;&#380;ne wersje j&#281;zykowe.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="kindergarten-story-section kindergarten-story-section-final">
+        <div class="container">
+          <article class="wip-problem-card kindergarten-story-card" data-reveal>
+            <div class="kindergarten-story-copy">
+              <h2 class="wip-card-title">Finalny projekt</h2>
+              <p>
+                Finalny interfejs jest lekki i&nbsp;przyjazny. Neutralne t&#322;o zestawi&#322;em z&nbsp;kolorami sekcji, aby aplikacja by&#322;a
+                sp&#243;jna, ale nadal &#322;atwa do rozpoznania.
+              </p>
+              <p>
+                Ekran g&#322;&#243;wny pokazuje kart&#281; dziecka, status obecno&#347;ci, aktualny etap dnia, kolejne aktywno&#347;ci i&nbsp;skr&#243;t
+                jad&#322;ospisu. Nie pokazuje wszystkiego naraz, tylko dobrze streszcza dzie&#324;.
+              </p>
+              <p>
+                Plan dnia opiera si&#281; na osi czasu, a&nbsp;jad&#322;ospis pokazuje posi&#322;ki w&nbsp;czytelnych kartach. Gdy potrzebna jest
+                decyzja rodzica, aplikacja pokazuje termin wyboru i&nbsp;wariant domy&#347;lny.
+              </p>
+              <p>
+                Zaprojektowa&#322;em te&#380; logowanie z&nbsp;wyborem j&#281;zyka, prze&#322;&#261;czanie mi&#281;dzy dzie&#263;mi, kontakty do personelu,
+                powiadomienia i&nbsp;formularz kr&#243;tkiej uwagi do wychowawcy.
+              </p>
+              <p>
+                Sekcja konta porz&#261;dkuje profil dziecka, obecno&#347;ci, odbi&#243;r, upowa&#380;nienia, wiadomo&#347;ci i&nbsp;ustawienia.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="kindergarten-story-section kindergarten-story-section-result">
+        <div class="container">
+          <article class="wip-problem-card kindergarten-story-card" data-reveal>
+            <div class="kindergarten-story-copy">
+              <h2 class="wip-card-title">Efekt</h2>
+              <p>
+                Efektem by&#322; kompletny projekt aplikacji mobilnej, gotowy do prototypowania, test&#243;w i&nbsp;dalszego rozwoju.
+                Rozwi&#261;zanie pomaga rodzicom szybko odnale&#378;&#263; najwa&#380;niejsze informacje, a&nbsp;plac&#243;wce porz&#261;dkuje komunikacj&#281;.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact section-frame">
+        <div class="contact-panel" id="form">
+          <div class="container contact-grid">
+            <div class="contact-copy" data-reveal>
+              <p class="contact-title">Skontaktuj si&#281; ze mn&#261; <span class="contact-wave" aria-hidden="true">&#128075;</span></p>
+              <p class="contact-intro">
+                Opisz kr&#243;tko sw&#243;j pomys&#322;, a&nbsp;wr&#243;c&#281; z&nbsp;odpowiedzi&#261;.
+              </p>
+            </div>
+
+            <form class="contact-form" action="https://formspree.io/f/mqeypowo" method="POST" novalidate data-static-form data-reveal>
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    inputmode="email"
+                    autocomplete="email"
+                    required
+                    aria-describedby="contact-email-error"
+                  />
+                  <label for="contact-email">E-mail</label>
+                </div>
+                <p class="field-error" id="contact-email-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    name="phone"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    required
+                    maxlength="11"
+                    aria-describedby="contact-phone-error"
+                  />
+                  <label for="contact-phone">Numer telefonu</label>
+                </div>
+                <p class="field-error" id="contact-phone-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    autocomplete="name"
+                    required
+                    aria-describedby="contact-name-error"
+                  />
+                  <label for="contact-name">Nazwa</label>
+                </div>
+                <p class="field-error" id="contact-name-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field>
+                <div class="field-control">
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="7"
+                    required
+                    aria-describedby="contact-message-error"
+                  ></textarea>
+                  <label for="contact-message">Wiadomo&#347;&#263;</label>
+                </div>
+                <p class="field-error" id="contact-message-error" aria-live="polite"></p>
+              </div>
+
+              <button class="button button-primary" type="submit" disabled aria-disabled="true">Wy&#347;lij wiadomo&#347;&#263;</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <p class="footer-copy">&copy; 2026 Marcel Woszkowski</p>
+        <a href="https://www.linkedin.com/in/marcel-woszkowski-216641173/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://dribbble.com/mwoszkowski" target="_blank" rel="noreferrer">Dribbble</a>
+        <a href="mailto:kontakt@woszkowski.pl">kontakt@woszkowski.pl</a>
+        <a href="tel:+48508278715">+48 508 278 715</a>
+        <a href="#" data-open-cookie-policy="true">Cookies</a>
+      </div>
+    </footer>
+
+    <a class="back-to-home" href="../" aria-label="Wroc na strone glowna">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M17 12H7M7 12l5-5M7 12l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+
+    <button class="scroll-to-top" type="button" aria-label="Przewin na gore" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 17V7M12 7l-5 5M12 7l5 5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+    <script>
+      (() => {
+        const carousel = document.querySelector(".kindergarten-feature-carousel");
+        if (!carousel) return;
+
+        const mediaTrack = carousel.querySelector(".kindergarten-feature-media-track");
+        const copyTrack = carousel.querySelector(".kindergarten-feature-copy-track");
+        const copyItems = [...carousel.querySelectorAll(".kindergarten-feature-copy-item")];
+        let isSyncing = false;
+
+        const getMaxScroll = (element) => Math.max(element.scrollHeight - element.clientHeight, 0);
+
+        const setSyncedScroll = (source, ratio) => {
+          const mediaTop = ratio * getMaxScroll(mediaTrack);
+          const copyTop = ratio * getMaxScroll(copyTrack);
+
+          isSyncing = true;
+          if (source !== mediaTrack) {
+            mediaTrack.scrollTop = mediaTop;
+          }
+          if (source !== copyTrack) {
+            copyTrack.scrollTop = copyTop;
+          }
+          window.requestAnimationFrame(() => {
+            isSyncing = false;
+          });
+        };
+
+        const syncFromTrack = (source) => {
+          const maxScroll = getMaxScroll(source);
+          const ratio = maxScroll > 0 ? source.scrollTop / maxScroll : 0;
+          setSyncedScroll(source, ratio);
+        };
+
+        [mediaTrack, copyTrack].forEach((track) => {
+          track.addEventListener(
+            "wheel",
+            (event) => {
+              event.preventDefault();
+              const nextTop = Math.min(Math.max(track.scrollTop + event.deltaY, 0), getMaxScroll(track));
+              track.scrollTop = nextTop;
+              syncFromTrack(track);
+            },
+            { passive: false }
+          );
+        });
+
+        carousel.querySelector(".kindergarten-feature-box")?.addEventListener(
+          "wheel",
+          (event) => {
+            if (event.target.closest(".kindergarten-feature-copy-track")) return;
+            event.preventDefault();
+            const nextTop = Math.min(Math.max(copyTrack.scrollTop + event.deltaY, 0), getMaxScroll(copyTrack));
+            copyTrack.scrollTop = nextTop;
+            syncFromTrack(copyTrack);
+          },
+          { passive: false }
+        );
+
+        let frame = 0;
+        let mediaFrame = 0;
+        copyTrack.addEventListener("scroll", () => {
+          if (isSyncing) return;
+          window.cancelAnimationFrame(frame);
+          frame = window.requestAnimationFrame(() => {
+            syncFromTrack(copyTrack);
+          });
+        });
+
+        mediaTrack.addEventListener("scroll", () => {
+          if (isSyncing) return;
+          window.cancelAnimationFrame(mediaFrame);
+          mediaFrame = window.requestAnimationFrame(() => {
+            syncFromTrack(mediaTrack);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
