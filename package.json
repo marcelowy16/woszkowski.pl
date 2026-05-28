@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "remotion:studio": "remotion studio src/index.ts",
+    "remotion:render": "remotion render src/index.ts LogoReveal out/tutela-logo-reveal.mp4 --codec=h264 --concurrency=2 --timeout=120000",
+    "remotion:still": "remotion still src/index.ts LogoReveal out/tutela-logo-reveal-frame.png --frame=54 --scale=0.25",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +20,16 @@
   "bugs": {
     "url": "https://github.com/marcelowy16/woszkowski.pl/issues"
   },
-  "homepage": "https://github.com/marcelowy16/woszkowski.pl#readme"
+  "homepage": "https://github.com/marcelowy16/woszkowski.pl#readme",
+  "dependencies": {
+    "@remotion/cli": "^4.0.464",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "remotion": "^4.0.464"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "typescript": "^5.9.2"
+  }
 }

@@ -471,11 +471,16 @@ body.menu-open .site-header {
 }
 
 .hero-background {
+  --hero-fractal-image: url("../assets/images/hero-fractal-shell.png?v=20260528-shell2");
+  --hero-glass-base-position-x: 100%;
+  --hero-glass-base-position-y: 50%;
+  --hero-glass-panel-position-x: 100%;
+  --hero-glass-panel-position-y: 50%;
   position: absolute;
   inset: 0;
   overflow: hidden;
   isolation: isolate;
-  background: var(--bg);
+  background: #000;
 }
 
 .hero-background::before,
@@ -483,28 +488,77 @@ body.menu-open .site-header {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 3;
   pointer-events: none;
 }
 
 .hero-background::before {
-  background: none;
-  opacity: 0;
+  background:
+    radial-gradient(ellipse at 26% 50%, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.5) 34%, transparent 63%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.18) 44%, rgba(0, 0, 0, 0.04) 72%, rgba(0, 0, 0, 0.32) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, transparent 48%, rgba(0, 0, 0, 0.35) 100%);
 }
 
 .hero-background::after {
-  background: none;
-  opacity: 0;
+  z-index: 4;
+  background:
+    radial-gradient(ellipse at 64% 45%, rgba(230, 255, 0, 0.12), transparent 30%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.18), transparent 52%, rgba(255, 255, 255, 0.035) 70%, transparent 100%);
+  mix-blend-mode: screen;
+  opacity: 0.46;
 }
 
-.hero-background-canvas {
+.hero-fractal-glass-base,
+.hero-fractal-glass-panels {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  opacity: 1;
   transform: translateZ(0);
+}
+
+.hero-fractal-glass-base {
+  z-index: 0;
+  background-image: var(--hero-fractal-image);
+  background-size: cover;
+  background-position: var(--hero-glass-base-position-x) var(--hero-glass-base-position-y);
+  background-repeat: no-repeat;
+  filter: saturate(1.03) contrast(1.04) brightness(0.94);
+}
+
+.hero-fractal-glass-panels {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(33, auto);
+  background-image: var(--hero-fractal-image);
+  background-size: cover;
+  background-position: var(--hero-glass-panel-position-x) var(--hero-glass-panel-position-y);
+  background-repeat: no-repeat;
+  filter: saturate(1.05) contrast(1.07) brightness(1);
+}
+
+.hero-fractal-glass-cell {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  background-image: var(--hero-fractal-image);
+  background-size: 800% 100%;
+  background-position: var(--cell-bg-position) 50%;
+  background-repeat: no-repeat;
+  image-rendering: high-quality;
+}
+
+.hero-fractal-glass-cell::after {
+  content: "";
+  position: absolute;
+  left: 70%;
+  width: 35%;
+  height: 100%;
+  background-image: var(--hero-fractal-image);
+  background-size: 1400% 100%;
+  background-position: var(--cell-reflection-position) 50%;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+  image-rendering: high-quality;
 }
 
 .hero-grid {
@@ -2263,31 +2317,43 @@ body.cookie-consent-visible .scroll-to-top {
   }
 
   .hero-background {
-    background: var(--bg);
+    background: #000;
   }
 
   .hero-background::before {
-    background: none;
+    background:
+      radial-gradient(ellipse at 46% 34%, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.28) 39%, transparent 68%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.36) 0%, rgba(0, 0, 0, 0.08) 42%, rgba(0, 0, 0, 0.5) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.12) 48%, rgba(0, 0, 0, 0.34) 100%);
   }
 
   .hero-background::after {
-    background: none;
+    opacity: 0.32;
   }
 
-  .hero-background-canvas {
-    opacity: 1;
+  .hero-fractal-glass-base {
+    background-position: center;
+  }
+
+  .hero-fractal-glass-panels {
+    grid-template-columns: repeat(33, minmax(0, 1fr));
   }
 
   .hero-grid {
     width: min(calc(100% - 32px), var(--container));
-    padding: 120px 0 70px;
+    padding: calc(var(--header-height) + 64px) 0 70px;
     gap: 24px;
+    transform: none;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.65rem, 13.6vw, 3.9rem);
+    font-size: clamp(2.45rem, 12vw, 3.25rem);
     line-height: 1.08;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+  }
+
+  .hero-copy-accent {
+    display: block;
   }
 
   .about-kicker {
@@ -5592,9 +5658,14 @@ body.cookie-consent-visible .scroll-to-top {
 }
 
 .kindergarten-feature-media-card {
+  display: grid;
+  position: relative;
+  justify-items: center;
   aspect-ratio: 1;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 16px;
+  background: #f1f1f1;
+  cursor: pointer;
 }
 
 .kindergarten-feature-media-track,
@@ -5607,6 +5678,21 @@ body.cookie-consent-visible .scroll-to-top {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
   scrollbar-width: none;
+}
+
+.kindergarten-feature-media-track {
+  width: min(48%, 320px);
+  overflow-x: hidden;
+}
+
+.kindergarten-feature-media-track .kindergarten-feature-media {
+  display: flex;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: auto;
+  justify-content: center;
+  overflow: visible;
 }
 
 .kindergarten-feature-media-track::-webkit-scrollbar,
@@ -5633,10 +5719,41 @@ body.cookie-consent-visible .scroll-to-top {
   border-radius: 16px;
 }
 
+.kindergarten-feature-media-track .kindergarten-feature-media img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+
+.kindergarten-feature-media .project-hover-cursor {
+  display: none;
+}
+
+.kindergarten-feature-media-card > .project-hover-cursor {
+  z-index: 3;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .kindergarten-feature-media-card,
+  .kindergarten-feature-media-card * {
+    cursor: none;
+  }
+
+  .kindergarten-feature-media-card.is-hovering > .project-hover-cursor {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
 .kindergarten-feature-box {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: 24px;
+  position: relative;
+  grid-template-rows: minmax(0, 1fr);
   aspect-ratio: 1;
   min-height: 0;
   padding: 34px;
@@ -5649,24 +5766,32 @@ body.cookie-consent-visible .scroll-to-top {
   color: #ffffff;
 }
 
-.kindergarten-feature-box-head {
-  display: grid;
-  gap: 18px;
-}
-
-.kindergarten-feature-count {
-  margin: 0;
-  color: rgba(16, 19, 27, 0.62);
-  font-family: "gordita-medium", sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: 0;
-}
-
 .kindergarten-feature-copy-track {
   min-height: 0;
-  padding-right: 4px;
+  padding-left: 28px;
+}
+
+.kindergarten-feature-dots {
+  position: absolute;
+  top: 50%;
+  left: 34px;
+  display: grid;
+  gap: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.kindergarten-feature-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #10131b;
+  opacity: 0.5;
+  transition: opacity 180ms ease;
+}
+
+.kindergarten-feature-dot.is-active {
+  opacity: 1;
 }
 
 .kindergarten-feature-copy-item {
@@ -5714,6 +5839,48 @@ body.cookie-consent-visible .scroll-to-top {
 
 .kindergarten-story-section-followup {
   padding-top: 20px;
+}
+
+.kindergarten-support-screens-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.kindergarten-support-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.kindergarten-support-rive {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: #f1f1f1;
+}
+
+.kindergarten-support-rive:not([data-rive-ready="true"]) {
+  background: #f1f1f1;
+}
+
+.project-page-kindergarten .kindergarten-onboarding-image {
+  position: relative;
+  left: 50%;
+  width: min(calc(100vw - 120px), 1200px);
+  margin: 32px 0;
+  transform: translateX(-50%);
+}
+
+.project-page-kindergarten .kindergarten-onboarding-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
 }
 
 .kindergarten-story-section-tight {
@@ -5793,6 +5960,16 @@ body.cookie-consent-visible .scroll-to-top {
     grid-template-columns: 1fr;
   }
 
+  .kindergarten-support-screens-grid {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+
+  .project-page-kindergarten .kindergarten-onboarding-image {
+    width: min(calc(100vw - 32px), 1200px);
+    margin: 24px 0;
+  }
+
   .kindergarten-feature-carousel-section {
     padding: 28px 0 20px;
   }
@@ -5810,6 +5987,14 @@ body.cookie-consent-visible .scroll-to-top {
     min-height: 480px;
     padding: 22px;
     border-radius: 18px;
+  }
+
+  .kindergarten-feature-copy-track {
+    padding-left: 24px;
+  }
+
+  .kindergarten-feature-dots {
+    left: 22px;
   }
 
   .kindergarten-feature-title {

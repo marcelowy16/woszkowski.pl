@@ -1,2 +1,4 @@
 .tmp/
 test-results/
+node_modules/
+out/

@@ -39,7 +39,7 @@
     <link rel="preload" href="../assets/fonts/GangsterGroteskBold.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="../styles/main.css?v=20260517-36" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260521-02" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -80,7 +80,8 @@
         ]
       }
     </script>
-    <script defer src="../scripts/main.js?v=20260304-13"></script>
+    <script defer src="https://unpkg.com/@rive-app/webgl"></script>
+    <script defer src="../scripts/main.js?v=20260520-01"></script>
   </head>
   <body class="project-page project-page-wip project-page-kindergarten">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -194,7 +195,7 @@
 
                 <div class="kindergarten-summary-fact">
                   <p class="kindergarten-summary-fact-label">Kluczowe czynno&#347;ci</p>
-                  <p class="kindergarten-summary-fact-value">Analiza potrzeb, architektura informacji, UI/UX, prototypowanie</p>
+                  <p class="kindergarten-summary-fact-value">Analiza potrzeb, architektura informacji, UI/UX</p>
                 </div>
               </div>
             </aside>
@@ -210,7 +211,7 @@
                 <h2 class="wip-card-title">Wprowadzenie</h2>
                 <p>
                   Przedszkole potrzebowa&#322;o prostszego sposobu komunikacji z&nbsp;rodzicami. Informacje by&#322;y rozproszone
-                  mi&#281;dzy rozmowami, wiadomo&#347;ciami, telefonami i&nbsp;og&#322;oszeniami, dlatego zaprojektowa&#322;em aplikacj&#281;, kt&#243;ra
+                  mi&#281;dzy rozmowami, wiadomo&#347;ciami, telefonami i&nbsp;og&#322;oszeniami, wi&#281;c potrzebne by&#322;o rozwi&#261;zanie, kt&#243;re
                   zbiera je w&nbsp;jednym miejscu.
                 </p>
                 <p>
@@ -253,8 +254,7 @@
             <div class="kindergarten-story-copy">
               <h2 class="wip-card-title">Proces projektowy</h2>
               <p>
-                Prace rozpocz&#281;&#322;y si&#281; od najcz&#281;stszych scenariuszy rodzica. Na tej podstawie produkt zosta&#322; podzielony na pi&#281;&#263; obszar&#243;w:
-                ekran g&#322;&#243;wny, plan dnia, jad&#322;ospis, powiadomienia i&nbsp;konto.
+                Prace rozpocz&#281;&#322;y si&#281; od najcz&#281;stszych scenariuszy rodzica. Na tej podstawie produkt zosta&#322; podzielony na pi&#281;&#263; obszar&#243;w.
               </p>
             </div>
           </article>
@@ -312,10 +312,6 @@
           </div>
 
           <div class="kindergarten-feature-box" data-reveal>
-            <div class="kindergarten-feature-box-head">
-              <p class="kindergarten-feature-count">01-04</p>
-            </div>
-
             <div class="kindergarten-feature-copy-track" tabindex="0">
               <article class="kindergarten-feature-copy-item" id="kindergarten-feature-copy-home">
                 <h3 class="kindergarten-feature-title">Ekran g&#322;&#243;wny jako skr&#243;t dnia</h3>
@@ -349,6 +345,13 @@
                 </p>
               </article>
             </div>
+
+            <div class="kindergarten-feature-dots" aria-hidden="true">
+              <span class="kindergarten-feature-dot is-active"></span>
+              <span class="kindergarten-feature-dot"></span>
+              <span class="kindergarten-feature-dot"></span>
+              <span class="kindergarten-feature-dot"></span>
+            </div>
           </div>
         </div>
       </section>
@@ -357,10 +360,83 @@
         <div class="container">
           <article class="wip-problem-card kindergarten-story-card" data-reveal>
             <div class="kindergarten-story-copy">
+              <h2 class="wip-card-title">Za&#322;o&#380;enia</h2>
               <p>
-                Dodatkowe akcje, takie jak zmiana dziecka, wyb&#243;r dnia, szczeg&#243;&#322;y powiadomienia czy wys&#322;anie uwagi,
-                zosta&#322;y umieszczone w&nbsp;ekranach pomocniczych i&nbsp;nak&#322;adkach.
+                Ekrany pomocnicze porz&#261;dkuj&#261; akcje, kt&#243;re nie powinny obci&#261;&#380;a&#263; g&#322;&#243;wnego widoku. Trafi&#322;a tu zmiana
+                j&#281;zyka, kontakt z&nbsp;plac&#243;wk&#261;, formularz uwagi i&nbsp;mo&#380;liwo&#347;&#263; prze&#322;&#261;czania si&#281; pomi&#281;dzy profilami dzieci
+                (przydatne, je&#380;eli s&#261; w&nbsp;innych grupach wiekowych).
               </p>
+            </div>
+          </article>
+
+          <div class="kindergarten-support-screens-grid" aria-label="Ekrany pomocnicze aplikacji">
+            <figure class="wip-image-card kindergarten-support-screen" data-reveal>
+              <canvas
+                class="kindergarten-support-rive"
+                width="1000"
+                height="1000"
+                aria-label="Animacja ekranu logowania i wyboru jezyka"
+                data-rive-src="../assets/rive/przedszkola1.riv"
+                data-rive-autoplay="true"
+              ></canvas>
+            </figure>
+
+            <figure class="wip-image-card kindergarten-support-screen" data-reveal>
+              <canvas
+                class="kindergarten-support-rive"
+                width="1000"
+                height="1000"
+                aria-label="Animacja formularza wysylania krotkiej uwagi do wychowawcy"
+                data-rive-src="../assets/rive/przedszkola4.riv?v=20260527-02"
+                data-rive-autoplay="true"
+              ></canvas>
+            </figure>
+
+            <figure class="wip-image-card kindergarten-support-screen" data-reveal>
+              <canvas
+                class="kindergarten-support-rive"
+                width="1000"
+                height="1000"
+                aria-label="Animacja rozwijanej karty kontaktu w ekranie glownym"
+                data-rive-src="../assets/rive/przedszkola2.riv?v=20260521-02"
+                data-rive-autoplay="true"
+              ></canvas>
+            </figure>
+
+            <figure class="wip-image-card kindergarten-support-screen" data-reveal>
+              <canvas
+                class="kindergarten-support-rive"
+                width="1000"
+                height="1000"
+                aria-label="Animacja pomocniczego ekranu aplikacji przedszkolnej"
+                data-rive-src="../assets/rive/przedszkola3.riv?v=20260521-02"
+                data-rive-autoplay="true"
+              ></canvas>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="kindergarten-story-section">
+        <div class="container">
+          <article class="wip-problem-card kindergarten-story-card" data-reveal>
+            <div class="kindergarten-story-copy">
+              <h2 class="wip-card-title">Obecno&#347;ci i&nbsp;upowa&#380;nienia</h2>
+              <p>
+                Ten obszar porz&#261;dkuje informacje zwi&#261;zane z&nbsp;obecno&#347;ci&#261;, odbiorem dziecka i&nbsp;osobami upowa&#380;nionymi.
+                Rodzic mo&#380;e sprawdzi&#263; histori&#281; odbior&#243;w, zobaczy&#263; kto odebra&#322; dziecko oraz doda&#263; sta&#322;e lub czasowe
+                upowa&#380;nienie bez kontaktu z&nbsp;plac&#243;wk&#261; poza aplikacj&#261;.
+              </p>
+              <figure class="wip-image-card kindergarten-onboarding-image" data-reveal>
+                <img
+                  src="./img14.png"
+                  alt="Ekrany obecnosci, odbioru dziecka i upowaznien"
+                  width="2049"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
             </div>
           </article>
         </div>
@@ -370,41 +446,50 @@
         <div class="container">
           <article class="wip-problem-card kindergarten-story-card" data-reveal>
             <div class="kindergarten-story-copy">
-              <h2 class="wip-card-title">Za&#322;o&#380;enia</h2>
+              <h2 class="wip-card-title">Onboarding i&nbsp;rejestracja</h2>
               <p>
-                Najwa&#380;niejsze informacje mia&#322;y by&#263; widoczne od razu, a&nbsp;g&#322;&#243;wne akcje wygodne na telefonie. Interfejs
-                musia&#322; wspiera&#263; szybkie decyzje rodzica, kontakt z&nbsp;plac&#243;wk&#261;, obs&#322;ug&#281; wi&#281;cej ni&#380; jednego dziecka oraz
-                r&#243;&#380;ne wersje j&#281;zykowe.
+                Ka&#380;dy ekran onboardingu skupia si&#281; na korzy&#347;ciach, jakie oferuje aplikacja, a&nbsp;prosty uk&#322;ad i&nbsp;powtarzalny
+                CTA pomagaj&#261; przej&#347;&#263; dalej bez zatrzymywania si&#281; na d&#322;ugich opisach.
               </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="kindergarten-story-section kindergarten-story-section-final">
-        <div class="container">
-          <article class="wip-problem-card kindergarten-story-card" data-reveal>
-            <div class="kindergarten-story-copy">
-              <h2 class="wip-card-title">Finalny projekt</h2>
+              <figure class="wip-image-card kindergarten-onboarding-image" data-reveal>
+                <img
+                  src="./img11.png"
+                  alt="Ekrany onboardingu aplikacji dla rodzicow"
+                  width="2049"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
               <p>
-                Finalny interfejs jest lekki i&nbsp;przyjazny. Neutralne t&#322;o zestawi&#322;em z&nbsp;kolorami sekcji, aby aplikacja by&#322;a
-                sp&#243;jna, ale nadal &#322;atwa do rozpoznania.
+                Dalszy proces zosta&#322; podzielony na ma&#322;e kroki, tak aby przej&#347;cie przez niego by&#322;o sprawne, a&nbsp;wype&#322;nianie formularzy
+                nie tworzy&#322;o obci&#261;&#380;enia poznawczego. Synchronizacja konta z&nbsp;plac&#243;wk&#261; opiera si&#281; na kodzie do&#322;&#261;czenia,
+                dzi&#281;ki kt&#243;remu konto rodzica od razu &#322;&#261;czy si&#281; z&nbsp;w&#322;a&#347;ciwym przedszkolem i&nbsp;dzieckiem.
               </p>
+              <figure class="wip-image-card kindergarten-onboarding-image" data-reveal>
+                <img
+                  src="./img12.png"
+                  alt="Ekrany rejestracji i laczenia konta z placowka"
+                  width="2049"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
               <p>
-                Ekran g&#322;&#243;wny pokazuje kart&#281; dziecka, status obecno&#347;ci, aktualny etap dnia, kolejne aktywno&#347;ci i&nbsp;skr&#243;t
-                jad&#322;ospisu. Nie pokazuje wszystkiego naraz, tylko dobrze streszcza dzie&#324;.
+                Profil dziecka zbiera tylko najwa&#380;niejsze informacje: dane podstawowe i&nbsp;alergeny. Pozwala to dopasowa&#263;
+                posi&#322;ki przygotowywane w&nbsp;ci&#261;gu dnia i&nbsp;przyspiesza uzupe&#322;nianie profilu.
               </p>
-              <p>
-                Plan dnia opiera si&#281; na osi czasu, a&nbsp;jad&#322;ospis pokazuje posi&#322;ki w&nbsp;czytelnych kartach. Gdy potrzebna jest
-                decyzja rodzica, aplikacja pokazuje termin wyboru i&nbsp;wariant domy&#347;lny.
-              </p>
-              <p>
-                Zaprojektowa&#322;em te&#380; logowanie z&nbsp;wyborem j&#281;zyka, prze&#322;&#261;czanie mi&#281;dzy dzie&#263;mi, kontakty do personelu,
-                powiadomienia i&nbsp;formularz kr&#243;tkiej uwagi do wychowawcy.
-              </p>
-              <p>
-                Sekcja konta porz&#261;dkuje profil dziecka, obecno&#347;ci, odbi&#243;r, upowa&#380;nienia, wiadomo&#347;ci i&nbsp;ustawienia.
-              </p>
+              <figure class="wip-image-card kindergarten-onboarding-image" data-reveal>
+                <img
+                  src="./img13.png"
+                  alt="Ekrany tworzenia profilu dziecka i wyboru alergenow"
+                  width="2049"
+                  height="1200"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
             </div>
           </article>
         </div>
@@ -539,76 +624,94 @@
         if (!carousel) return;
 
         const mediaTrack = carousel.querySelector(".kindergarten-feature-media-track");
+        const mediaCard = carousel.querySelector(".kindergarten-feature-media-card");
         const copyTrack = carousel.querySelector(".kindergarten-feature-copy-track");
+        const mediaItems = [...carousel.querySelectorAll(".kindergarten-feature-media")];
         const copyItems = [...carousel.querySelectorAll(".kindergarten-feature-copy-item")];
-        let isSyncing = false;
+        const dots = [...carousel.querySelectorAll(".kindergarten-feature-dot")];
+        let currentIndex = 0;
+        let isLocked = false;
+        let lockTimer = 0;
 
-        const getMaxScroll = (element) => Math.max(element.scrollHeight - element.clientHeight, 0);
+        if (mediaCard) {
+          const hoverCursor = document.createElement("span");
+          hoverCursor.className = "project-hover-cursor";
+          hoverCursor.setAttribute("aria-hidden", "true");
+          hoverCursor.textContent = "Powi\u0119ksz";
+          mediaCard.appendChild(hoverCursor);
 
-        const setSyncedScroll = (source, ratio) => {
-          const mediaTop = ratio * getMaxScroll(mediaTrack);
-          const copyTop = ratio * getMaxScroll(copyTrack);
+          const setCardCursorPosition = (clientX, clientY) => {
+            const bounds = mediaCard.getBoundingClientRect();
+            mediaCard.style.setProperty("--cursor-x", `${clientX - bounds.left}px`);
+            mediaCard.style.setProperty("--cursor-y", `${clientY - bounds.top}px`);
+          };
 
-          isSyncing = true;
-          if (source !== mediaTrack) {
-            mediaTrack.scrollTop = mediaTop;
-          }
-          if (source !== copyTrack) {
-            copyTrack.scrollTop = copyTop;
-          }
-          window.requestAnimationFrame(() => {
-            isSyncing = false;
+          mediaCard.addEventListener("pointerenter", (event) => {
+            setCardCursorPosition(event.clientX, event.clientY);
+            mediaCard.classList.add("is-hovering");
+          });
+
+          mediaCard.addEventListener("pointermove", (event) => {
+            setCardCursorPosition(event.clientX, event.clientY);
+          });
+
+          mediaCard.addEventListener("pointerleave", () => {
+            mediaCard.classList.remove("is-hovering");
+          });
+
+          mediaCard.addEventListener("click", (event) => {
+            if (event.target.closest(".kindergarten-feature-media")) return;
+            mediaItems[currentIndex]?.click();
+          });
+        }
+
+        const lockScroll = () => {
+          isLocked = true;
+          window.clearTimeout(lockTimer);
+          lockTimer = window.setTimeout(() => {
+            isLocked = false;
+          }, 120);
+        };
+
+        const getItemTop = (track, item) => item.offsetTop - track.offsetTop;
+
+        const updateDots = () => {
+          dots.forEach((dot, index) => {
+            dot.classList.toggle("is-active", index === currentIndex);
           });
         };
 
-        const syncFromTrack = (source) => {
-          const maxScroll = getMaxScroll(source);
-          const ratio = maxScroll > 0 ? source.scrollTop / maxScroll : 0;
-          setSyncedScroll(source, ratio);
+        const scrollToIndex = (index) => {
+          const nextIndex = Math.min(Math.max(index, 0), copyItems.length - 1);
+          const mediaItem = mediaItems[nextIndex];
+          const copyItem = copyItems[nextIndex];
+          if (!mediaItem || !copyItem || nextIndex === currentIndex) return;
+
+          currentIndex = nextIndex;
+          updateDots();
+          mediaTrack.scrollTo({ top: getItemTop(mediaTrack, mediaItem), behavior: "smooth" });
+          copyTrack.scrollTo({ top: getItemTop(copyTrack, copyItem), behavior: "smooth" });
+          lockScroll();
         };
 
-        [mediaTrack, copyTrack].forEach((track) => {
-          track.addEventListener(
-            "wheel",
-            (event) => {
-              event.preventDefault();
-              const nextTop = Math.min(Math.max(track.scrollTop + event.deltaY, 0), getMaxScroll(track));
-              track.scrollTop = nextTop;
-              syncFromTrack(track);
-            },
-            { passive: false }
-          );
-        });
+        const handleWheel = (event) => {
+          event.preventDefault();
+          if (isLocked || Math.abs(event.deltaY) < 8) return;
+          scrollToIndex(currentIndex + (event.deltaY > 0 ? 1 : -1));
+        };
+
+        mediaCard?.addEventListener("wheel", handleWheel, { passive: false });
+        copyTrack.addEventListener("wheel", handleWheel, { passive: false });
+        updateDots();
 
         carousel.querySelector(".kindergarten-feature-box")?.addEventListener(
           "wheel",
           (event) => {
             if (event.target.closest(".kindergarten-feature-copy-track")) return;
-            event.preventDefault();
-            const nextTop = Math.min(Math.max(copyTrack.scrollTop + event.deltaY, 0), getMaxScroll(copyTrack));
-            copyTrack.scrollTop = nextTop;
-            syncFromTrack(copyTrack);
+            handleWheel(event);
           },
           { passive: false }
         );
-
-        let frame = 0;
-        let mediaFrame = 0;
-        copyTrack.addEventListener("scroll", () => {
-          if (isSyncing) return;
-          window.cancelAnimationFrame(frame);
-          frame = window.requestAnimationFrame(() => {
-            syncFromTrack(copyTrack);
-          });
-        });
-
-        mediaTrack.addEventListener("scroll", () => {
-          if (isSyncing) return;
-          window.cancelAnimationFrame(mediaFrame);
-          mediaFrame = window.requestAnimationFrame(() => {
-            syncFromTrack(mediaTrack);
-          });
-        });
       })();
     </script>
   </body>

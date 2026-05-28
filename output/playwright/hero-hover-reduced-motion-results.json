@@ -1,0 +1,73 @@
+{
+  "before": {
+    "ready": "true",
+    "initializing": null,
+    "shaderMaterialCount": 1,
+    "canvasWidth": 1440,
+    "canvasHeight": 1000,
+    "canvasClientWidth": 1440,
+    "canvasClientHeight": 1000,
+    "canvasOpacity": "1",
+    "canvasPointerEvents": "none",
+    "backgroundPointerEvents": "auto",
+    "fallbackExists": true,
+    "heroRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1000
+    },
+    "backgroundRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1000
+    },
+    "pointer": {
+      "x": 0.72,
+      "y": 0.44
+    },
+    "pointerVelocity": {
+      "x": 0,
+      "y": 0
+    },
+    "pointerStrength": 0,
+    "time": 0
+  },
+  "after": {
+    "ready": "true",
+    "initializing": null,
+    "shaderMaterialCount": 1,
+    "canvasWidth": 1440,
+    "canvasHeight": 1000,
+    "canvasClientWidth": 1440,
+    "canvasClientHeight": 1000,
+    "canvasOpacity": "1",
+    "canvasPointerEvents": "none",
+    "backgroundPointerEvents": "auto",
+    "fallbackExists": true,
+    "heroRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1000
+    },
+    "backgroundRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 1000
+    },
+    "pointer": {
+      "x": 0.72,
+      "y": 0.44
+    },
+    "pointerVelocity": {
+      "x": 0,
+      "y": 0
+    },
+    "pointerStrength": 0,
+    "time": 0
+  },
+  "consoleErrors": []
+}
