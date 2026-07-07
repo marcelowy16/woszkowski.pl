@@ -1,0 +1,337 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Woszkowski - strona glowna" [ref=e5] [cursor=pointer]:
+        - /url: ./
+        - generic [ref=e6]: Woszkowski.
+      - button "Otwórz menu" [ref=e7] [cursor=pointer]:
+        - generic [ref=e8]: Menu
+  - main [ref=e9]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - heading "Projektuję tak, by złożone problemy stały się prostymi rozwiązaniami" [level=1] [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e18]: Projektuję
+            - generic [ref=e20]: tak,
+          - generic [ref=e21]:
+            - generic [ref=e23]: by
+            - generic [ref=e25]: złożone
+            - generic [ref=e27]: problemy
+            - generic [ref=e29]: stały
+          - generic [ref=e30]:
+            - generic [ref=e32]: się
+            - generic [ref=e33]:
+              - generic [ref=e35]: prostymi
+              - generic [ref=e37]: rozwiązaniami
+        - paragraph [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e41]: Moją
+            - generic [ref=e43]: misją
+            - generic [ref=e45]: jest
+            - generic [ref=e47]: pomoc
+            - generic [ref=e49]: w
+            - generic [ref=e51]: budowaniu
+            - generic [ref=e53]: rozwiązań
+            - generic [ref=e55]: będących
+            - generic [ref=e57]: przyjaznym
+          - generic [ref=e58]:
+            - generic [ref=e60]: i
+            - generic [ref=e62]: intuicyjnym
+            - generic [ref=e64]: produktem
+            - generic [ref=e66]: dla
+            - generic [ref=e68]: użytkownika.
+        - generic [ref=e69]:
+          - link "Zobacz moje projekty" [ref=e70] [cursor=pointer]:
+            - /url: "#projects"
+          - link "Napisz do mnie" [ref=e71] [cursor=pointer]:
+            - /url: "#form"
+      - generic "Zapętlona animacja hero" [ref=e73]
+    - region "Kilka słów o mnie" [ref=e74]:
+      - generic [ref=e75]:
+        - heading "Kilka słów o mnie" [level=2] [ref=e77]:
+          - generic [ref=e79]: Kilka
+          - generic [ref=e81]: słów
+          - generic [ref=e83]: o
+          - generic [ref=e85]: mnie
+        - generic [ref=e86]:
+          - article [ref=e87]:
+            - heading "Wieloletnie doświadczenie" [level=3] [ref=e90]:
+              - generic [ref=e92]: Wieloletnie
+              - generic [ref=e94]: doświadczenie
+            - paragraph [ref=e95]: Od 8 lat pracuję zarówno nad nowymi koncepcjami, jak i rozwijaniem istniejących projektów. Mam doświadczenie w przekładaniu potrzeb biznesowych i użytkowych na czytelne i użyteczne interfejsy.
+          - article [ref=e96]:
+            - heading "Mobile i Web i Desktop" [level=3] [ref=e99]:
+              - generic [ref=e101]: Mobile
+              - generic [ref=e103]: i
+              - generic [ref=e105]: Web
+              - generic [ref=e107]: i
+              - generic [ref=e109]: Desktop
+            - paragraph [ref=e110]: Aplikacje mobilne, web, dashboardy i design systemy i inne typy projektów to coś z czym mam do czynienia na codzień. Przez lata mam je przepracowane od fundamentów, po złożone przypadki biznesowo - użytkowe.
+          - article [ref=e111]:
+            - heading "Research / UX UI / Design systemy" [level=3] [ref=e114]:
+              - generic [ref=e116]: Research
+              - generic [ref=e118]: /
+              - generic [ref=e120]: UX
+              - generic [ref=e122]: UI
+              - generic [ref=e124]: /
+              - generic [ref=e126]: Design
+              - generic [ref=e128]: systemy
+            - paragraph [ref=e129]: Łączę wiele aspektów projektowych w jeden proces. Pracuję tak, by rozwiązania były spójne, skalowalne i łatwe do rozwijania. A także dbam o to by moja wiedza techniczna w pracy z developerami, była wciąż aktualna.
+          - article [ref=e130]:
+            - heading "End-to-end product design" [level=3] [ref=e133]:
+              - generic [ref=e135]: End-to-end
+              - generic [ref=e137]: product
+              - generic [ref=e139]: design
+            - paragraph [ref=e140]: Prowadzę projekt od etapu zrozumienia problemu, przez analizę biznesową i user flow, aż po finalny UI i współpracę z zespołem Dev/QA. Staram się, by decyzje projektowe miały sens zarówno dla użytkownika, jak i dla samego produktu.
+    - generic [ref=e142]:
+      - heading "Projekty" [level=2] [ref=e144]:
+        - generic [ref=e146]: Projekty
+      - generic [ref=e147]:
+        - article [ref=e148]:
+          - 'link "Zobacz projekt: Aplikacja ułatwiająca codzienną komunikację rodziców z przedszkolem." [ref=e150]':
+            - /url: http://127.0.0.1:4174/aplikacja-przedszkole-proces-projektowy/
+            - img "Aplikacja ulatwiajaca codzienna komunikacje rodzicow z przedszkolem" [ref=e152]
+            - generic: Zobacz projekt
+          - generic [ref=e153]:
+            - heading "Aplikacja ułatwiająca codzienną komunikację rodziców z przedszkolem" [level=3] [ref=e154]:
+              - link "Aplikacja ułatwiająca codzienną komunikację rodziców z przedszkolem" [ref=e155] [cursor=pointer]:
+                - /url: ./aplikacja-przedszkole-proces-projektowy/
+                - generic [ref=e156]:
+                  - generic [ref=e158]: Aplikacja
+                  - generic [ref=e160]: ułatwiająca
+                - generic [ref=e161]:
+                  - generic [ref=e163]: codzienną
+                  - generic [ref=e165]: komunikację
+                - generic [ref=e166]:
+                  - generic [ref=e168]: rodziców
+                  - generic [ref=e170]: z
+                  - generic [ref=e172]: przedszkolem
+            - link "Zobacz projekt" [ref=e173] [cursor=pointer]:
+              - /url: ./aplikacja-przedszkole-proces-projektowy/
+        - article [ref=e174]:
+          - 'link "Zobacz projekt: Animacje i mikrointerakcje" [ref=e176]':
+            - /url: http://127.0.0.1:4174/prezentacja-animacji/
+            - img "Animacje i mikrointerakcje" [ref=e178]
+            - generic: Zobacz projekt
+          - generic [ref=e179]:
+            - heading "Animacje i mikrointerakcje" [level=3] [ref=e180]:
+              - link "Animacje i mikrointerakcje" [ref=e181] [cursor=pointer]:
+                - /url: ./prezentacja-animacji/
+                - generic [ref=e184]: Animacje
+                - generic [ref=e185]:
+                  - generic [ref=e187]: i
+                  - generic [ref=e189]: mikrointerakcje
+            - paragraph [ref=e190]: Praktyczne animacje, które ułatwiają użytkownikowi odbiór aplikacji poprzez dawanie wskazówek lub uwidocznianie zmian wynikających z jego działania.
+            - paragraph [ref=e191]: Ich celem jest zwiększenie intuicyjności witryny i sprawienie, że interakcja z nią będzie dla użytkownika łatwiejsza i bardziej naturalna.
+            - link "Zobacz projekt" [ref=e192] [cursor=pointer]:
+              - /url: ./prezentacja-animacji/
+        - article [ref=e193]:
+          - 'link "Zobacz projekt: Redesign cyfrowego asystenta interkomu i kamer domowych" [ref=e195]':
+            - /url: http://127.0.0.1:4174/redesign-asystenta-domowego-proces-projektowy/
+            - img "Redesign cyfrowego asystenta interkomu i kamer domowych" [ref=e197]
+            - generic: Zobacz projekt
+          - generic [ref=e198]:
+            - heading "Redesign cyfrowego asystenta interkomu i kamer domowych" [level=3] [ref=e199]:
+              - link "Redesign cyfrowego asystenta interkomu i kamer domowych" [ref=e200] [cursor=pointer]:
+                - /url: ./redesign-asystenta-domowego-proces-projektowy/
+                - generic [ref=e201]:
+                  - generic [ref=e203]: Redesign
+                  - generic [ref=e205]: cyfrowego
+                  - generic [ref=e207]: asystenta
+                  - generic [ref=e209]: interkomu
+                - generic [ref=e210]:
+                  - generic [ref=e212]: i
+                  - generic [ref=e214]: kamer
+                  - generic [ref=e216]: domowych
+            - paragraph [ref=e217]: Odświeżenie aplikacji pod względem UI i UX, która jest kierowana jako smart home assistant dla mieszkańców, chcących utrzymać bezpieczeństwo na swojej posesji.
+            - link "Zobacz projekt" [ref=e218] [cursor=pointer]:
+              - /url: ./redesign-asystenta-domowego-proces-projektowy/
+        - article [ref=e219]:
+          - 'link "Zobacz projekt: Aplikacja pomagająca w znajdywaniu osób chętnych do spędzania razem czasu" [ref=e221]':
+            - /url: http://127.0.0.1:4174/pogo-proces-projektowy/
+            - img "Aplikacja pomagająca w znajdywaniu osób chętnych do spędzania razem czasu" [ref=e223]
+            - generic: Zobacz projekt
+          - generic [ref=e224]:
+            - heading "Aplikacja pomagająca w znajdywaniu osób chętnych do spędzania razem czasu" [level=3] [ref=e225]:
+              - link "Aplikacja pomagająca w znajdywaniu osób chętnych do spędzania razem czasu" [ref=e226] [cursor=pointer]:
+                - /url: ./pogo-proces-projektowy/
+                - generic [ref=e227]:
+                  - generic [ref=e229]: Aplikacja
+                  - generic [ref=e231]: pomagająca
+                - generic [ref=e232]:
+                  - generic [ref=e234]: w
+                  - generic [ref=e236]: znajdywaniu
+                  - generic [ref=e238]: osób
+                - generic [ref=e239]:
+                  - generic [ref=e241]: chętnych
+                  - generic [ref=e243]: do
+                  - generic [ref=e245]: spędzania
+                - generic [ref=e246]:
+                  - generic [ref=e248]: razem
+                  - generic [ref=e250]: czasu
+            - paragraph [ref=e251]: Przeprowadzenie analizy grupy docelowej w celu zrozumienia ich życia społecznego, oceny otwartości na nowe relacje, zdolności do nawiązywania znajomości oraz oceny ewentualnych trudności w podejmowaniu inicjatywy ze strony członków grupy.
+            - link "Zobacz projekt" [ref=e252] [cursor=pointer]:
+              - /url: ./pogo-proces-projektowy/
+        - article [ref=e253]:
+          - 'link "Zobacz projekt: Dodawanie i wyświetlanie widżetów na dashboardzie" [ref=e255]':
+            - /url: http://127.0.0.1:4174/konfiguracja-dashboardu-proces-projektowy/
+            - img "Dodawanie i wyświetlanie widżetów na dashboardzie" [ref=e257]
+            - generic: Zobacz projekt
+          - generic [ref=e258]:
+            - heading "Dodawanie i wyświetlanie widżetów na dashboardzie" [level=3] [ref=e259]:
+              - link "Dodawanie i wyświetlanie widżetów na dashboardzie" [ref=e260] [cursor=pointer]:
+                - /url: ./konfiguracja-dashboardu-proces-projektowy/
+                - generic [ref=e261]:
+                  - generic [ref=e263]: Dodawanie
+                  - generic [ref=e265]: i
+                  - generic [ref=e267]: wyświetlanie
+                - generic [ref=e268]:
+                  - generic [ref=e270]: widżetów
+                  - generic [ref=e272]: na
+                  - generic [ref=e274]: dashboardzie
+            - paragraph [ref=e275]: Dla klienta zajmującego się tworzeniem oprogramowania w sektorze utrzymania produkcji zaprojektowany został moduł odpowiedzialny za konfigurowanie dashboardu użytkownika. Jego fundamentem są czytelność, intuicyjność oraz dostosowanie do potrzeb pracowników, co umożliwia efektywne monitorowanie kluczowych wskaźników.
+            - link "Zobacz projekt" [ref=e276] [cursor=pointer]:
+              - /url: ./konfiguracja-dashboardu-proces-projektowy/
+        - article [ref=e277]:
+          - 'link "Zobacz projekt: Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej" [ref=e279]':
+            - /url: http://127.0.0.1:4174/design-system-proces-projektowy/
+            - img "Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej" [ref=e281]
+            - generic: Zobacz projekt
+          - generic [ref=e282]:
+            - heading "Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej" [level=3] [ref=e283]:
+              - link "Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej" [ref=e284] [cursor=pointer]:
+                - /url: ./design-system-proces-projektowy/
+                - generic [ref=e285]:
+                  - generic [ref=e287]: Kompaktowy
+                  - generic [ref=e289]: design
+                - generic [ref=e290]:
+                  - generic [ref=e292]: system
+                  - generic [ref=e294]: dostosowany
+                - generic [ref=e295]:
+                  - generic [ref=e297]: do
+                  - generic [ref=e299]: potrzeb
+                - generic [ref=e300]:
+                  - generic [ref=e302]: aplikacji
+                  - generic [ref=e304]: mobilnej
+            - paragraph [ref=e305]:
+              - text: Starannie wypracowany zbiór wytycznych, komponentów
+              - text: i wzorców, mający na celu usystematyzowanie i unifikację wszystkich interfejsów cyfrowych związanych z marką klienta.
+            - link "Zobacz projekt" [ref=e306] [cursor=pointer]:
+              - /url: ./design-system-proces-projektowy/
+        - article [ref=e307]:
+          - 'link "Zobacz projekt: Platforma dedykowana sprzedaży i edukacji unikatowych gatunków roślin" [ref=e309]':
+            - /url: http://127.0.0.1:4174/subtropica-proces-projektowy/
+            - img "Platforma dedykowana sprzedaży i edukacji unikatowych gatunków roślin" [ref=e311]
+            - generic: Zobacz projekt
+          - generic [ref=e312]:
+            - heading "Platforma dedykowana sprzedaży i edukacji unikatowych roślin" [level=3] [ref=e313]:
+              - link "Platforma dedykowana sprzedaży i edukacji unikatowych roślin" [ref=e314] [cursor=pointer]:
+                - /url: ./subtropica-proces-projektowy/
+                - generic [ref=e315]:
+                  - generic [ref=e317]: Platforma
+                  - generic [ref=e319]: dedykowana
+                - generic [ref=e320]:
+                  - generic [ref=e322]: sprzedaży
+                  - generic [ref=e324]: i
+                  - generic [ref=e326]: edukacji
+                - generic [ref=e327]:
+                  - generic [ref=e329]: unikatowych
+                  - generic [ref=e331]: roślin
+            - paragraph [ref=e332]:
+              - text: Celem projektu było stworzenie produktu dla miłośników
+              - text: egzotycznych roślin, który jednocześnie zachęca do edukacji poprzez dostarczanie tematycznych treści i ułatwia znalezienie interesujących okazów.
+            - link "Zobacz projekt" [ref=e333] [cursor=pointer]:
+              - /url: ./subtropica-proces-projektowy/
+    - generic [ref=e335]:
+      - heading "Doświadczenie" [level=2] [ref=e337]:
+        - generic [ref=e339]: Doświadczenie
+      - generic [ref=e340]:
+        - article [ref=e341]:
+          - generic [ref=e342]:
+            - heading "Queris" [level=3] [ref=e343]:
+              - generic [ref=e345]: Queris
+            - paragraph [ref=e346]: 02.2023 – Obecnie
+          - generic [ref=e347]:
+            - paragraph [ref=e348]:
+              - generic [ref=e350]: Product
+              - generic [ref=e352]: Designer
+            - paragraph [ref=e353]: Projektowanie aplikacji webowej oraz mobilnej wraz z tworzeniem pełnego design systemu. Praca nad funkcjonalnościami związanymi z AI, harmonogramami Gantta oraz rozwój projektów na poziomie analizy biznesowej.
+            - paragraph [ref=e354]: Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające usprawniać procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach dedykowanych.
+            - link "queris.pl" [ref=e355] [cursor=pointer]:
+              - /url: http://www.queris.pl
+        - article [ref=e356]:
+          - generic [ref=e357]:
+            - heading "Flightscope" [level=3] [ref=e358]:
+              - generic [ref=e360]: Flightscope
+            - paragraph [ref=e361]: 04.2021 – 02.2023
+          - generic [ref=e362]:
+            - paragraph [ref=e363]:
+              - generic [ref=e365]: UI/UX
+              - generic [ref=e367]: Designer
+              - generic [ref=e369]: /
+              - generic [ref=e371]: Leader
+            - paragraph [ref=e372]: "Projektowanie iteracyjne dla: Desktop, Web i Mobile. Aktywna współpraca z zespołem QA i deweloperskim. Tworzenie produktu na poziomie procesu koncepcji, developmentu jak i wspieranie wypuszczonej apki na sklep, wzbogaconej o nowe funkcjonalności. Uczestniczenie w wyjazdach oraz rozmowach z grupą docelową."
+            - paragraph [ref=e373]: Zagraniczna firma tworząca własne oprogramowanie kierowane do graczy baseballu, golfa, tenisa oraz atletów. Trafia ono do klientów indywidualnych oraz drużyn rozgrywających turnieje na całym świecie.
+            - link "flightscope.eu" [ref=e374] [cursor=pointer]:
+              - /url: https://flightscopemevo.eu/
+        - article [ref=e375]:
+          - generic [ref=e376]:
+            - heading "Queris" [level=3] [ref=e377]:
+              - generic [ref=e379]: Queris
+            - paragraph [ref=e380]: 06.2018 – 04.2021
+          - generic [ref=e381]:
+            - paragraph [ref=e382]:
+              - generic [ref=e384]: UI/UX
+              - generic [ref=e386]: Designer
+            - paragraph [ref=e387]: Opracowywanie koncepcji dashboardów i raportów na aplikacje wieloplatformowe dla hal produkcyjnych, ulepszanie istniejących rozwiązań dla stałych klientów oraz współpraca z zespołem deweloperskim.
+            - paragraph [ref=e388]: Producent oprogramowania przemysłowego, z własnym oprogramowaniem, tworzący rozwiązania pomagające usprawniać procesy produkcyjne i okołoprodukcyjne oparte na systemach IT, automatyce oraz aplikacjach dedykowanych.
+            - link "queris.pl" [ref=e389] [cursor=pointer]:
+              - /url: http://www.queris.pl
+    - generic [ref=e392]:
+      - generic [ref=e393]:
+        - paragraph [ref=e394]:
+          - generic [ref=e396]: Skontaktuj
+          - generic [ref=e398]: się
+          - generic [ref=e400]: ze
+          - generic [ref=e402]: mną
+          - generic [ref=e405]: 👋
+        - paragraph [ref=e406]: Wystarczy jedno kliknięcie, aby pomóc zmienić pomysł w produkt. Wypełnij formularz, aby udostępnić mi więcej szczegółów na temat projektu.
+      - generic [ref=e407]:
+        - generic [ref=e408]:
+          - generic [ref=e409]:
+            - textbox "E-mail" [ref=e410]
+            - generic: E-mail
+          - paragraph [ref=e411]
+        - generic [ref=e412]:
+          - generic [ref=e413]:
+            - textbox "Numer telefonu" [ref=e414]
+            - generic: Numer telefonu
+          - paragraph [ref=e415]
+        - generic [ref=e416]:
+          - generic [ref=e417]:
+            - textbox "Nazwa" [ref=e418]
+            - generic: Nazwa
+          - paragraph [ref=e419]
+        - generic [ref=e420]:
+          - generic [ref=e421]:
+            - textbox "Wiadomość" [ref=e422]
+            - generic: Wiadomość
+          - paragraph [ref=e423]
+        - button "Wyślij wiadomość" [disabled] [ref=e424]
+  - contentinfo [ref=e425]:
+    - generic [ref=e426]:
+      - paragraph [ref=e427]: © 2026 Marcel Woszkowski
+      - link "LinkedIn" [ref=e428] [cursor=pointer]:
+        - /url: https://www.linkedin.com/in/marcel-woszkowski-216641173/
+      - link "Dribbble" [ref=e429] [cursor=pointer]:
+        - /url: https://dribbble.com/mwoszkowski
+      - link "kontakt@woszkowski.pl" [ref=e430] [cursor=pointer]:
+        - /url: mailto:kontakt@woszkowski.pl
+      - link "+48 508 278 715" [ref=e431] [cursor=pointer]:
+        - /url: tel:+48508278715
+      - link "Cookies" [ref=e432] [cursor=pointer]:
+        - /url: "#"
+  - button "Przewiń na górę" [ref=e433] [cursor=pointer]:
+    - img [ref=e434]

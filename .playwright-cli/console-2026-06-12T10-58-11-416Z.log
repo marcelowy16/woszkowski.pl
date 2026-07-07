@@ -1,0 +1,7 @@
+[  313718ms] NotFoundError: Failed to execute 'setPointerCapture' on 'Element': No active pointer with the given id is found.
+    at HTMLDivElement.<anonymous> (http://127.0.0.1:4174/scripts/main.js?v=20260612-highlights-drag-2:3147:11)
+    at dispatch (eval at <anonymous> (eval at evaluate (:303:30)), <anonymous>:1:303)
+    at eval (eval at <anonymous> (eval at evaluate (:303:30)), <anonymous>:1:522)
+    at eval (eval at evaluate (:303:30), <anonymous>:4:50)
+    at UtilityScript.evaluate (<anonymous>:305:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)

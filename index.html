@@ -37,10 +37,8 @@
     <link rel="preload" href="./assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="./assets/images/hero-fractal-shell.png?v=20260528-shell2" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="./styles/main.css?v=20260528-fractal-shell-bg-2" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260707-projects-bottom-clearance" />
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
-    <script defer src="./scripts/hero-fractal-glass.js?v=20260527-cell-parallax-2x"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -140,7 +138,7 @@
         ]
       }
     </script>
-    <script defer src="./scripts/main.js?v=20260527-cell-parallax-2x"></script>
+    <script defer src="./scripts/main.js?v=20260707-projects-manual-14"></script>
   </head>
   <body class="home-page">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -196,6 +194,7 @@
 
     <main id="main">
       <section class="hero section-frame">
+        <div class="hero-shell">
         <div class="hero-background" aria-hidden="true">
           <div class="hero-fractal-glass-base" aria-hidden="true"></div>
           <div class="hero-fractal-glass-panels" aria-hidden="true"></div>
@@ -233,6 +232,7 @@
         <a class="scroll-marker" href="#highlights" data-scroll-target="#highlights" aria-label="Przewiń do sekcji To, co robię najlepiej">
           <img src="./assets/gifs/scroll-down2.gif" alt="" width="150" height="153" loading="eager" decoding="async" />
         </a>
+        </div>
       </section>
 
       <section
@@ -244,8 +244,8 @@
       >
         <div class="container">
           <div class="section-head" data-reveal>
-            <p class="eyebrow eyebrow-dark">To, co robi&#281; najlepiej</p>
-            <h2 id="highlights-title">To, co robi&#281; najlepiej</h2>
+            <p class="eyebrow eyebrow-dark">Kilka s&#322;&#243;w o mnie</p>
+            <h2 id="highlights-title">Kilka s&#322;&#243;w o mnie</h2>
           </div>
 
           <div class="highlights-grid">
@@ -264,9 +264,9 @@
               </div>
               <h3>Wieloletnie do&#347;wiadczenie</h3>
               <p>
-                Od&nbsp;8&nbsp;lat&nbsp;pracuj&#281;&nbsp;zar&#243;wno&nbsp;nad nowymi&nbsp;koncepcjami,<br />
-                jak i rozwijaniem&nbsp;istniej&#261;cych projekt&#243;w. Mam&nbsp;<br />
-                do&#347;wiadczenie&nbsp;w&nbsp;przek&#322;adaniu potrzeb biznesowych i&nbsp;<br />
+                Od&nbsp;8&nbsp;lat&nbsp;pracuj&#281;&nbsp;zar&#243;wno&nbsp;nad nowymi&nbsp;koncepcjami,
+                jak i rozwijaniem&nbsp;istniej&#261;cych projekt&#243;w. Mam&nbsp;
+                do&#347;wiadczenie&nbsp;w&nbsp;przek&#322;adaniu potrzeb biznesowych i&nbsp;
                 u&#380;ytkowych&nbsp;na&nbsp;czytelne i u&#380;yteczne&nbsp;interfejsy.
               </p>
             </article>
@@ -286,9 +286,9 @@
               </div>
               <h3>Mobile i Web i Desktop</h3>
               <p>
-                Aplikacje mobilne, web, dashboardy i design systemy i inne<br />
-                typy projekt&#243;w to co&#347; z czym mam do czynienia na codzie&#324;.<br />
-                Przez lata mam je przepracowane od fundament&#243;w, po<br />
+                Aplikacje mobilne, web, dashboardy i design systemy i inne
+                typy projekt&#243;w to co&#347; z czym mam do czynienia na codzie&#324;.
+                Przez lata mam je przepracowane od fundament&#243;w, po
                 z&#322;o&#380;one przypadki biznesowo - u&#380;ytkowe.
               </p>
             </article>
@@ -308,9 +308,9 @@
               </div>
               <h3>Research / UX UI / Design systemy</h3>
               <p>
-                &#321;&#261;cz&#281; wiele aspekt&#243;w projektowych w jeden proces.<br />
-                Pracuj&#281; tak, by rozwi&#261;zania by&#322;y sp&#243;jne, skalowalne i &#322;atwe do<br />
-                rozwijania. A tak&#380;e dbam o to by moja wiedza techniczna w<br />
+                &#321;&#261;cz&#281; wiele aspekt&#243;w projektowych w jeden proces.
+                Pracuj&#281; tak, by rozwi&#261;zania by&#322;y sp&#243;jne, skalowalne i &#322;atwe do
+                rozwijania. A tak&#380;e dbam o to by moja wiedza techniczna w
                 pracy z developerami, by&#322;a wci&#261;&#380; aktualna.
               </p>
             </article>
@@ -330,9 +330,9 @@
               </div>
               <h3>End-to-end product design</h3>
               <p>
-                Prowadz&#281; projekt od etapu zrozumienia problemu, przez<br />
-                analiz&#281; biznesow&#261; i user flow, a&#380; po finalny UI i wsp&#243;&#322;prac&#281; z<br />
-                zespo&#322;em Dev/QA. Staram si&#281;, by decyzje projektowe mia&#322;y<br />
+                Prowadz&#281; projekt od etapu zrozumienia problemu, przez
+                analiz&#281; biznesow&#261; i user flow, a&#380; po finalny UI i wsp&#243;&#322;prac&#281; z
+                zespo&#322;em Dev/QA. Staram si&#281;, by decyzje projektowe mia&#322;y
                 sens zar&#243;wno dla u&#380;ytkownika, jak i dla samego produktu.
               </p>
             </article>
@@ -348,7 +348,8 @@
           </div>
 
           <div class="project-list">
-            <article class="project-card" data-reveal>
+            <div class="project-column project-column-1">
+            <article class="project-card project-card-tutela" data-reveal>
               <div class="project-media">
                 <img
                   src="./assets/images/project_thumbnail_tutela.png"
@@ -363,7 +364,7 @@
                 <h3>
                   <a
                     href="./aplikacja-przedszkole-proces-projektowy/"
-                    data-project-title-lines="Aplikacja u&#322;atwiaj&#261;ca|codzienn&#261; komunikacj&#281;|rodzic&#243;w z przedszkolem"
+                    data-project-title-lines="Aplikacja u&#322;atwiaj&#261;ca codzienn&#261;|komunikacj&#281; rodzic&#243;w z przedszkolem"
                   >
                     Aplikacja u&#322;atwiaj&#261;ca codzienn&#261; komunikacj&#281; rodzic&#243;w z&nbsp;przedszkolem.
                   </a>
@@ -374,7 +375,7 @@
               </div>
             </article>
 
-            <article class="project-card" data-reveal>
+            <article class="project-card project-card-animations" data-reveal>
               <div class="project-media">
                 <img
                   src="./assets/gifs/000_1.gif"
@@ -404,8 +405,10 @@
                 </a>
               </div>
             </article>
+            </div>
 
-            <article class="project-card" data-reveal>
+            <div class="project-column project-column-2">
+            <article class="project-card project-card-assistant" data-reveal>
               <div class="project-media">
                 <img
                   src="./assets/images/cover_assistant.png"
@@ -439,7 +442,16 @@
               </div>
             </article>
 
-            <article class="project-card" data-reveal>
+            <article class="project-card project-card-cta" data-reveal>
+              <a class="project-cta-card" href="#form" data-scroll-target="#form">
+                <span>Zobacz pozosta&#322;e projekty</span>
+                <span class="project-cta-button">Przejd&#378; -></span>
+              </a>
+            </article>
+            </div>
+
+            <div class="project-column project-column-3">
+            <article class="project-card project-card-secondary" data-reveal>
               <div class="project-media">
                 <img
                   src="./assets/images/project_thumbnail_2update.png"
@@ -454,7 +466,7 @@
                 <h3>
                   <a
                     href="./pogo-proces-projektowy/"
-                    data-project-title-lines="Aplikacja pomagająca|w znajdywaniu osób|chętnych do spędzania|razem czasu"
+                    data-project-title-lines="Aplikacja pomagająca w znajdywaniu osób|chętnych do spędzania razem czasu"
                   >
                     Aplikacja pomagająca w&nbsp;znajdywaniu osób chętnych do spędzania razem czasu
                   </a>
@@ -470,7 +482,7 @@
               </div>
             </article>
 
-            <article class="project-card" data-reveal>
+            <article class="project-card project-card-dashboard" data-reveal>
               <div class="project-media">
                 <img
                   src="./assets/images/project_thumbnail_4.png"
@@ -505,7 +517,7 @@
               </div>
             </article>
 
-            <article class="project-card" data-reveal>
+            <article class="project-card project-card-secondary" data-reveal>
               <div class="project-media">
                 <img
                   src="./assets/images/project_thumbnail_3update.png"
@@ -536,7 +548,7 @@
               </div>
             </article>
 
-            <article class="project-card" data-reveal>
+            <article class="project-card project-card-subtropica" data-reveal>
               <div class="project-media">
                 <img
                   src="./assets/images/project_thumbnail_1update.png"
@@ -551,7 +563,7 @@
                 <h3>
                   <a
                     href="./subtropica-proces-projektowy/"
-                    data-project-title-lines="Platforma dedykowana|sprzedaży i edukacji|unikatowych roślin"
+                    data-project-title-lines="Platforma dedykowana sprzedaży|i edukacji unikatowych roślin"
                   >
                     Platforma dedykowana sprzedaży i&nbsp;edukacji unikatowych gatunków&nbsp;roślin
                   </a>
@@ -569,6 +581,7 @@
                 </a>
               </div>
             </article>
+            </div>
           </div>
         </div>
       </section>

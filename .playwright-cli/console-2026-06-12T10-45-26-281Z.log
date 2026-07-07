@@ -1,0 +1,43 @@
+[   97713ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/css/formandfun.webflow.shared.b199225ad.min.css:0
+[   97715ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/66ae461f52dec366cb986f58_Right-Arrow.svg:0
+[   98035ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/66ff53c6d1c83d64ecf30e8f_View.svg:0
+[   98271ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/js/webflow.schunk.e0c428ff9737f919.js:0
+[   98271ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/js/webflow.schunk.dc3b2c50b24eba57.js:0
+[  139784ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/js/webflow.b94c64a7.c76eed352f74efa3.js:0
+[  139879ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/681d00879e3e6568970f7840_Soon.svg:0
+[  139880ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js:0
+[  139914ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/66b1318538cac0f5b818c6cf_Drag.svg:0
+[  139914ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/66b12b0531a6472a7daa78cb_Play.svg:0
+[  140041ms] ReferenceError: anime is not defined
+    at createFadeUpAnimation (https://www.formandfun.co/:723:5)
+    at https://www.formandfun.co/:757:17
+    at NodeList.forEach (<anonymous>)
+    at https://www.formandfun.co/:754:20
+    at NodeList.forEach (<anonymous>)
+    at https://www.formandfun.co/:751:23
+[  140092ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/66ae461f2f8bba8b7a797aee_Left-Arrow.svg:0
+[  140100ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/673e7d618507b496c9abfece_Studio-Logo.svg:0
+[  225791ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  225837ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  226053ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  226067ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  245854ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  245861ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  245862ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  245862ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  245883ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  245883ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  245884ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  245953ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  267897ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  267944ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  268149ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  268149ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  287935ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.embed.ly/player-0.1.0.min.js:0
+[  287939ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.28/ua-parser.min.js:0
+[  288088ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js:12
+[  288179ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js:12
+[  288242ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js:12
+[  288342ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js:12
+[  288350ms] [WARNING] Swiper Loop Warning: The number of slides is not enough for loop mode, it will be disabled or not function properly. You need to add more slides (or make duplicates) or lower the values of slidesPerView and slidesPerGroup parameters @ https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js:12
+[  330237ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://cdn.prod.website-files.com/6403ade6e2cfd9c42fe587b0/66d7b272e4c39277ed4eb6d3_favicon.png:0
