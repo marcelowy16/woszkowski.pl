@@ -1293,6 +1293,40 @@ const createProjectMediaLinks = () => {
   });
 };
 
+const initProjectCardLinks = () => {
+  projectCards.forEach((card) => {
+    const cardHref = card.dataset.cardHref;
+
+    if (!cardHref) {
+      return;
+    }
+
+    card.setAttribute("role", "link");
+    card.tabIndex = 0;
+
+    const goToCardHref = () => {
+      window.location.href = cardHref;
+    };
+
+    card.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a, button, input, textarea, select")) {
+        return;
+      }
+
+      goToCardHref();
+    });
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      goToCardHref();
+    });
+  });
+};
+
 const initHoverCursorTargets = (selector) => {
   const hoverTargets = document.querySelectorAll(selector);
 
@@ -1388,6 +1422,7 @@ const initHoverCursorTargets = (selector) => {
 };
 
 createProjectMediaLinks();
+initProjectCardLinks();
 
 const initWipImageLightbox = () => {
   if (!body.classList.contains("project-page-wip") || !wipZoomableImages.length) {
@@ -2103,157 +2138,61 @@ const initHomepageProjectsParallax = () => {
 
   const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const desktopQuery = window.matchMedia("(min-width: 901px)");
-  const cardMotion = [
-    { className: "project-card-tutela", from: 72, to: -700, curve: 0.9, skew: 1.1 },
-    { className: "project-card-assistant", from: -170, to: 140, curve: 1.35, skew: -0.55 },
-    { className: "project-card-dashboard", from: 32, to: -980, curve: 0.82, skew: 1.25 },
-    { className: "project-card-animations", from: 96, to: -820, curve: 0.84, skew: -0.8 },
-    { className: "project-card-cta", from: -80, to: -180, curve: 1.45, skew: 0.35 },
-    { className: "project-card-subtropica", from: 72, to: -1040, curve: 0.9, skew: 1 },
-  ]
-    .map((motion) => ({
-      ...motion,
-      card: projectsList.querySelector(`.${motion.className}`),
-    }))
-    .filter(({ card }) => card instanceof HTMLElement);
   const columnMotion = [
     {
-      cards: [
-        projectsList.querySelector(".project-card-tutela"),
-        projectsList.querySelector(".project-card-dashboard"),
-        projectsList.querySelector(".project-card-cta"),
-      ],
+      column: projectsList.querySelector(".project-column-1"),
       from: 0,
-      to: -300,
+      to: -48,
       curve: 0.9,
     },
     {
-      cards: [
-        projectsList.querySelector(".project-card-assistant"),
-        projectsList.querySelector(".project-card-animations"),
-        projectsList.querySelector(".project-card-subtropica"),
-      ],
+      column: projectsList.querySelector(".project-column-2"),
       from: 0,
-      to: 300,
+      to: 32,
       curve: 1.08,
+    },
+    {
+      column: projectsList.querySelector(".project-column-3"),
+      from: 0,
+      to: -40,
+      curve: 0.96,
     },
   ].map((motion) => ({
     ...motion,
-    cards: motion.cards.filter((card) => card instanceof HTMLElement),
-  }));
-  const minimumHeaderCardGap = 48;
-  const projectsHeading = projectsSection.querySelector(".section-head h2");
-  const cardGapPairs = [
-    {
-      upperCard: projectsList.querySelector(".project-card-tutela"),
-      lowerCard: projectsList.querySelector(".project-card-dashboard"),
-      from: 42,
-      to: 86,
-      curve: 0.82,
-    },
-    {
-      upperCard: projectsList.querySelector(".project-card-dashboard"),
-      lowerCard: projectsList.querySelector(".project-card-cta"),
-      from: 72,
-      to: 48,
-      curve: 1.18,
-    },
-    {
-      upperCard: projectsList.querySelector(".project-card-assistant"),
-      lowerCard: projectsList.querySelector(".project-card-animations"),
-      from: 56,
-      to: 104,
-      curve: 0.95,
-    },
-    {
-      upperCard: projectsList.querySelector(".project-card-animations"),
-      lowerCard: projectsList.querySelector(".project-card-subtropica"),
-      from: 96,
-      to: 58,
-      curve: 1.34,
-    },
-  ].filter(({ upperCard, lowerCard }) => upperCard instanceof HTMLElement && lowerCard instanceof HTMLElement);
+  })).filter(({ column }) => column instanceof HTMLElement);
   let loopFrame = 0;
-  let lastScrollYForSkew = window.scrollY;
-  let currentSkew = 0;
 
-  const setCardMotion = (progress = 0, skew = 0) => {
+  const setColumnMotion = (progress = 0) => {
     projectsList.style.setProperty("--projects-header-clearance-shift", "0px");
 
-    cardMotion.forEach(({ card, from, to, curve, skew: cardSkew }) => {
-      const cardProgress = Math.pow(progress, curve);
-      const shift = from + (to - from) * cardProgress;
-
-      card.style.setProperty("--project-card-shift", `${shift.toFixed(3)}px`);
-      card.style.setProperty("--project-card-skew", `${(skew * cardSkew).toFixed(3)}deg`);
-    });
-
-    columnMotion.forEach(({ cards, from, to, curve }) => {
+    columnMotion.forEach(({ column, from, to, curve }) => {
       const columnProgress = Math.pow(progress, curve);
       const columnShift = from + (to - from) * columnProgress;
 
-      cards.forEach((card) => {
-        const currentShift = Number.parseFloat(card.style.getPropertyValue("--project-card-shift")) || 0;
-        card.style.setProperty("--project-card-shift", `${(currentShift + columnShift).toFixed(3)}px`);
-      });
+      column.style.setProperty("--project-column-shift", `${columnShift.toFixed(3)}px`);
     });
-
-    cardGapPairs.forEach(({ upperCard, lowerCard, from, to, curve }) => {
-      const targetGap = from + (to - from) * Math.pow(progress, curve);
-      const upperRect = upperCard.getBoundingClientRect();
-      const lowerRect = lowerCard.getBoundingClientRect();
-      const visualGap = lowerRect.top - upperRect.bottom;
-
-      const currentShift = Number.parseFloat(lowerCard.style.getPropertyValue("--project-card-shift")) || 0;
-      const correctedShift = currentShift + (targetGap - visualGap);
-      lowerCard.style.setProperty("--project-card-shift", `${correctedShift.toFixed(3)}px`);
-    });
-
-    if (projectsHeading instanceof HTMLElement) {
-      const headingRect = projectsHeading.getBoundingClientRect();
-      const headingVisible = headingRect.bottom > 0 && headingRect.top < window.innerHeight;
-
-      if (headingVisible) {
-        const firstCardTop = Math.min(...cardMotion.map(({ card }) => card.getBoundingClientRect().top));
-        const overlap = headingRect.bottom + minimumHeaderCardGap - firstCardTop;
-
-        if (overlap > 0) {
-          projectsList.style.setProperty("--projects-header-clearance-shift", `${overlap.toFixed(3)}px`);
-        }
-      }
-    }
   };
 
-  const resetCardMotion = () => {
+  const resetColumnMotion = () => {
     projectsList.style.setProperty("--projects-header-clearance-shift", "0px");
 
-    cardMotion.forEach(({ card }) => {
-      card.style.setProperty("--project-card-shift", "0px");
-      card.style.setProperty("--project-card-skew", "0deg");
+    columnMotion.forEach(({ column }) => {
+      column.style.setProperty("--project-column-shift", "0px");
     });
   };
 
   const updateParallax = () => {
     if (reducedMotionQuery.matches || !desktopQuery.matches) {
-      resetCardMotion();
+      resetColumnMotion();
       return;
     }
 
     const rect = projectsSection.getBoundingClientRect();
     const scrollRange = Math.max(rect.height - window.innerHeight * 0.55, 1);
-    const progress = clamp((window.innerHeight - rect.top) / scrollRange, 0, 1);
+    const progress = clamp(-rect.top / scrollRange, 0, 1);
     const easedProgress = progress * progress * (3 - 2 * progress);
-    const scrollVelocity = window.scrollY - lastScrollYForSkew;
-    const targetSkew = clamp(scrollVelocity * 0.018, -5.5, 5.5);
 
-    lastScrollYForSkew = window.scrollY;
-    currentSkew += (targetSkew - currentSkew) * 0.24;
-
-    if (Math.abs(scrollVelocity) < 0.35) {
-      currentSkew *= 0.9;
-    }
-
-    setCardMotion(easedProgress, currentSkew);
+    setColumnMotion(easedProgress);
   };
 
   const isSectionNearViewport = () => {
@@ -3488,6 +3427,274 @@ initRiveCanvasLightbox();
 initHomepageHighlightsRive();
 initHomepageHighlightsDrag();
 initHoverCursorTargets(".rive-zoom-target");
+
+const initHorizontalDragTracks = () => {
+  const tracks = [...document.querySelectorAll("[data-horizontal-drag]")].filter(
+    (track) => track instanceof HTMLElement && track.dataset.horizontalDragReady !== "true"
+  );
+
+  if (!tracks.length) {
+    return;
+  }
+
+  const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const dragCursor = document.createElement("span");
+  dragCursor.className = "highlights-drag-cursor";
+  dragCursor.setAttribute("aria-hidden", "true");
+  dragCursor.textContent = "Drag";
+  document.body.appendChild(dragCursor);
+
+  tracks.forEach((track) => {
+    let isPointerInside = false;
+    let isDragging = false;
+    let hasDragged = false;
+    let pointerId = 0;
+    let startClientX = 0;
+    let previousClientX = 0;
+    let previousMoveTime = 0;
+    let targetScrollLeft = 0;
+    let currentScrollLeft = 0;
+    let scrollVelocity = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let cursorAnimationFrame = 0;
+    let scrollAnimationFrame = 0;
+
+    const getMaxScrollLeft = () => Math.max(track.scrollWidth - track.clientWidth, 0);
+    const clampScrollLeft = (value) => Math.min(Math.max(value, 0), getMaxScrollLeft());
+
+    const syncScrollPosition = (immediate = false) => {
+      targetScrollLeft = clampScrollLeft(track.scrollLeft);
+
+      if (immediate) {
+        currentScrollLeft = targetScrollLeft;
+      }
+    };
+
+    const renderCursor = () => {
+      currentX += (targetX - currentX) * 0.22;
+      currentY += (targetY - currentY) * 0.22;
+      dragCursor.style.left = `${currentX}px`;
+      dragCursor.style.top = `${currentY}px`;
+
+      if (Math.abs(targetX - currentX) < 0.1 && Math.abs(targetY - currentY) < 0.1) {
+        cursorAnimationFrame = 0;
+        return;
+      }
+
+      cursorAnimationFrame = window.requestAnimationFrame(renderCursor);
+    };
+
+    const requestCursorFrame = () => {
+      if (!cursorAnimationFrame) {
+        cursorAnimationFrame = window.requestAnimationFrame(renderCursor);
+      }
+    };
+
+    const renderScroll = () => {
+      if (!isDragging && Math.abs(scrollVelocity) > 0.08) {
+        targetScrollLeft = clampScrollLeft(targetScrollLeft + scrollVelocity);
+        scrollVelocity *= 0.92;
+
+        if (targetScrollLeft <= 0 || targetScrollLeft >= getMaxScrollLeft()) {
+          scrollVelocity = 0;
+        }
+      }
+
+      currentScrollLeft += (targetScrollLeft - currentScrollLeft) * 0.24;
+
+      if (Math.abs(targetScrollLeft - currentScrollLeft) < 0.08 && Math.abs(scrollVelocity) <= 0.08) {
+        currentScrollLeft = targetScrollLeft;
+        track.scrollLeft = currentScrollLeft;
+        scrollAnimationFrame = 0;
+        return;
+      }
+
+      track.scrollLeft = currentScrollLeft;
+      scrollAnimationFrame = window.requestAnimationFrame(renderScroll);
+    };
+
+    const requestScrollFrame = () => {
+      if (!scrollAnimationFrame) {
+        scrollAnimationFrame = window.requestAnimationFrame(renderScroll);
+      }
+    };
+
+    const setCursorTarget = (clientX, clientY, immediate = false) => {
+      targetX = clientX;
+      targetY = clientY;
+
+      if (immediate) {
+        currentX = targetX;
+        currentY = targetY;
+        dragCursor.style.left = `${currentX}px`;
+        dragCursor.style.top = `${currentY}px`;
+        return;
+      }
+
+      requestCursorFrame();
+    };
+
+    const showCursor = (event) => {
+      if (!finePointerQuery.matches) {
+        return;
+      }
+
+      isPointerInside = true;
+      setCursorTarget(event.clientX, event.clientY, true);
+      dragCursor.classList.add("is-visible");
+    };
+
+    const hideCursor = () => {
+      if (isDragging) {
+        return;
+      }
+
+      isPointerInside = false;
+      dragCursor.classList.remove("is-visible", "is-dragging");
+
+      if (cursorAnimationFrame) {
+        window.cancelAnimationFrame(cursorAnimationFrame);
+        cursorAnimationFrame = 0;
+      }
+    };
+
+    const stopDragging = () => {
+      if (!isDragging) {
+        return;
+      }
+
+      isDragging = false;
+      track.classList.remove("is-dragging");
+      document.body.classList.remove("highlights-carousel-dragging");
+      dragCursor.classList.remove("is-dragging");
+
+      try {
+        if (pointerId) {
+          track.releasePointerCapture(pointerId);
+        }
+      } catch (error) {
+        // Pointer capture can already be released by the browser.
+      }
+
+      pointerId = 0;
+      requestScrollFrame();
+
+      if (!isPointerInside) {
+        hideCursor();
+      }
+    };
+
+    track.addEventListener("pointerenter", showCursor);
+    track.addEventListener("pointermove", (event) => {
+      if (finePointerQuery.matches) {
+        setCursorTarget(event.clientX, event.clientY);
+      }
+
+      if (!isDragging || event.pointerId !== pointerId) {
+        return;
+      }
+
+      event.preventDefault();
+      const deltaX = previousClientX - event.clientX;
+      const moveTime = event.timeStamp - previousMoveTime || 16;
+      const movementFromStart = Math.abs(event.clientX - startClientX);
+
+      if (movementFromStart > 3) {
+        hasDragged = true;
+      }
+
+      targetScrollLeft = clampScrollLeft(targetScrollLeft + deltaX * 1.18);
+      scrollVelocity = (deltaX / moveTime) * 18;
+      previousClientX = event.clientX;
+      previousMoveTime = event.timeStamp;
+      requestScrollFrame();
+    });
+
+    track.addEventListener("pointerleave", () => {
+      isPointerInside = false;
+      hideCursor();
+    });
+
+    track.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0 && event.pointerType === "mouse") {
+        return;
+      }
+
+      isDragging = true;
+      hasDragged = false;
+      pointerId = event.pointerId;
+      startClientX = event.clientX;
+      previousClientX = event.clientX;
+      previousMoveTime = event.timeStamp;
+      scrollVelocity = 0;
+      syncScrollPosition(true);
+      track.classList.add("is-dragging");
+      document.body.classList.add("highlights-carousel-dragging");
+      dragCursor.classList.add("is-visible", "is-dragging");
+      setCursorTarget(event.clientX, event.clientY, true);
+
+      try {
+        track.setPointerCapture(pointerId);
+      } catch (error) {
+        // Synthetic pointer events do not always create a capturable active pointer.
+      }
+
+      requestScrollFrame();
+    });
+
+    track.addEventListener("pointerup", stopDragging);
+    track.addEventListener("pointercancel", stopDragging);
+    track.addEventListener(
+      "click",
+      (event) => {
+        if (!hasDragged) {
+          return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+        hasDragged = false;
+      },
+      true
+    );
+    track.addEventListener(
+      "wheel",
+      (event) => {
+        const isHorizontalIntent = Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey;
+
+        if (!isHorizontalIntent) {
+          return;
+        }
+
+        const delta = event.deltaX || event.deltaY;
+        const nextScrollLeft = clampScrollLeft(targetScrollLeft + delta);
+
+        if (nextScrollLeft === targetScrollLeft) {
+          return;
+        }
+
+        event.preventDefault();
+        syncScrollPosition();
+        targetScrollLeft = nextScrollLeft;
+        scrollVelocity = 0;
+        requestScrollFrame();
+      },
+      { passive: false }
+    );
+
+    window.addEventListener("resize", () => {
+      syncScrollPosition(true);
+    });
+    window.addEventListener("blur", stopDragging);
+
+    track.dataset.horizontalDragReady = "true";
+  });
+};
+
+initHorizontalDragTracks();
 
 const initSubtropicaSurveyCarousels = () => {
   subtropicaSurveyCarousels.forEach((carousel, carouselIndex) => {

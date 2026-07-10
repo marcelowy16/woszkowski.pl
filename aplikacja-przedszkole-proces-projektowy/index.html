@@ -39,7 +39,7 @@
     <link rel="preload" href="../assets/fonts/GangsterGroteskBold.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="../styles/main.css?v=20260521-02" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260710-kindergarten-final-3" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -81,7 +81,7 @@
       }
     </script>
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
-    <script defer src="../scripts/main.js?v=20260520-01"></script>
+    <script defer src="../scripts/main.js?v=20260710-kindergarten-final-2"></script>
   </head>
   <body class="project-page project-page-wip project-page-kindergarten">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -312,7 +312,7 @@
           </div>
 
           <div class="kindergarten-feature-box" data-reveal>
-            <div class="kindergarten-feature-copy-track" tabindex="0">
+            <div class="kindergarten-feature-copy-track">
               <article class="kindergarten-feature-copy-item" id="kindergarten-feature-copy-home">
                 <h3 class="kindergarten-feature-title">Ekran g&#322;&#243;wny jako skr&#243;t dnia</h3>
                 <p class="kindergarten-feature-copy">
@@ -351,6 +351,29 @@
               <span class="kindergarten-feature-dot"></span>
               <span class="kindergarten-feature-dot"></span>
               <span class="kindergarten-feature-dot"></span>
+            </div>
+
+            <div class="kindergarten-feature-controls" aria-label="Nawigacja po opisach ekranów">
+              <button
+                class="kindergarten-feature-control"
+                type="button"
+                data-kindergarten-feature-control="previous"
+                aria-label="Poprzedni opis"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 19V5m0 0-6 6m6-6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
+              <button
+                class="kindergarten-feature-control"
+                type="button"
+                data-kindergarten-feature-control="next"
+                aria-label="Następny opis"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 5v14m0 0 6-6m-6 6-6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -495,17 +518,138 @@
         </div>
       </section>
 
-      <section class="kindergarten-story-section kindergarten-story-section-result">
-        <div class="container">
-          <article class="wip-problem-card kindergarten-story-card" data-reveal>
-            <div class="kindergarten-story-copy">
-              <h2 class="wip-card-title">Efekt</h2>
-              <p>
-                Efektem by&#322; kompletny projekt aplikacji mobilnej, gotowy do prototypowania, test&#243;w i&nbsp;dalszego rozwoju.
-                Rozwi&#261;zanie pomaga rodzicom szybko odnale&#378;&#263; najwa&#380;niejsze informacje, a&nbsp;plac&#243;wce porz&#261;dkuje komunikacj&#281;.
-              </p>
-            </div>
-          </article>
+      <section class="kindergarten-final-section" aria-label="Projekt finalny">
+        <div class="kindergarten-final-track" data-horizontal-drag data-reveal>
+          <figure class="kindergarten-final-shot kindergarten-final-shot-large">
+            <img
+              src="./img15.png"
+              alt="Finalny ekran główny aplikacji przedszkolnej"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot">
+            <img
+              src="./img16.png"
+              alt="Finalny ekran jadłospisu z kalendarzem"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot">
+            <img
+              src="./img17.png"
+              alt="Finalny ekran zmiany profilu dziecka"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot kindergarten-final-shot-large">
+            <img
+              src="./img18.png"
+              alt="Finalny ekran aplikacji przedszkolnej"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot kindergarten-final-shot-large">
+            <img
+              src="./img19.png"
+              alt="Finalny ekran konta rodzica"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot kindergarten-final-shot-large">
+            <img
+              src="./img20.png"
+              alt="Finalny ekran obecności dziecka"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot">
+            <img
+              src="./img21.png"
+              alt="Finalny kompaktowy ekran główny aplikacji"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot">
+            <img
+              src="./img22.png"
+              alt="Finalny ekran informacji o zmianie statusu"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot kindergarten-final-shot-large">
+            <img
+              src="./img23.png"
+              alt="Finalny ekran odbioru dziecka z placówki"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot kindergarten-final-shot-large">
+            <img
+              src="./img24.png"
+              alt="Finalny ekran kodu autoryzacyjnego"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot kindergarten-final-shot-large">
+            <img
+              src="./img25.png"
+              alt="Finalny ekran dodawania upoważnienia"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot">
+            <img
+              src="./img26.png"
+              alt="Finalny ekran procesu logowania"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="kindergarten-final-shot">
+            <img
+              src="./img27.png"
+              alt="Finalny ekran formularza upoważnienia"
+              width="500"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
         </div>
       </section>
 
@@ -625,10 +769,12 @@
 
         const mediaTrack = carousel.querySelector(".kindergarten-feature-media-track");
         const mediaCard = carousel.querySelector(".kindergarten-feature-media-card");
+        const featureBox = carousel.querySelector(".kindergarten-feature-box");
         const copyTrack = carousel.querySelector(".kindergarten-feature-copy-track");
         const mediaItems = [...carousel.querySelectorAll(".kindergarten-feature-media")];
         const copyItems = [...carousel.querySelectorAll(".kindergarten-feature-copy-item")];
         const dots = [...carousel.querySelectorAll(".kindergarten-feature-dot")];
+        const controls = [...carousel.querySelectorAll("[data-kindergarten-feature-control]")];
         let currentIndex = 0;
         let isLocked = false;
         let lockTimer = 0;
@@ -679,6 +825,13 @@
           dots.forEach((dot, index) => {
             dot.classList.toggle("is-active", index === currentIndex);
           });
+
+          controls.forEach((control) => {
+            const direction = control.dataset.kindergartenFeatureControl;
+            control.disabled =
+              (direction === "previous" && currentIndex === 0) ||
+              (direction === "next" && currentIndex === copyItems.length - 1);
+          });
         };
 
         const scrollToIndex = (index) => {
@@ -701,17 +854,23 @@
         };
 
         mediaCard?.addEventListener("wheel", handleWheel, { passive: false });
-        copyTrack.addEventListener("wheel", handleWheel, { passive: false });
-        updateDots();
-
-        carousel.querySelector(".kindergarten-feature-box")?.addEventListener(
+        featureBox?.addEventListener(
           "wheel",
           (event) => {
-            if (event.target.closest(".kindergarten-feature-copy-track")) return;
-            handleWheel(event);
+            if (event.target.closest(".kindergarten-feature-control")) return;
+            event.stopPropagation();
           },
-          { passive: false }
+          { passive: true }
         );
+
+        controls.forEach((control) => {
+          control.addEventListener("click", () => {
+            const direction = control.dataset.kindergartenFeatureControl === "previous" ? -1 : 1;
+            scrollToIndex(currentIndex + direction);
+          });
+        });
+
+        updateDots();
       })();
     </script>
   </body>
