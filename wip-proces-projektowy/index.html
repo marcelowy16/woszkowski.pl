@@ -40,7 +40,7 @@
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/wip/Frame-5.png" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="../styles/main.css?v=20260315-01" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260814-lenis-1" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -82,9 +82,10 @@
       }
     </script>
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
-    <script defer src="../scripts/main.js?v=20260304-13"></script>
+    <script defer src="../scripts/vendor/lenis.min.js?v=1.3.26"></script>
+    <script defer src="../scripts/main.js?v=20260814-lenis-1"></script>
   </head>
-  <body class="project-page project-page-wip">
+  <body class="project-page project-page-wip project-page-survey">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -143,92 +144,109 @@
             <h1 class="wip-hero-title">Aplikacja do przeglądania ankiet w&nbsp;formie feedu</h1>
           </div>
 
-          <div class="wip-hero-media" data-reveal>
-            <img
-              src="../assets/images/wip/Frame-5.png"
-              alt="Podgląd ekranów aplikacji ankietowej w formie feedu"
-              width="1202"
-              height="776"
-              loading="eager"
-              decoding="async"
-            />
+          <div class="assistant-hero-showcase">
+            <figure class="wip-hero-media" data-reveal>
+              <img
+                src="../assets/images/wip/Frame-5.png"
+                alt="Podgląd ekranów aplikacji ankietowej w formie feedu"
+                width="1202"
+                height="776"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+
+            <aside class="project-summary-box" aria-label="Podsumowanie projektu" data-reveal>
+              <div class="project-summary-intro">
+                <p class="project-summary-kicker">Project summary</p>
+                <p class="project-summary-statement">
+                  Ankiety zmienione w&nbsp;angażujący feed, który ułatwia szybkie wyrażanie opinii.
+                </p>
+              </div>
+
+              <div class="project-summary-item">
+                <h2 class="project-summary-title">Problem</h2>
+                <p class="project-summary-text">
+                  Klasyczne narzędzia ankietowe bywają złożone i&nbsp;mało angażujące, a&nbsp;feed aplikacji społecznościowych
+                  najczęściej zachęca do biernego przeglądania zamiast aktywnego dzielenia się opinią.
+                </p>
+              </div>
+
+              <div class="project-summary-item">
+                <h2 class="project-summary-title">Solution</h2>
+                <p class="project-summary-text">
+                  Aplikacja łączy pionowy feed ze skupieniem na jednym pytaniu. Znajome gesty, natychmiastowe wyniki,
+                  komentarze i&nbsp;prosty kreator skracają drogę od zobaczenia ankiety do odpowiedzi lub publikacji własnej.
+                </p>
+              </div>
+
+              <div class="project-summary-item">
+                <h2 class="project-summary-title">Impact</h2>
+                <p class="project-summary-text">
+                  Użytkownik może szybciej wyrazić opinię i&nbsp;od razu zobaczyć jej kontekst, a&nbsp;autor ankiety otrzymuje
+                  uporządkowane dane bez obciążania odbiorcy rozbudowanym formularzem.
+                </p>
+              </div>
+
+              <div class="project-summary-facts">
+                <div class="project-summary-fact">
+                  <p class="project-summary-fact-label">Branża</p>
+                  <p class="project-summary-fact-value">Social media</p>
+                </div>
+
+                <div class="project-summary-fact">
+                  <p class="project-summary-fact-label">Narzędzia</p>
+                  <p class="project-summary-fact-value">Figma</p>
+                </div>
+
+                <div class="project-summary-fact">
+                  <p class="project-summary-fact-label">Kluczowe czynności</p>
+                  <p class="project-summary-fact-value">Spotkania z&nbsp;klientem, architektura informacji, wireframes, projekt UI, testy prototypu</p>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      <section class="wip-rive">
-        <div class="container wip-rive-grid">
-          <div class="wip-rive-card" data-reveal>
-            <canvas
-              width="592"
-              height="592"
-              data-rive-src="../assets/rive/canva_1.riv"
-              data-rive-artboard="Artboard"
-              data-rive-autoplay="true"
-              aria-label="Animacja interfejsu aplikacji"
-            ></canvas>
-          </div>
-
-          <div class="wip-rive-card" data-reveal>
-            <canvas
-              width="592"
-              height="592"
-              data-rive-src="../assets/rive/canva_1.riv"
-              data-rive-artboard="Artboard 2"
-              data-rive-autoplay="true"
-              aria-label="Animacja drugiego widoku interfejsu aplikacji"
-            ></canvas>
-          </div>
-        </div>
-      </section>
-
-      <section class="wip-meta">
-        <div class="container wip-meta-grid">
-          <div class="wip-meta-item" data-reveal>
-            <p class="wip-meta-label">BRANŻA</p>
-            <p class="wip-meta-value">Social media</p>
-          </div>
-          <div class="wip-meta-item" data-reveal>
-            <p class="wip-meta-label">NARZĘDZIA</p>
-            <p class="wip-meta-value">Figma</p>
-          </div>
-          <div class="wip-meta-item" data-reveal>
-            <p class="wip-meta-label">KLUCZOWE CZYNNOŚCI</p>
-            <p class="wip-meta-value">Spotkania z&nbsp;klientem, wsparcie przy opracowaniu biznesu</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="wip-copy-section">
+      <section class="wip-copy-section survey-copy-section">
         <div class="container">
-          <div class="wip-copy-lead" data-reveal>
-            <p>
-              Do współpracy zgłosił się klient z&nbsp;pomysłem na aplikację mobilną opartą na przeglądaniu pytań i&nbsp;ankiet w&nbsp;formie
-              ciągłego feedu. Zamiast klasycznego konsumowania treści wideo użytkownicy mieli odpowiadać na pytania publikowane
-              przez innych, brać udział w&nbsp;dyskusjach oraz analizować wyniki i&nbsp;statystyki odpowiedzi. Inspiracją dla koncepcji
-              były mechaniki znane z&nbsp;aplikacji SM, jednak celem projektu było&nbsp;zaprojektowanie rozwiązania, które wykorzystuje je
-              do zbierania opinii i&nbsp;danych, a&nbsp;nie wyłącznie do rozrywki.
-            </p>
-          </div>
-
-          <div class="wip-problem-grid">
+          <div class="wip-problem-grid survey-problem-grid">
             <article class="wip-problem-card" data-reveal>
-              <h2 class="wip-card-title">CEL</h2>
-              <p>
-                Zaprojektowanie aplikacji, która zachęca do częstych, krótkich interakcji, a&nbsp;jednocześnie dostarcza
-                wartościowych insightów. Klientowi zależało&nbsp;na połączeniu lekkości znanej z&nbsp;aplikacji rozrywkowych z&nbsp;funkcjonalnością narzędzia do zbierania opinii. Zakres pracy obejmował zaprojektowanie całego UX – od
-                koncepcji, przez architekturę informacji, aż po finalny interfejs.
-              </p>
+              <div class="survey-copy-item">
+                <h2 class="wip-card-title">Wprowadzenie</h2>
+                <p>
+                  Do współpracy zgłosił się klient z&nbsp;pomysłem na aplikację mobilną opartą na przeglądaniu pytań i&nbsp;ankiet
+                  w&nbsp;formie ciągłego feedu. Zamiast klasycznego konsumowania treści wideo użytkownicy mieli odpowiadać na pytania
+                  publikowane przez innych, brać udział w&nbsp;dyskusjach oraz analizować wyniki i&nbsp;statystyki odpowiedzi.
+                  Inspiracją dla koncepcji były mechaniki znane z&nbsp;aplikacji social media, jednak projekt wykorzystywał je do
+                  zbierania opinii i&nbsp;danych, a&nbsp;nie wyłącznie do rozrywki.
+                </p>
+              </div>
             </article>
 
             <article class="wip-problem-card" data-reveal>
-              <h2 class="wip-card-title">PROBLEM DO ROZWIĄZANIA</h2>
-              <p>
-                Większość aplikacji społecznościowych skupia się na biernym konsumowaniu treści, a&nbsp;narzędzia ankietowe często są
-                skomplikowane i&nbsp;mało&nbsp;angażujące. Wyzwaniem było&nbsp;stworzenie rozwiązania, które umożliwia szybkie wyrażanie
-                opinii, nie obciążając użytkownika nadmiarem decyzji i&nbsp;formularzy, a&nbsp;przy tym dostarczając dodatkowe dane o&nbsp;użytkownikach.
-                Mając na uwadze, że wiek grupy docelowej jest bardzo szeroki, interfejs musiał być czytelny.
-              </p>
+              <div class="survey-copy-item">
+                <h2 class="wip-card-title">Cel</h2>
+                <p>
+                  Celem było zaprojektowanie aplikacji, która zachęca do częstych, krótkich interakcji, a&nbsp;jednocześnie dostarcza
+                  wartościowych insightów. Klientowi zależało na połączeniu lekkości znanej z&nbsp;aplikacji rozrywkowych
+                  z&nbsp;funkcjonalnością narzędzia do zbierania opinii. Zakres pracy obejmował cały UX: od koncepcji i&nbsp;architektury
+                  informacji po finalny interfejs.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-problem-card" data-reveal>
+              <div class="survey-copy-item">
+                <h2 class="wip-card-title">Wyzwanie</h2>
+                <p>
+                  Większość aplikacji społecznościowych skupia się na biernym konsumowaniu treści, a&nbsp;narzędzia ankietowe bywają
+                  skomplikowane i&nbsp;mało angażujące. Wyzwaniem było stworzenie rozwiązania, które pozwala szybko wyrazić opinię,
+                  nie obciąża nadmiarem decyzji i&nbsp;formularzy, a&nbsp;jednocześnie dostarcza wartościowych danych. Ze względu na szeroki
+                  wiek grupy docelowej interfejs musiał pozostać prosty i&nbsp;czytelny.
+                </p>
+              </div>
             </article>
           </div>
         </div>
@@ -258,7 +276,7 @@
               />
             </figure>
           </div>
-          <div class="wip-copy-block" data-reveal>
+          <div class="wip-copy-block case-study-text-block" data-reveal>
             <p>
               Centralnym elementem aplikacji jest feed, w&nbsp;którym jedno pytanie zajmuje cały ekran. Użytkownik wykonuje zawsze
               jedną główną akcję – udziela odpowiedzi lub przechodzi do kolejnej ankiety.
@@ -273,88 +291,145 @@
             <h2 class="wip-section-title">Problemy i&nbsp;rozwiązania</h2>
           </div>
 
-          <div class="wip-solutions-grid">
-            <article class="wip-solution-pair" data-reveal>
-              <div class="wip-solution-box">
-                <p class="wip-solution-label">Problem</p>
-                <p>
-                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne zaangażowanie
-                  użytkowników&nbsp;i&nbsp;nie sprzyja wyrażaniu opinii.
-                </p>
-              </div>
-              <div class="wip-solution-box wip-solution-box-accent">
-                <p class="wip-solution-label">Rozwiązanie</p>
-                <p>
-                  Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne zaangażowanie
-                  użytkowników&nbsp;i&nbsp;nie sprzyja wyrażaniu opinii.
-                </p>
-              </div>
-            </article>
+          <div
+            class="assistant-decision-carousel survey-solution-carousel"
+            data-case-study-carousel
+            role="region"
+            aria-label="Problemy i rozwiązania projektowe"
+            tabindex="0"
+            data-reveal
+          >
+            <div class="assistant-decision-track" aria-live="polite">
+              <article class="assistant-decision-card survey-solution-card">
+                <p class="assistant-decision-number">01</p>
+                <div class="survey-solution-stack">
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Problem</h3>
+                    <p>
+                      Wiele aplikacji social media opiera się na pasywnym przeglądaniu treści, co ogranicza realne zaangażowanie
+                      użytkowników i&nbsp;nie sprzyja wyrażaniu opinii.
+                    </p>
+                  </div>
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Rozwiązanie</h3>
+                    <p>
+                      Feed został oparty na krótkich ankietach wymagających aktywnej odpowiedzi. Każdy ekran prowadzi do jednej
+                      decyzji, dzięki czemu przewijanie staje się serią prostych interakcji zamiast biernego oglądania.
+                    </p>
+                  </div>
+                </div>
+              </article>
 
-            <article class="wip-solution-pair" data-reveal>
-              <div class="wip-solution-box">
-                <p class="wip-solution-label">Problem</p>
-                <p>
-                  W&nbsp;narzędziach ankietowych użytkownicy czasem muszą mierzyć się z&nbsp;rozbudowanymi formularzami, wieloma
-                  przyciskami i&nbsp;nieczytelną hierarchią informacji.
-                </p>
-              </div>
-              <div class="wip-solution-box wip-solution-box-accent">
-                <p class="wip-solution-label">Rozwiązanie</p>
-                <p>
-                  Interfejs został zaprojektowany tak, aby na ekranie znajdowała&nbsp;się jedna główna akcja. Ograniczenie liczby
-                  elementów&nbsp;pozwala użytkownikowi skupić się na pytaniu i&nbsp;odpowiedzi.
-                </p>
-              </div>
-            </article>
+              <article class="assistant-decision-card survey-solution-card">
+                <p class="assistant-decision-number">02</p>
+                <div class="survey-solution-stack">
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Problem</h3>
+                    <p>
+                      W&nbsp;narzędziach ankietowych użytkownicy często muszą mierzyć się z&nbsp;rozbudowanymi formularzami, wieloma
+                      przyciskami i&nbsp;nieczytelną hierarchią informacji.
+                    </p>
+                  </div>
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Rozwiązanie</h3>
+                    <p>
+                      Interfejs został zaprojektowany tak, aby na ekranie znajdowała się jedna główna akcja. Ograniczenie liczby
+                      elementów pozwala użytkownikowi skupić się na pytaniu i&nbsp;odpowiedzi.
+                    </p>
+                  </div>
+                </div>
+              </article>
 
-            <article class="wip-solution-pair" data-reveal>
-              <div class="wip-solution-box">
-                <p class="wip-solution-label">Problem</p>
-                <p>
-                  Wiele ankiet nie oferuje użytkownikowi natychmiastowej informacji zwrotnej, co obniża&nbsp;chęć do udziału&nbsp;w&nbsp;kolejnych pytaniach.
-                </p>
-              </div>
-              <div class="wip-solution-box wip-solution-box-accent">
-                <p class="wip-solution-label">Rozwiązanie</p>
-                <p>
-                  Po każdej odpowiedzi użytkownik otrzymuje dostęp do statystyk i&nbsp;wyników&nbsp;ankiety. Statystyki pełnią rolę
-                  „nagrody” i&nbsp;zachęcają do dalszego korzystania z&nbsp;aplikacji.
-                </p>
-              </div>
-            </article>
+              <article class="assistant-decision-card survey-solution-card">
+                <p class="assistant-decision-number">03</p>
+                <div class="survey-solution-stack">
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Problem</h3>
+                    <p>
+                      Wiele ankiet nie oferuje natychmiastowej informacji zwrotnej, co obniża chęć do udziału w&nbsp;kolejnych pytaniach.
+                    </p>
+                  </div>
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Rozwiązanie</h3>
+                    <p>
+                      Po każdej odpowiedzi użytkownik otrzymuje dostęp do statystyk i&nbsp;wyników ankiety. Informacja zwrotna pełni
+                      rolę nagrody i&nbsp;zachęca do dalszego korzystania z&nbsp;aplikacji.
+                    </p>
+                  </div>
+                </div>
+              </article>
 
-            <article class="wip-solution-pair" data-reveal>
-              <div class="wip-solution-box">
-                <p class="wip-solution-label">Problem</p>
-                <p>
-                  Rozbudowane panele analityczne często odstraszają użytkowników&nbsp;nietechnicznych i&nbsp;utrudniają szybkie
-                  wyciąganie wniosków.
-                </p>
-              </div>
-              <div class="wip-solution-box wip-solution-box-accent">
-                <p class="wip-solution-label">Rozwiązanie</p>
-                <p>
-                  Dane zostały przedstawione w&nbsp;uproszczonej wizualnie formie. Statystyki są integralną częścią doświadczenia, a&nbsp;nie osobnym narzędziem.
-                </p>
-              </div>
-            </article>
+              <article class="assistant-decision-card survey-solution-card">
+                <p class="assistant-decision-number">04</p>
+                <div class="survey-solution-stack">
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Problem</h3>
+                    <p>
+                      Rozbudowane panele analityczne często odstraszają użytkowników nietechnicznych i&nbsp;utrudniają szybkie
+                      wyciąganie wniosków.
+                    </p>
+                  </div>
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Rozwiązanie</h3>
+                    <p>
+                      Dane zostały przedstawione w&nbsp;uproszczonej wizualnie formie. Statystyki są integralną częścią doświadczenia,
+                      a&nbsp;nie osobnym narzędziem wymagającym dodatkowej nauki.
+                    </p>
+                  </div>
+                </div>
+              </article>
 
-            <article class="wip-solution-pair" data-reveal>
-              <div class="wip-solution-box">
-                <p class="wip-solution-label">Problem</p>
-                <p>
-                  Rozbudowane panele analityczne często odstraszają użytkowników&nbsp;nietechnicznych i&nbsp;utrudniają szybkie
-                  wyciąganie wniosków.
-                </p>
-              </div>
-              <div class="wip-solution-box wip-solution-box-accent">
-                <p class="wip-solution-label">Rozwiązanie</p>
-                <p>
-                  Proces ten został skrócony do kilku prostych kroków. Użytkownik wybiera typ pytania, definiuje odpowiedzi i&nbsp;publikuje ankietę.
-                </p>
-              </div>
-            </article>
+              <article class="assistant-decision-card survey-solution-card">
+                <p class="assistant-decision-number">05</p>
+                <div class="survey-solution-stack">
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Problem</h3>
+                    <p>
+                      Tworzenie ankiety może wymagać wielu ustawień i&nbsp;ekranów, przez co publikacja prostego pytania staje się
+                      niepotrzebnie czasochłonna.
+                    </p>
+                  </div>
+                  <div class="survey-solution-block">
+                    <h3 class="assistant-decision-card-title">Rozwiązanie</h3>
+                    <p>
+                      Proces został skrócony do kilku czytelnych kroków. Użytkownik wybiera typ pytania, definiuje odpowiedzi
+                      i&nbsp;publikuje ankietę bez przechodzenia przez rozbudowany panel.
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="assistant-decision-dots" aria-hidden="true">
+              <span class="assistant-decision-dot is-active"></span>
+              <span class="assistant-decision-dot"></span>
+              <span class="assistant-decision-dot"></span>
+              <span class="assistant-decision-dot"></span>
+              <span class="assistant-decision-dot"></span>
+            </div>
+
+            <div class="assistant-decision-controls" aria-label="Nawigacja po problemach i rozwiązaniach">
+              <button
+                class="assistant-decision-control"
+                type="button"
+                data-case-study-carousel-control="previous"
+                aria-label="Poprzedni problem"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M19 12H5m0 0 6-6m-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
+              <button
+                class="assistant-decision-control"
+                type="button"
+                data-case-study-carousel-control="next"
+                aria-label="Następny problem"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -362,8 +437,8 @@
       <section class="wip-process">
         <div class="container">
           <div class="wip-process-grid">
-            <div class="wip-process-copy" data-reveal>
-              <p class="wip-process-kicker"><s>Projektowanie</s><br />Zrozumienie potrzeb</p>
+            <div class="wip-process-copy case-study-text-block" data-reveal>
+              <h2 class="wip-card-title case-study-section-title">Zrozumienie potrzeb</h2>
               <div class="wip-copy-block">
                 <p>
                   Projekt rozpoczął się od szeregu spotkań, które pozwoliły przenieść zamysł na szkic. Dzięki nim ustalono m.in.
@@ -394,9 +469,8 @@
 
       <section class="wip-ui">
         <div class="container">
-          <div class="wip-ui-copy" data-reveal>
-            <h2 class="wip-section-title wip-ui-title">Projekt UI</h2>
-            <p class="wip-section-kicker wip-section-kicker-muted wip-ui-eyebrow">EKRAN GŁÓWNY</p>
+          <div class="wip-ui-copy case-study-text-block" data-reveal>
+            <h2 class="wip-card-title case-study-section-title wip-ui-title">Projekt UI</h2>
             <div class="wip-copy-block">
               <p>
                 Kluczowymi wartościami podczas projektowania docelowego interfejsu była&nbsp;wizualna prostota, która miała&nbsp;być
@@ -416,10 +490,10 @@
         <div class="container">
           <figure class="wip-image-frame" data-reveal>
             <img
-              src="../assets/images/wip/ui1.png"
-              alt="Projekt interfejsu głównego aplikacji"
-              width="2235"
-              height="1102"
+              src="../assets/images/wip/Frame-5.png"
+              alt="Finalne ekrany aplikacji ankietowej"
+              width="1202"
+              height="776"
               loading="lazy"
               decoding="async"
             />
@@ -430,7 +504,7 @@
       <section class="wip-comments">
         <div class="container wip-comments-grid">
           <div class="wip-comments-copy" data-reveal>
-            <p class="wip-section-kicker wip-section-kicker-muted">KOMENTARZE</p>
+            <h2 class="wip-card-title case-study-section-title">Komentarze</h2>
             <div class="wip-copy-block">
               <p>
                 Sekcja komentarzy została&nbsp;zaprojektowana na bazie popularnych aplikacji (Tiktok, Youtube), by użytkownik używał
@@ -458,8 +532,8 @@
 
       <section class="wip-creator">
         <div class="container">
-          <div class="wip-creator-copy" data-reveal>
-            <p class="wip-section-kicker wip-section-kicker-muted">KREATOR ANKIET</p>
+          <div class="wip-creator-copy case-study-text-block" data-reveal>
+            <h2 class="wip-card-title case-study-section-title">Kreator ankiet</h2>
             <div class="wip-copy-block">
               <p>
                 Przechodząc dalej, do kreatora ankiet – korzystanie z&nbsp;niego musiało&nbsp;bazować na prostocie. Rozbicie procesu na czytelne
@@ -478,6 +552,104 @@
               alt="Widok kreatora ankiet w aplikacji"
               width="2235"
               height="1102"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section class="survey-validation">
+        <div class="container">
+          <div class="case-study-text-block" data-reveal>
+            <h2 class="wip-card-title case-study-section-title">Testy i iteracje</h2>
+            <div class="wip-copy-block">
+              <p>
+                Prototyp został przetestowany z osobami należącymi do potencjalnej grupy użytkowników aplikacji. Celem testów było
+                sprawdzenie, czy najważniejsze działania są zrozumiałe bez dodatkowego objaśnienia oraz czy uproszczony sposób
+                odpowiadania na pytania rzeczywiście zmniejsza wysiłek potrzebny do udziału w ankiecie.
+              </p>
+              <p>
+                Uczestnicy wykonywali podstawowe zadania: odpowiadali na pytania w feedzie, przechodzili do kolejnej ankiety,
+                sprawdzali wyniki, dodawali komentarz oraz tworzyli własną ankietę. Obserwowałem, w których miejscach podejmowali
+                decyzje bez wahania, a gdzie zatrzymywali się lub nie rozumieli dostępnych opcji.
+              </p>
+
+              <h3>Najważniejsze obserwacje</h3>
+              <p>
+                Najbardziej intuicyjny okazał się model, w którym jedno pytanie zajmuje cały ekran, a użytkownik wykonuje tylko
+                jedną główną akcję. Więcej trudności sprawiało rozpoznanie momentu przejścia do wyników oraz zrozumienie kolejnych
+                etapów tworzenia ankiety.
+              </p>
+
+              <h3>Wprowadzone zmiany</h3>
+              <p>
+                Na podstawie obserwacji wzmocniłem hierarchię najważniejszych przycisków, uprościłem komunikaty i wyraźniej
+                oddzieliłem udzielanie odpowiedzi od przeglądania wyników. Proces tworzenia ankiety został podzielony na krótsze,
+                następujące po sobie kroki, dzięki czemu użytkownik nie musi podejmować zbyt wielu decyzji na jednym ekranie.
+              </p>
+              <p>
+                Testy potwierdziły, że ograniczenie liczby elementów i skupienie każdego widoku na jednym zadaniu wspiera szybkie
+                korzystanie z aplikacji. Jednocześnie wskazały obszary, które wymagały czytelniejszych informacji zwrotnych i
+                mocniejszego prowadzenia użytkownika przez proces.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="assistant-final-section survey-final-section" aria-label="Projekt finalny">
+        <div class="assistant-final-track" data-horizontal-drag data-disable-rive-zoom="true" data-reveal>
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <img
+              src="../assets/images/wip/Frame-5.png"
+              alt="Finalne ekrany aplikacji ankietowej"
+              width="1202"
+              height="776"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <canvas
+              width="592"
+              height="592"
+              data-rive-src="../assets/rive/canva_1.riv"
+              data-rive-artboard="Artboard"
+              data-rive-autoplay="true"
+              aria-label="Animacja interfejsu aplikacji ankietowej"
+            ></canvas>
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <canvas
+              width="592"
+              height="592"
+              data-rive-src="../assets/rive/canva_1.riv"
+              data-rive-artboard="Artboard 2"
+              data-rive-autoplay="true"
+              aria-label="Animacja drugiego widoku aplikacji ankietowej"
+            ></canvas>
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <img
+              src="../assets/images/wip/ui1.png"
+              alt="Przegląd finalnych widoków feedu aplikacji ankietowej"
+              width="2235"
+              height="1102"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <img
+              src="../assets/images/wip/Frame3.png"
+              alt="Finalny widok komentarzy w aplikacji ankietowej"
+              width="598"
+              height="758"
               loading="lazy"
               decoding="async"
             />

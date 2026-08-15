@@ -39,16 +39,19 @@ const scrollToTopButton = document.querySelector(".scroll-to-top");
 const riveCanvases = document.querySelectorAll("canvas[data-rive-src]");
 const offsetVideos = document.querySelectorAll("video[data-start-time]");
 const subtropicaSurveyCarousels = document.querySelectorAll("[data-subtropica-carousel]");
+const caseStudyCarousels = document.querySelectorAll("[data-case-study-carousel]");
 const wipZoomableImages = document.querySelectorAll(
   ".project-page-wip .wip-hero-media img, .project-page-wip .wip-image-card img, .project-page-wip .wip-image-frame img, .project-page-wip .wip-comments-media img, .project-page-wip .assistant-intro-shot img"
 );
 const wipZoomableVideos = document.querySelectorAll(".project-page-wip video");
 const lightboxTransitionDuration = 380;
 const riveCanvasInstances = new WeakMap();
+const smoothScrollMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 let returnFocusTo = null;
 let lastScrollY = Math.max(window.scrollY, 0);
 let headerTicking = false;
+let smoothScrollController = null;
 
 const headerScrollTolerance = 10;
 const headerRevealOffset = 16;
@@ -145,6 +148,60 @@ const initHeaderNavIntro = () => {
 };
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const initGlobalSmoothScroll = () => {
+  if (smoothScrollController || smoothScrollMotionQuery.matches || typeof window.Lenis !== "function") {
+    return;
+  }
+
+  smoothScrollController = new window.Lenis({
+    autoRaf: true,
+    duration: 1.2,
+    easing: (progress) => Math.min(1, 1.001 - Math.pow(2, -10 * progress)),
+    smoothWheel: true,
+    syncTouch: false,
+    wheelMultiplier: 1,
+    touchMultiplier: 1,
+    overscroll: true,
+    anchors: true,
+  });
+};
+
+const syncGlobalSmoothScroll = () => {
+  if (smoothScrollMotionQuery.matches) {
+    smoothScrollController?.destroy();
+    smoothScrollController = null;
+    return;
+  }
+
+  initGlobalSmoothScroll();
+};
+
+const scrollPageTo = (target, { immediate = false } = {}) => {
+  if (smoothScrollController) {
+    smoothScrollController.scrollTo(target, { immediate });
+    return;
+  }
+
+  const behavior = immediate || smoothScrollMotionQuery.matches ? "auto" : "smooth";
+
+  if (typeof target === "number") {
+    window.scrollTo({ top: target, left: 0, behavior });
+    return;
+  }
+
+  if (target instanceof Element) {
+    target.scrollIntoView({ behavior, block: "start" });
+  }
+};
+
+if (typeof smoothScrollMotionQuery.addEventListener === "function") {
+  smoothScrollMotionQuery.addEventListener("change", syncGlobalSmoothScroll);
+} else if (typeof smoothScrollMotionQuery.addListener === "function") {
+  smoothScrollMotionQuery.addListener(syncGlobalSmoothScroll);
+}
+
+syncGlobalSmoothScroll();
 
 const syncHomeHeaderWidth = () => {
   if (!(headerShell instanceof HTMLElement) || !body.classList.contains("home-page")) {
@@ -542,7 +599,7 @@ syncScrollToTopButton();
 initCookieConsentBar();
 
 scrollToTopButton?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  scrollPageTo(0);
 });
 
 scrollLinks.forEach((link) => {
@@ -559,7 +616,7 @@ scrollLinks.forEach((link) => {
     }
 
     event.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollPageTo(target);
     if (menu && !menu.hidden) {
       setMenuState(false);
     }
@@ -793,7 +850,7 @@ const restoreHomeScrollPositionOnBack = (pageshowEvent) => {
 
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
-      window.scrollTo({ top: scrollY, left: 0, behavior: "auto" });
+      scrollPageTo(scrollY, { immediate: true });
     });
   });
 };
@@ -1904,6 +1961,10 @@ const initWipVideoLightbox = () => {
       return;
     }
 
+    if (video.closest(".assistant-final-track")) {
+      return;
+    }
+
     const trigger = video.parentElement;
     if (!(trigger instanceof HTMLElement) || trigger.dataset.videoZoomReady === "true") {
       return;
@@ -2142,19 +2203,19 @@ const initHomepageProjectsParallax = () => {
     {
       column: projectsList.querySelector(".project-column-1"),
       from: 0,
-      to: -48,
+      to: -96,
       curve: 0.9,
     },
     {
       column: projectsList.querySelector(".project-column-2"),
       from: 0,
-      to: 32,
+      to: 64,
       curve: 1.08,
     },
     {
       column: projectsList.querySelector(".project-column-3"),
       from: 0,
-      to: -40,
+      to: -80,
       curve: 0.96,
     },
   ].map((motion) => ({
@@ -3695,6 +3756,94 @@ const initHorizontalDragTracks = () => {
 };
 
 initHorizontalDragTracks();
+
+const initCaseStudyCarousels = () => {
+  caseStudyCarousels.forEach((carousel) => {
+    if (!(carousel instanceof HTMLElement) || carousel.dataset.carouselReady === "true") {
+      return;
+    }
+
+    const track = carousel.querySelector(".assistant-decision-track");
+    const items = Array.from(carousel.querySelectorAll(".assistant-decision-card")).filter(
+      (item) => item instanceof HTMLElement
+    );
+    const dots = Array.from(carousel.querySelectorAll(".assistant-decision-dot")).filter(
+      (dot) => dot instanceof HTMLElement
+    );
+    const controls = Array.from(carousel.querySelectorAll("[data-case-study-carousel-control]")).filter(
+      (control) => control instanceof HTMLButtonElement
+    );
+
+    if (!(track instanceof HTMLElement) || items.length === 0 || controls.length === 0) {
+      return;
+    }
+
+    let currentIndex = 0;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const getItemLeft = (item) => item.offsetLeft - track.offsetLeft;
+
+    const updateState = () => {
+      items.forEach((item, index) => {
+        item.setAttribute("aria-hidden", index === currentIndex ? "false" : "true");
+      });
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("is-active", index === currentIndex);
+      });
+
+      controls.forEach((control) => {
+        const direction = control.dataset.caseStudyCarouselControl;
+        control.disabled =
+          (direction === "previous" && currentIndex === 0) ||
+          (direction === "next" && currentIndex === items.length - 1);
+      });
+    };
+
+    const goToIndex = (index) => {
+      const nextIndex = Math.min(Math.max(index, 0), items.length - 1);
+      const item = items[nextIndex];
+
+      if (!item || nextIndex === currentIndex) {
+        return;
+      }
+
+      currentIndex = nextIndex;
+      updateState();
+      track.scrollTo({
+        left: getItemLeft(item),
+        behavior: reduceMotion.matches ? "auto" : "smooth",
+      });
+    };
+
+    controls.forEach((control) => {
+      control.addEventListener("click", () => {
+        const direction = control.dataset.caseStudyCarouselControl === "previous" ? -1 : 1;
+        goToIndex(currentIndex + direction);
+      });
+    });
+
+    carousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goToIndex(currentIndex - 1);
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goToIndex(currentIndex + 1);
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      track.scrollTo({ left: getItemLeft(items[currentIndex]), behavior: "auto" });
+    });
+
+    updateState();
+    carousel.dataset.carouselReady = "true";
+  });
+};
+
+initCaseStudyCarousels();
 
 const initSubtropicaSurveyCarousels = () => {
   subtropicaSurveyCarousels.forEach((carousel, carouselIndex) => {

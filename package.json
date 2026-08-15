@@ -23,6 +23,7 @@
   "homepage": "https://github.com/marcelowy16/woszkowski.pl#readme",
   "dependencies": {
     "@remotion/cli": "^4.0.464",
+    "lenis": "^1.3.26",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "remotion": "^4.0.464"

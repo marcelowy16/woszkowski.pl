@@ -37,7 +37,8 @@
     <link rel="preload" href="./assets/fonts/Gordita-Regular.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Gordita-Medium.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="./assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./styles/main.css?v=20260710-projects-3col-2" />
+    <link rel="preload" href="./assets/images/hero-portrait-original.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="./styles/main.css?v=20260815-hero-grid-4" />
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
     <script type="application/ld+json">
       {
@@ -111,24 +112,30 @@
                 {
                   "@type": "ListItem",
                   "position": 4,
+                  "url": "https://woszkowski.pl/wip-proces-projektowy/",
+                  "name": "Aplikacja do przegladania ankiet w formie feedu"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 5,
                   "url": "https://woszkowski.pl/pogo-proces-projektowy/",
                   "name": "Aplikacja pomagajaca w znajdywaniu osob chetnych do spedzania razem czasu"
                 },
                 {
                   "@type": "ListItem",
-                  "position": 5,
+                  "position": 6,
                   "url": "https://woszkowski.pl/konfiguracja-dashboardu-proces-projektowy/",
                   "name": "Dodawanie i wyswietlanie widzetow na dashboardzie"
                 },
                 {
                   "@type": "ListItem",
-                  "position": 6,
+                  "position": 7,
                   "url": "https://woszkowski.pl/design-system-proces-projektowy/",
                   "name": "Kompaktowy design system dostosowany do potrzeb aplikacji mobilnej"
                 },
                 {
                   "@type": "ListItem",
-                  "position": 7,
+                  "position": 8,
                   "url": "https://woszkowski.pl/subtropica-proces-projektowy/",
                   "name": "Platforma dedykowana sprzedazy i edukacji unikatowych gatunkow roslin"
                 }
@@ -138,9 +145,10 @@
         ]
       }
     </script>
-    <script defer src="./scripts/main.js?v=20260710-projects-3col-3"></script>
+    <script defer src="./scripts/vendor/lenis.min.js?v=1.3.26"></script>
+    <script defer src="./scripts/main.js?v=20260814-lenis-1"></script>
   </head>
-  <body class="home-page">
+  <body class="home-page projects-figma-trial">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -196,8 +204,52 @@
       <section class="hero section-frame">
         <div class="hero-shell">
         <div class="hero-background" aria-hidden="true">
-          <div class="hero-fractal-glass-base" aria-hidden="true"></div>
-          <div class="hero-fractal-glass-panels" aria-hidden="true"></div>
+          <div class="hero-portrait">
+            <img src="./assets/images/hero-portrait-original.jpg" alt="" width="1254" height="1254" loading="eager" decoding="async" fetchpriority="high" />
+            <div class="hero-dot-map">
+              <div class="hero-dot-grid hero-dot-grid-warm">
+                <span class="hero-dot" style="--index: 0;"></span>
+                <span class="hero-dot" style="--index: 1;"></span>
+                <span class="hero-dot" style="--index: 2;"></span>
+                <span class="hero-dot" style="--index: 3;"></span>
+                <span class="hero-dot" style="--index: 4;"></span>
+                <span class="hero-dot" style="--index: 5;"></span>
+                <span class="hero-dot" style="--index: 6;"></span>
+                <span class="hero-dot" style="--index: 7;"></span>
+                <span class="hero-dot" style="--index: 8;"></span>
+                <span class="hero-dot" style="--index: 9;"></span>
+                <span class="hero-dot" style="--index: 10;"></span>
+                <span class="hero-dot" style="--index: 11;"></span>
+                <span class="hero-dot" style="--index: 12;"></span>
+                <span class="hero-dot" style="--index: 13;"></span>
+                <span class="hero-dot" style="--index: 14;"></span>
+                <span class="hero-dot" style="--index: 15;"></span>
+              </div>
+              <div class="hero-dot-grid hero-dot-grid-acid">
+                <span class="hero-dot" style="--index: 0;"></span>
+                <span class="hero-dot" style="--index: 1;"></span>
+                <span class="hero-dot" style="--index: 2;"></span>
+                <span class="hero-dot" style="--index: 3;"></span>
+                <span class="hero-dot" style="--index: 4;"></span>
+                <span class="hero-dot" style="--index: 5;"></span>
+                <span class="hero-dot" style="--index: 6;"></span>
+                <span class="hero-dot" style="--index: 7;"></span>
+                <span class="hero-dot" style="--index: 8;"></span>
+                <span class="hero-dot" style="--index: 9;"></span>
+                <span class="hero-dot" style="--index: 10;"></span>
+                <span class="hero-dot" style="--index: 11;"></span>
+                <span class="hero-dot" style="--index: 12;"></span>
+                <span class="hero-dot" style="--index: 13;"></span>
+                <span class="hero-dot" style="--index: 14;"></span>
+                <span class="hero-dot" style="--index: 15;"></span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-stairs">
+            <span class="hero-stair hero-stair-low"></span>
+            <span class="hero-stair hero-stair-mid"></span>
+            <span class="hero-stair hero-stair-high"></span>
+          </div>
         </div>
         <div class="container hero-grid">
           <div class="hero-copy is-visible" data-reveal>
@@ -218,16 +270,6 @@
             </div>
           </div>
 
-          <div class="hero-visual" data-reveal data-disable-rive-zoom="true">
-            <canvas
-              aria-label="Zapętlona animacja hero"
-              data-rive-src="./assets/rive/hero_anim.riv"
-              data-rive-artboard="Final anim"
-              data-rive-animation="Timeline 1"
-              data-rive-autoplay="true"
-              data-rive-load-delay="1500"
-            ></canvas>
-          </div>
         </div>
         <a class="scroll-marker" href="#highlights" data-scroll-target="#highlights" aria-label="Przewiń do sekcji To, co robię najlepiej">
           <img src="./assets/gifs/scroll-down2.gif" alt="" width="150" height="153" loading="eager" decoding="async" />
@@ -370,7 +412,7 @@
                   </a>
                 </h3>
                 <a class="button button-tertiary" href="./aplikacja-przedszkole-proces-projektowy/">
-                  Zobacz projekt
+                  Mobile
                 </a>
               </div>
             </article>
@@ -401,7 +443,7 @@
                   łatwiejsza i&nbsp;bardziej naturalna.
                 </p>
                 <a class="button button-tertiary" href="./prezentacja-animacji/">
-                  Zobacz projekt
+                  Motion design
                 </a>
               </div>
             </article>
@@ -437,7 +479,33 @@
                   class="button button-tertiary"
                   href="./redesign-asystenta-domowego-proces-projektowy/"
                 >
-                  Zobacz projekt
+                  Mobile
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card project-card-survey" data-card-href="./wip-proces-projektowy/" data-reveal>
+              <div class="project-media">
+                <img
+                  src="./assets/images/wip/Frame-5.png"
+                  alt="Aplikacja do przeglądania ankiet w formie feedu"
+                  width="1202"
+                  height="776"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project-copy">
+                <h3>
+                  <a href="./wip-proces-projektowy/" data-project-title-lines="Aplikacja do przeglądania ankiet|w formie feedu">
+                    Aplikacja do przeglądania ankiet w&nbsp;formie feedu
+                  </a>
+                </h3>
+                <p>
+                  Mobilny feed oparty na krótkich ankietach, natychmiastowych wynikach i prostym kreatorze pytań.
+                </p>
+                <a class="button button-tertiary" href="./wip-proces-projektowy/">
+                  Mobile
                 </a>
               </div>
             </article>
@@ -477,7 +545,7 @@
                   strony członków&nbsp;grupy.
                 </p>
                 <a class="button button-tertiary" href="./pogo-proces-projektowy/">
-                  Zobacz projekt
+                  Mobile
                 </a>
               </div>
             </article>
@@ -512,7 +580,7 @@
                   class="button button-tertiary"
                   href="./konfiguracja-dashboardu-proces-projektowy/"
                 >
-                  Zobacz projekt
+                  Web
                 </a>
               </div>
             </article>
@@ -543,7 +611,7 @@
                   class="button button-tertiary"
                   href="./design-system-proces-projektowy/"
                 >
-                  Zobacz projekt
+                  Mobile
                 </a>
               </div>
             </article>
@@ -577,7 +645,7 @@
                   class="button button-tertiary"
                   href="./subtropica-proces-projektowy/"
                 >
-                  Zobacz projekt
+                  Web
                 </a>
               </div>
             </article>

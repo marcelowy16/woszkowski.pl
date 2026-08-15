@@ -40,7 +40,7 @@
     <link rel="preload" href="../assets/fonts/GangsterGroteskRegular.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="../assets/fonts/Syne-Variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="../assets/images/assistant/mockup_4a-3.png" as="image" type="image/png" fetchpriority="high" />
-    <link rel="stylesheet" href="../styles/main.css?v=20260315-01" />
+    <link rel="stylesheet" href="../styles/main.css?v=20260814-lenis-1" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -82,7 +82,8 @@
       }
     </script>
     <script defer src="https://unpkg.com/@rive-app/webgl"></script>
-    <script defer src="../scripts/main.js?v=20260304-13"></script>
+    <script defer src="../scripts/vendor/lenis.min.js?v=1.3.26"></script>
+    <script defer src="../scripts/main.js?v=20260814-lenis-1"></script>
   </head>
   <body class="project-page project-page-wip project-page-assistant">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -143,32 +144,69 @@
             <h1 class="wip-hero-title">Redesign cyfrowego asystenta interkomu i&nbsp;kamer domowych</h1>
           </div>
 
-          <figure class="wip-hero-media assistant-hero-media" data-reveal>
-            <img
-              src="../assets/images/assistant/mockup_4a-3.png"
-              alt="Redesign cyfrowego asystenta interkomu i kamer domowych"
-              width="2560"
-              height="1652"
-              loading="eager"
-              decoding="async"
-            />
-          </figure>
-        </div>
-      </section>
+          <div class="assistant-hero-showcase">
+            <figure class="wip-hero-media assistant-hero-media" data-reveal>
+              <img
+                src="../assets/images/assistant/mockup_4a-3.png"
+                alt="Redesign cyfrowego asystenta interkomu i kamer domowych"
+                width="2560"
+                height="1652"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
 
-      <section class="wip-meta">
-        <div class="container wip-meta-grid">
-          <div class="wip-meta-item" data-reveal>
-            <p class="wip-meta-label">BRAN&#379;A</p>
-            <p class="wip-meta-value">Systemy bezpiecze&#324;stwa</p>
-          </div>
-          <div class="wip-meta-item" data-reveal>
-            <p class="wip-meta-label">NARZ&#280;DZIA</p>
-            <p class="wip-meta-value">Figma</p>
-          </div>
-          <div class="wip-meta-item" data-reveal>
-            <p class="wip-meta-label">KLUCZOWE CZYNNO&#346;CI</p>
-            <p class="wip-meta-value">Regularne spotkania, UI/UX</p>
+            <aside class="project-summary-box" aria-label="Podsumowanie projektu" data-reveal>
+              <div class="project-summary-intro">
+                <p class="project-summary-kicker">Project summary</p>
+                <p class="project-summary-statement">
+                  Z&#322;o&#380;ony system kontroli domu zamieniony w&nbsp;prostszy i&nbsp;bardziej czytelny interfejs.
+                </p>
+              </div>
+
+              <div class="project-summary-item">
+                <h2 class="project-summary-title">Problem</h2>
+                <p class="project-summary-text">
+                  Aplikacja obs&#322;ugiwa&#322;a wiele funkcji zwi&#261;zanych z&nbsp;bezpiecze&#324;stwem domu, ale jej interfejs
+                  by&#322; wizualnie ci&#281;&#380;ki, a&nbsp;hierarchia informacji utrudnia&#322;a szybkie dotarcie do najwa&#380;niejszych akcji.
+                </p>
+              </div>
+
+              <div class="project-summary-item">
+                <h2 class="project-summary-title">Solution</h2>
+                <p class="project-summary-text">
+                  Redesign uporz&#261;dkowa&#322; struktur&#281; aplikacji, upro&#347;ci&#322; ekran g&#322;&oacute;wny i&nbsp;nada&#322; wi&#281;kszy
+                  priorytet funkcjom, kt&oacute;re wymagaj&#261; natychmiastowej reakcji: podgl&#261;dowi kamer, interkomowi
+                  i&nbsp;sterowaniu wej&#347;ciem.
+                </p>
+              </div>
+
+              <div class="project-summary-item">
+                <h2 class="project-summary-title">Impact</h2>
+                <p class="project-summary-text">
+                  Nowy interfejs u&#322;atwia szybsze rozpoznanie sytuacji, wygodniejsze przechodzenie mi&#281;dzy
+                  urz&#261;dzeniami i&nbsp;pewniejsze korzystanie z&nbsp;aplikacji przez u&#380;ytkownik&oacute;w o&nbsp;r&oacute;&#380;nym
+                  poziomie do&#347;wiadczenia.
+                </p>
+              </div>
+
+              <div class="project-summary-facts">
+                <div class="project-summary-fact">
+                  <p class="project-summary-fact-label">Bran&#380;a</p>
+                  <p class="project-summary-fact-value">Systemy bezpiecze&#324;stwa</p>
+                </div>
+
+                <div class="project-summary-fact">
+                  <p class="project-summary-fact-label">Narz&#281;dzia</p>
+                  <p class="project-summary-fact-value">Figma</p>
+                </div>
+
+                <div class="project-summary-fact">
+                  <p class="project-summary-fact-label">Kluczowe czynno&#347;ci</p>
+                  <p class="project-summary-fact-value">Audyt UI/UX, uproszczenie architektury informacji, wireframes, redesign interfejsu</p>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
@@ -200,12 +238,40 @@
 
             <article class="wip-problem-card" data-reveal>
               <div class="assistant-copy-item">
+                <h2 class="wip-card-title">Wyzwanie</h2>
+                <p>
+                  Najwi&#281;kszym wyzwaniem by&#322;o zaprojektowanie interfejsu, kt&oacute;ry pozostaje czytelny w&nbsp;sytuacjach
+                  wymagaj&#261;cych szybkiej reakcji. Aplikacja nie s&#322;u&#380;y wy&#322;&#261;cznie do spokojnego przegl&#261;dania ustawie&#324;.
+                  U&#380;ytkownik mo&#380;e korzysta&#263; z&nbsp;niej wtedy, gdy kto&#347; dzwoni do domofonu, gdy chce szybko sprawdzi&#263;
+                  obraz z&nbsp;kamery albo otworzy&#263; wej&#347;cie zdalnie.
+                </p>
+                <p>
+                  Dlatego redesign musia&#322; ograniczy&#263; chaos wizualny, zwi&#281;kszy&#263; czytelno&#347;&#263; g&#322;&oacute;wnych akcji
+                  i&nbsp;uporz&#261;dkowa&#263; &#347;cie&#380;ki prowadz&#261;ce do urz&#261;dze&#324;, historii zdarze&#324; oraz ustawie&#324;. Wa&#380;ne
+                  by&#322;o te&#380; zachowanie prostoty dla r&oacute;&#380;nych grup u&#380;ytkownik&oacute;w, w&nbsp;tym dzieci i&nbsp;os&oacute;b starszych.
+                </p>
+              </div>
+            </article>
+
+            <article class="wip-problem-card" data-reveal>
+              <div class="assistant-copy-item">
                 <h2 class="wip-card-title">Przegl&#261;d aplikacji</h2>
                 <p>
-                  Na tym etapie potrzebowa&#322;em wiedzy, jak wygl&#261;da ca&#322;a&nbsp;aplikacja,<br />
-                  dok&#261;d prowadz&#261; wszystkie
-                  klikalne &#347;cie&#380;ki oraz jakie odczucia wywo&#322;uje jej UI/UX. Dlatego przetestowa&#322;em j&#261; na&nbsp;grupie
-                  docelowej, chc&#261;c sprawdzi&#263; jak radz&#261; sobie z&nbsp;ni&#261; potencjalni&nbsp;u&#380;ytkownicy.
+                  Przegl&#261;d poprzedniej wersji aplikacji pokaza&#322;, &#380;e najwi&#281;kszym problemem nie by&#322;a sama liczba
+                  funkcji, ale spos&oacute;b ich uporz&#261;dkowania. U&#380;ytkownik musia&#322; po&#347;wi&#281;ci&#263; zbyt du&#380;o uwagi na
+                  odnalezienie w&#322;a&#347;ciwego widoku, szczeg&oacute;lnie wtedy, gdy chcia&#322; szybko przej&#347;&#263; mi&#281;dzy interkomem,
+                  kamerami, histori&#261; po&#322;&#261;cze&#324; lub ustawieniami.
+                </p>
+                <p>
+                  Nawigacja pomi&#281;dzy widokami nie by&#322;a wystarczaj&#261;co intuicyjna. Cz&#281;&#347;&#263; &#347;cie&#380;ek wymaga&#322;a dodatkowego
+                  zastanowienia, a&nbsp;u&#380;ytkownik nie zawsze mia&#322; jasno&#347;&#263;, gdzie znajduje si&#281; dana funkcja i&nbsp;jak wr&oacute;ci&#263;
+                  do poprzedniego kontekstu. W&nbsp;przypadku panelu, do kt&oacute;rego podchodzi si&#281; na chwil&#281;, takie tarcie
+                  mog&#322;o spowalnia&#263; wykonanie prostych akcji.
+                </p>
+                <p>
+                  Audyt zwr&oacute;ci&#322; te&#380; uwag&#281; na ograniczon&#261; czytelno&#347;&#263; interfejsu z&nbsp;wi&#281;kszej odleg&#322;o&#347;ci. Poniewa&#380;
+                  urz&#261;dzenie mia&#322;o pe&#322;ni&#263; rol&#281; tabletu wisz&#261;cego na &#347;cianie, kluczowe funkcje musia&#322;y by&#263; &#322;atwe
+                  do rozpoznania bez d&#322;ugiego skupiania wzroku na ekranie.
                 </p>
               </div>
             </article>
@@ -264,6 +330,119 @@
         </div>
       </section>
 
+      <section class="assistant-decision-section" aria-labelledby="assistant-decision-title">
+        <div class="container">
+          <div class="assistant-decision-head" data-reveal>
+            <h2 class="wip-card-title assistant-decision-heading" id="assistant-decision-title">Proces decyzyjny</h2>
+            <p class="assistant-decision-lead">
+              Projekt by&#322; tworzony z&nbsp;my&#347;l&#261; o&nbsp;tablecie pe&#322;ni&#261;cym rol&#281; domowego panelu sterowania. To oznacza&#322;o
+              inny spos&oacute;b korzystania ni&#380; w&nbsp;przypadku klasycznej aplikacji mobilnej. U&#380;ytkownik nie zawsze trzyma
+              urz&#261;dzenie w&nbsp;r&#281;ce. Cz&#281;sto podchodzi do niego na kr&oacute;tko, chce szybko sprawdzi&#263; sytuacj&#281;,
+              odebra&#263; po&#322;&#261;czenie lub wykona&#263; jedn&#261; konkretn&#261; akcj&#281;.
+            </p>
+          </div>
+
+          <div
+            class="assistant-decision-carousel"
+            data-case-study-carousel
+            role="region"
+            aria-label="Proces decyzyjny"
+            tabindex="0"
+            data-reveal
+          >
+            <div class="assistant-decision-track" aria-live="polite">
+              <article class="assistant-decision-card">
+                <p class="assistant-decision-number">01</p>
+                <h3 class="assistant-decision-card-title">Ekran g&#322;&oacute;wny jako panel szybkiej reakcji</h3>
+                <p>
+                  Pierwsz&#261; decyzj&#261; by&#322;o potraktowanie ekranu g&#322;&oacute;wnego jako miejsca szybkiej reakcji.
+                  Najwa&#380;niejsze funkcje musia&#322;y by&#263; widoczne od razu, bez wchodzenia w&nbsp;g&#322;&#281;bokie menu:
+                  interkomy, kamery, historia po&#322;&#261;cze&#324;, nagrania, alarmy, wiadomo&#347;ci oraz sterowanie bram&#261;.
+                </p>
+                <p>
+                  Dlatego funkcje zosta&#322;y pogrupowane w&nbsp;du&#380;e, wyra&#378;ne obszary. Interkomy i&nbsp;kamery
+                  otrzyma&#322;y osobne sekcje, a&nbsp;funkcje dodatkowe zosta&#322;y pokazane jako wi&#281;ksze kafle po prawej stronie.
+                </p>
+              </article>
+
+              <article class="assistant-decision-card">
+                <p class="assistant-decision-number">02</p>
+                <h3 class="assistant-decision-card-title">Czytelno&#347;&#263; z&nbsp;dystansu</h3>
+                <p>
+                  Poniewa&#380; tablet mia&#322; wisie&#263; na &#347;cianie, interfejs musia&#322; by&#263; czytelny r&oacute;wnie&#380;
+                  z&nbsp;wi&#281;kszej odleg&#322;o&#347;ci. W&nbsp;praktyce oznacza&#322;o to wi&#281;ksze kafle, mocniejsze etykiety
+                  i&nbsp;mniej drobnych element&oacute;w wymagaj&#261;cych skupienia.
+                </p>
+                <p>
+                  Wa&#380;ne by&#322;o te&#380; ograniczenie liczby decyzji na ekranie. U&#380;ytkownik powinien szybko rozpozna&#263;
+                  podstawowe grupy funkcji i&nbsp;nie zastanawia&#263; si&#281;, gdzie znajduje si&#281; interkom, kamera, brama
+                  albo historia zdarze&#324;.
+                </p>
+              </article>
+
+              <article class="assistant-decision-card">
+                <p class="assistant-decision-number">03</p>
+                <h3 class="assistant-decision-card-title">Historia zdarze&#324; oparta na obrazie</h3>
+                <p>
+                  Widok historii po&#322;&#261;cze&#324; zosta&#322; zaprojektowany jako galeria zdarze&#324;. Miniatury pozwalaj&#261;
+                  rozpozna&#263; nagranie szybciej ni&#380; sam opis tekstowy, co jest szczeg&oacute;lnie wa&#380;ne
+                  w&nbsp;kontek&#347;cie kamer i&nbsp;interkomu.
+                </p>
+                <p>
+                  Decyzj&#261; projektow&#261; by&#322;o utrzymanie prostego uk&#322;adu kart, w&nbsp;kt&oacute;rym obraz pe&#322;ni
+                  rol&#281; g&#322;&oacute;wnego punktu orientacyjnego. Dzi&#281;ki temu u&#380;ytkownik mo&#380;e szybciej odnale&#378;&#263;
+                  konkretne zdarzenie i&nbsp;dopiero potem wej&#347;&#263; w&nbsp;szczeg&oacute;&#322;y nagrania.
+                </p>
+              </article>
+
+              <article class="assistant-decision-card">
+                <p class="assistant-decision-number">04</p>
+                <h3 class="assistant-decision-card-title">Ustawienia poza g&#322;&oacute;wnym flow</h3>
+                <p>
+                  Ustawienia zosta&#322;y oddzielone od g&#322;&oacute;wnego widoku, poniewa&#380; nie s&#261; cz&#281;&#347;ci&#261; codziennej
+                  reakcji na zdarzenia. Lewa kolumna porz&#261;dkuje kategorie, a&nbsp;prawa cz&#281;&#347;&#263; pokazuje konkretne
+                  parametry systemu.
+                </p>
+                <p>
+                  Dzi&#281;ki temu ekran g&#322;&oacute;wny pozostaje prostszy, a&nbsp;bardziej techniczne opcje s&#261; nadal dost&#281;pne
+                  w&nbsp;przewidywalnym miejscu: system, kamery, brama, sie&#263;, obraz, informacje i&nbsp;ustawienia zaawansowane.
+                </p>
+              </article>
+            </div>
+
+            <div class="assistant-decision-dots" aria-hidden="true">
+              <span class="assistant-decision-dot is-active"></span>
+              <span class="assistant-decision-dot"></span>
+              <span class="assistant-decision-dot"></span>
+              <span class="assistant-decision-dot"></span>
+            </div>
+
+            <div class="assistant-decision-controls" aria-label="Nawigacja po punktach procesu">
+              <button
+                class="assistant-decision-control"
+                type="button"
+                data-case-study-carousel-control="previous"
+                aria-label="Poprzedni punkt"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M19 12H5m0 0 6-6m-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
+              <button
+                class="assistant-decision-control"
+                type="button"
+                data-case-study-carousel-control="next"
+                aria-label="Nast&#281;pny punkt"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M5 12h14m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="assistant-story-section assistant-story-section-tight">
         <div class="container">
           <article class="wip-problem-card assistant-problem-card" data-reveal>
@@ -317,31 +496,15 @@
         </div>
       </section>
 
-      <section class="assistant-video-showcase">
-        <div class="container">
-          <div class="assistant-video-grid">
-            <figure class="assistant-video-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/videos/assistant/Video1_lower1.mp4" type="video/mp4" />
-              </video>
-            </figure>
-            <figure class="assistant-video-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/videos/assistant/Video2_lower1.mp4" type="video/mp4" />
-              </video>
-            </figure>
-            <figure class="assistant-video-card" data-reveal>
-              <video autoplay muted loop playsinline preload="metadata">
-                <source src="../assets/videos/assistant/Video3_lower1.mp4" type="video/mp4" />
-              </video>
-            </figure>
-          </div>
-        </div>
-      </section>
+      <section class="assistant-final-section" aria-label="Projekt finalny">
+        <div class="assistant-final-track" data-horizontal-drag data-disable-rive-zoom="true" data-reveal>
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="Animacja finalnego ekranu panelu asystenta domowego">
+              <source src="../assets/videos/assistant/Video1_lower1.mp4" type="video/mp4" />
+            </video>
+          </figure>
 
-      <section class="wip-rive assistant-rive-duo">
-        <div class="container wip-rive-grid">
-          <div class="wip-rive-card" data-reveal>
+          <figure class="assistant-final-shot">
             <canvas
               width="596"
               height="596"
@@ -350,98 +513,95 @@
               data-rive-autoplay="true"
               aria-label="Animacja interfejsu interkomu"
             ></canvas>
-          </div>
+          </figure>
 
-          <div class="wip-rive-card" data-reveal>
+          <figure class="assistant-final-shot">
             <canvas
               width="596"
               height="596"
               data-rive-src="../assets/rive/buttons_intercom_assistant.riv"
               data-rive-artboard="Artboard 2"
               data-rive-autoplay="true"
-              aria-label="Animacja przycisk&oacute;w i interakcji asystenta"
+              aria-label="Animacja przycisków i interakcji asystenta"
             ></canvas>
-          </div>
-        </div>
-      </section>
+          </figure>
 
-      <section class="wip-two-up assistant-image-grid">
-        <div class="container">
-          <div class="wip-two-up-grid assistant-image-grid-shell">
-            <figure class="wip-image-card" data-reveal>
-              <img
-                src="../assets/images/assistant/mockup_7.png"
-              alt="Widok od&#347;wie&#380;onego ekranu kamer"
-                width="603"
-                height="603"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-            <figure class="wip-image-card" data-reveal>
-              <img
-                src="../assets/images/assistant/mockup_6.png"
-              alt="Widok od&#347;wie&#380;onego ekranu interkomu"
-                width="603"
-                height="603"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          </div>
-        </div>
-      </section>
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="Animacja finalnego widoku historii połączeń panelu asystenta domowego">
+              <source src="../assets/videos/assistant/Video2_lower1.mp4" type="video/mp4" />
+            </video>
+          </figure>
 
-      <section class="assistant-large-rive">
-        <div class="container">
-          <div class="assistant-tech-grid">
-            <figure class="assistant-tech-card" data-reveal>
-              <canvas
-                width="1212"
-                height="1212"
-                data-rive-src="./tech_anim.riv"
-                data-rive-artboard="Artboard"
-                data-rive-autoplay="true"
-                aria-label="Animacja widoku kamer w aplikacji"
-              ></canvas>
-            </figure>
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <video autoplay muted loop playsinline preload="metadata" aria-label="Animacja finalnych mikrointerakcji panelu asystenta domowego">
+              <source src="../assets/videos/assistant/Video3_lower1.mp4" type="video/mp4" />
+            </video>
+          </figure>
 
-            <figure class="assistant-tech-card" data-reveal>
-              <canvas
-                width="1212"
-                height="1212"
-                data-rive-src="./tech_anim.riv"
-                data-rive-artboard="Artboard 2"
-                data-rive-autoplay="true"
-                aria-label="Animacja sterowania bram&#261; w aplikacji"
-              ></canvas>
-            </figure>
-
-            <figure class="assistant-tech-card assistant-tech-card-centered" data-reveal>
-              <canvas
-                width="1212"
-                height="1212"
-                data-rive-src="./tech_anim.riv"
-                data-rive-artboard="Artboard 3"
-                data-rive-autoplay="true"
-                aria-label="Animacja historii po&#322;&#261;cze&#324; w aplikacji"
-              ></canvas>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section class="wip-wide-image wip-wide-image-last assistant-wide-image assistant-wide-image-last">
-        <div class="container">
-          <figure class="wip-image-frame" data-reveal>
+          <figure class="assistant-final-shot assistant-final-shot-large">
             <img
-              src="../assets/images/assistant/mockup_8.png"
-              alt="Finalny ekran redesignu asystenta domowego"
-              width="1212"
-              height="728"
+              src="../assets/images/assistant/img1.png"
+              alt="Finalny ekran g&#322;&oacute;wny panelu asystenta domowego"
+              width="828"
+              height="518"
               loading="lazy"
               decoding="async"
             />
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <img
+              src="../assets/images/assistant/img2.png"
+              alt="Finalny ekran historii po&#322;&#261;cze&#324; w panelu asystenta"
+              width="829"
+              height="518"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <img
+              src="../assets/images/assistant/img3.png"
+              alt="Finalne ekrany odtwarzania nagrania z kamery"
+              width="701"
+              height="900"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large">
+            <img
+              src="../assets/images/assistant/img4.png"
+              alt="Finalny ekran ustawie&#324; panelu asystenta domowego"
+              width="829"
+              height="518"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large assistant-final-tech-card">
+            <canvas
+              width="1212"
+              height="1212"
+              data-rive-src="./tech_anim.riv"
+              data-rive-artboard="Artboard"
+              data-rive-autoplay="true"
+              aria-label="Animacja widoku kamer w aplikacji"
+            ></canvas>
+          </figure>
+
+          <figure class="assistant-final-shot assistant-final-shot-large assistant-final-tech-card">
+            <canvas
+              width="1212"
+              height="1212"
+              data-rive-src="./tech_anim.riv"
+              data-rive-artboard="Artboard 2"
+              data-rive-autoplay="true"
+              aria-label="Animacja sterowania bramą w aplikacji"
+            ></canvas>
           </figure>
         </div>
       </section>
